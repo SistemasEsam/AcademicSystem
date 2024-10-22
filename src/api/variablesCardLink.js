@@ -2,7 +2,7 @@ export const variablesCardLink = [
   {
     titulo: "perfil personal",
     imagen: "icono imagen",
-    href: "/perfil/",
+    href: "/docentes/formulario-registro/",
   },
   {
     titulo: "registro de programas",
