@@ -1,0 +1,17 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HeroTitle from "../components/ui/HeroTitle.astro";
+import CardLink from "../components/CardLink.astro";
+import { variablesCardLink } from "../api/variablesCardLink";
+---
+
+<Layout title="Sistema Academico ESAM">
+  <HeroTitle titulo="Menú Principal" />
+  <ul role="list" class="link-card-grid">
+    {
+      variablesCardLink.map((boton) => (
+        <CardLink title={boton.titulo} image={boton.imagen} href={boton.href} />
+      ))
+    }
+  </ul>
+</Layout>
