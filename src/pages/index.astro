@@ -7,11 +7,25 @@ import { variablesCardLink } from "../api/variablesCardLink";
 
 <Layout title="Sistema Academico ESAM">
   <HeroTitle titulo="Menú Principal" />
-  <ul role="list" class="link-card-grid">
+  <div class="contenidoCentral">
     {
       variablesCardLink.map((boton) => (
         <CardLink title={boton.titulo} image={boton.imagen} href={boton.href} />
       ))
     }
-  </ul>
+  </div>
 </Layout>
+
+<style>
+  .contenidoCentral {
+    text-align: center;
+    margin-top: 1rem;
+    margin-left: 15%;
+    margin-right: 15%;
+    max-width: 150.3333333333rem;
+
+    animation-name: iniciar;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+  }
+</style>

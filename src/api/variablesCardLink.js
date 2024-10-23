@@ -1,32 +1,32 @@
 export const variablesCardLink = [
   {
     titulo: "perfil personal",
-    imagen: "icono imagen",
+    imagen: "/images/svg/boton1.svg",
     href: "/perfil/",
   },
   {
     titulo: "registro de programas",
-    imagen: "icono imagen",
+    imagen: "/images/svg/boton2.svg",
     href: "/registro-programas/",
   },
   {
     titulo: "docentes",
-    imagen: "icono imagen",
+    imagen: "/images/svg/boton5.svg",
     href: "/docentes/",
   },
   {
     titulo: "postulantes",
-    imagen: "icono imagen",
+    imagen: "/images/svg/boton4.svg",
     href: "/postulantes/",
   },
   {
     titulo: "programas",
-    imagen: "icono imagen",
+    imagen: "/images/svg/boton3.svg",
     href: "/programas/",
   },
   {
     titulo: "certificaciones",
-    imagen: "icono imagen",
+    imagen: "/images/svg/boton6.svg",
     href: "/certificaciones/",
   },
 ];

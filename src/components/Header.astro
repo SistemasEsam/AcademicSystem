@@ -2,25 +2,131 @@
 
 ---
 
-<header
-  data-v-46a34009
-  class="v-toolbar v-toolbar--density-default v-theme--light v-locale--is-ltr v-app-bar"
-  clipped-left="false"
-  style="background-color: rgb(22, 45, 74); color: rgb(255, 255, 255); caret-color: rgb(255, 255, 255); top: 0px; z-index: 1006; transform: translateY(0%); position: fixed; left: 0px; width: calc(100% + 0px);"
->
-  <div class="v-toolbar__content" style="height: 64px;">
-    <div data-v-46a34009 class="v-toolbar-title font-italic">
-      <div class="v-toolbar-title__placeholder">
-        <a class="homeLogo" href="/"> Sistema Academico ESAM</a>
-      </div>
-    </div>
-  </div>
+<header>
+  <a id="logoEsam" href="/"> </a>
+  <h1 id="titulo">SISTEMA ACADÉMICO</h1>
+  <a id="logoEsamMobile" href="/">
+    <h1 id="tituloMobile">SISTEMA ACADÉMICO</h1>
+  </a>
 </header>
+<div class="barraAmarilla"></div>
 
 <style>
-  .homeLogo {
-    color: rgb(230, 235, 240);
+  #logoEsamMobile,
+  #titloMobile {
+    display: none;
+  }
+
+  #logoEsam {
     text-decoration: none;
-    font-size: 20px;
+    background-image: url(/images/logoEsam.png);
+    background-repeat: no-repeat;
+
+    background-size: cover;
+    margin-left: 70px;
+    width: 160px;
+
+    border: 0 solid;
+
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    &:hover {
+      box-shadow:
+        inset 0 0 30px rgba(255, 255, 255, 0.267),
+        0 0 20px rgba(255, 255, 255, 0.2);
+      outline-offset: 15px;
+      outline-color: rgba(255, 255, 255, 0);
+    }
+  }
+
+  header {
+    position: relative;
+    display: grid;
+    grid-template-columns: 10% 1fr;
+    height: 80px;
+    width: 100%;
+    background-image: linear-gradient(to right, #095b95, #01101a);
+    /* background-image: linear-gradient(to right, rgba(52, 53, 124, 0.8),30%,rgba(21, 104, 153, 0.0)); */
+    align-items: center;
+    justify-items: center;
+  }
+  @keyframes degrade {
+    0% {
+      background-position: 0% 50%;
+    }
+    25% {
+      background-position: 50% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    75% {
+      background-position: 50% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  @keyframes iniciar {
+    0% {
+      margin-top: 3%;
+
+      opacity: 0%;
+    }
+    100% {
+      opacity: 100%;
+
+      margin-top: 1rem;
+    }
+  }
+
+  #titulo {
+    margin-right: 150px;
+    font-size: 32px;
+  }
+
+  @media (max-width: 768px) {
+    header {
+      grid-template-columns: 30% 1fr;
+    }
+
+    #logoEsam,
+    #titulo {
+      display: none;
+    }
+
+    #logoEsamMobile {
+      text-decoration: none;
+      display: block;
+      background-image: url(/images/isotipo.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+      width: 80px;
+      height: 40px;
+    }
+
+    #tituloMobile {
+      margin-left: 15px;
+      padding-left: 40px;
+      font-size: 18px;
+      margin-top: -2px;
+    }
+  }
+
+  .barraAmarilla {
+    background-image: linear-gradient(
+      to right,
+      #fff000,
+      #cc9600,
+      #fff000,
+      #cc9600,
+      #fff000,
+      #cc9600
+    );
+    height: 10px;
+    width: 100%;
+    background-size: 550% 100%;
   }
 </style>

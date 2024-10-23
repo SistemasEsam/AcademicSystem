@@ -8,15 +8,30 @@ interface Props {
 const { image, title, href } = Astro.props;
 ---
 
-<a
-  href={href}
-  class="v-btn v-btn--elevated v-theme--light v-btn--density-default v-btn--variant-elevated button-style"
-  style="height: 300px; width: 300px;"
->
-  <span class="v-btn__overlay"></span>
-  <span class="v-btn__underlay"></span>
-  <span class="v-btn__content">
-    <i class={image} style="font-size: 200px; height: 200px; width: 200px;"></i>
-    <h3 class="text-position">{title}</h3>
-  </span>
-</a>
+<div class="cardLink">
+  <a href={href}>
+    <img class="boton" src={image} alt={title} height="250px" />
+  </a>
+</div>
+
+<style>
+  .cardLink {
+    width: 30.333333%;
+    display: inline-block;
+  }
+  .cardLink .boton {
+    margin: 15px;
+    padding: 0px;
+    border-radius: 30px;
+    box-shadow: 5px 5px 11px rgb(160, 163, 163);
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  @media (max-width: 699px) {
+    .cardLink {
+      width: 100%;
+    }
+  }
+</style>
