@@ -51,14 +51,10 @@ export const ResultadosDocentes: React.FC<ResultProps> = ({
         >
           <span className="v-btn__overlay"></span>
           <span className="v-btn__underlay"></span>
-          <span className="v-btn__content" data-no-activator="">
-            Abrir
-          </span>
+          <a href={`/postulantes/info/${nombre}`}>Abrir</a>
         </button>
       </div>
       <span className="v-card__underlay"></span>
     </div>
   );
 };
-
-
