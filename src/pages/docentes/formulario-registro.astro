@@ -7,6 +7,12 @@ import { extencion } from "../../api/infoDocumento";
 import { DecisionComponent } from "../../components/switches/Switch";
 import { ImageUpload } from "../../components/upload/uploadimages";
 import {infoGenero} from "../../api/infoDocumento"
+import {infoGrado} from "../../api/infoModalidad"
+import {infoModalidad} from "../../api/infoModalidad"
+import {PdfUpload} from "../../components/upload/uploadpdf"
+import EducationForm from "../../components/formdoc/EducationForm"
+import CourseFormList from "../../components/formdoc/CourseForm"
+import IntellectualProductionFormList from "../../components/formdoc/IntellectualForm"
 ---
 
 <Layout title="formulario">
@@ -185,13 +191,11 @@ import {infoGenero} from "../../api/infoDocumento"
           <div class="v-col"></div>
           <div class="v-col"></div>
         </div>
-       
-      
+
         <div
           class="v-alert v-theme--light bg-red v-alert--density-compact v-alert--variant-elevated"
           role="alert"
-          style="display: none;"
-        >
+          style="display: none;">
           <span class="v-alert__underlay"> </span>
           <div class="v-alert__content">
             <div class="v-alert-title">Atención
@@ -237,4 +241,144 @@ import {infoGenero} from "../../api/infoDocumento"
       <span class="v-btn__content" data-no-activator="">guardar</span>
     </button>
   </div>
+
+  
+
+
+  <div class="v-container" style="width: 1000px; margin: auto;">
+    <h2 class="header-form">Diplomado/Maestría en Educación Superior</h2>
+    <div class="v-card card-style">
+      <div class="v-container">
+        <div class="v-row">
+          <b>
+            <label>
+              Llene el formulario con el grado del título más alto.
+              <br />Escribe los nombres completos de las instituciones sin abreviaturas y verifica la ortografía.
+            </label>
+          </b>
+        </div>
+        <div class="v-row">
+          <InputRegistro info="Universidad o Institucion" />
+          <InputRegistro info="Nombre de postgrado" />
+          <div class="v-col">
+            <select name="nombre_coordinador" id="input-16">
+              <option value="">Grado</option>
+              {
+                infoGrado.map((grado) => (
+                  <option value={grado.grado}>{grado.grado}</option>
+                ))
+              }
+            </select>
+          </div>
+        </div>
+
+        <div class="v-row">
+          <InputRegistro info="Pais" />
+          <div class="v-col">
+            <select name="nombre_coordinador" id="input-16">
+              <option value="">Modalidad de graduacion</option>
+              {
+                infoModalidad.map((modalidad) => (
+                  <option value={modalidad.mod}>{modalidad.mod}</option>
+                ))
+              }
+            </select>
+          </div>
+          <div class="v-col">
+            <div class="dp__main dp__theme_light">
+              <div>
+                <div class="dp__input_wrap">
+                  <input
+                    type="date"
+                    class="dp__pointer dp__input_readonly dp__input dp__input_icon_pad dp__input_reg"
+                    placeholder="Fecha de Nacimiento"
+                    autocomplete="off"
+                    aria-label="Datepicker input"
+                  />
+                  <div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 32 32"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      class="dp__icon dp__input_icon dp__input_icons"
+                      width="16"
+                      height="16"
+                    >
+                      <path
+                        d="M29.333 8c0-2.208-1.792-4-4-4h-18.667c-2.208 0-4 1.792-4 4v18.667c0 2.208 1.792 4 4 4h18.667c2.208 0 4-1.792 4-4v-18.667zM26.667 8v18.667c0 0.736-0.597 1.333-1.333 1.333 0 0-18.667 0-18.667 0-0.736 0-1.333-0.597-1.333-1.333 0 0 0-18.667 0-18.667 0-0.736 0.597-1.333 1.333-1.333 0 0 18.667 0 18.667 0 0.736 0 1.333 0.597 1.333 1.333z"
+                      ></path>
+                      <path
+                        d="M20 2.667v5.333c0 0.736 0.597 1.333 1.333 1.333s1.333-0.597 1.333-1.333v-5.333c0-0.736-0.597-1.333-1.333-1.333s-1.333 0.597-1.333 1.333z"
+                      ></path>
+                      <path
+                        d="M9.333 2.667v5.333c0 0.736 0.597 1.333 1.333 1.333s1.333-0.597 1.333-1.333v-5.333c0-0.736-0.597-1.333-1.333-1.333s-1.333 0.597-1.333 1.333z"
+                      ></path>
+                      <path
+                        d="M4 14.667h24c0.736 0 1.333-0.597 1.333-1.333s-0.597-1.333-1.333-1.333h-24c-0.736 0-1.333 0.597-1.333 1.333s0.597 1.333 1.333 1.333z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="v-row">
+          <div class="v-col">
+            <b>
+              <p style="text-align: left">
+                Adjunte el documento escaneado correspondiente, compruebe la
+                calidad, legibilidad y nombre de manera apropiada el mismo.
+              </p>
+            </b>
+            <br />
+            <PdfUpload client:load/>
+            <EducationForm title="FORMACIÓN DE PREGRADO" client:load/>
+            <EducationForm title="FORMACIÓN DE POSTGRADO" client:load/>  
+        </div>
+        <div class="v-col">
+          <div
+            class="v-alert"
+            style="display: none; background-color: red; color: white;"
+          >
+            Atención: Verifique que los datos ingresados sean correctos!
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="v-container">
+    <button class="v-btn" style="width: 150px;">Guardar</button>
+    <button class="v-btn" style="width: 150px;">Atras</button>
+  </div>
+
+
+  <v-col class="d-flex justify-center aling-center">
+    <h3 class="headline header-form">CURSOS</h3>
+    <CourseFormList client:load />
+    
+    <v-col class="d-flex justify-center aling-center">
+      
+      <IntellectualProductionFormList client:load />
+  
+    
+     
+    </v-btn>
+  </v-col>
+
+
+  
+  
+ 
+
+
+
+
+
+
+
+
 </Layout>
