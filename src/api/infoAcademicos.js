@@ -1,10 +1,9 @@
-export const infoAcademicos = [
+export const campos = [
   {
     id: 1,
-    nombres: "Alejandra Lili",
-    apellido_paterno: "Rodriguez",
-    apellido_materno: "Flores",
-    correo: "alejandra.rodriguez@esam.edu.bo",
+    contacto: "Numero de Contacto",
+    ref: "Número de Referencia",
+    correo: "Correo Electrónico"
   },
   {
     id: 2,
