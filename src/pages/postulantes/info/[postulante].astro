@@ -1,0 +1,28 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import HeroTitle from "../../../components/ui/HeroTitle.astro";
+import { infoDocentes } from "../../../api/infoDocentes";
+import { PostulanteInfo } from "../../../components/docentes/PostulanteInfo";
+export function getStaticPaths() {
+  return infoDocentes.map((docente) => ({
+    params: { postulante: docente.nombre.toString() },
+  }));
+}
+
+const { postulante } = Astro.params;
+
+const postulanteDetails = infoDocentes.find(
+  (doc) => doc.nombre.toString() === postulante
+);
+
+if (!postulanteDetails) {
+  return Astro.redirect("/404");
+}
+---
+
+<Layout title=`Sistema Académico ESAM | ${postulante}`>
+  
+  <section class="container">
+    <PostulanteInfo postulante={postulanteDetails}/>
+  </section>
+</Layout>
