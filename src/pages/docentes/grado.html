@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Docente</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 500px;
+            width: 100%;
+            padding: 20px 30px;
+            background-color: #c2c8e2;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+        h2 {
+            font-size: 18px;
+            color: #555;
+        }
+        .form-group {
+            margin-top: 15px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group select,
+        .form-group input[type="file"] {
+            width: 100%;
+            padding: 10px 1px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group input[type="file"] {
+            padding: 8px;
+        }
+        .btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Registro Docente</h1>
+    <h2>Diplomado/Maestría en Educación Superior</h2>
+    
+    <form action="/submit" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="institution">Universidad o Institución:</label>
+            <input type="text" id="institution" name="institution" required>
+        </div>
+        <div class="form-group">
+            <label for="postgraduateName">Nombre de Postgrado:</label>
+            <input type="text" id="postgraduateName" name="postgraduateName" required>
+        </div>
+        <div class="form-group">
+            <label for="degree">Grado:</label>
+            <select id="degree" name="degree" required>
+                <option value="">Seleccione el grado</option>
+                <option value="diplomado">Diplomado</option>
+                <option value="maestria">Maestría</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="country">País:</label>
+            <input type="text" id="country" name="country" required>
+        </div>
+        <div class="form-group">
+            <label for="modality">Modalidad de Graduación:</label>
+            <select id="modality" name="modality" required>
+                <option value="">Seleccione la modalidad</option>
+                <option value="monografia">Monografía</option>
+                <option value="tesis">Tesis</option>
+                <option value="otros">Otros</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="graduationYear">Año de Titulación:</label>
+            <input type="number" id="graduationYear" name="graduationYear" min="1950" max="2024" required>
+        </div>
+        <div class="form-group">
+            <label for="file">Adjuntar título escaneado (PDF):</label>
+            <input type="file" id="file" name="file" accept="application/pdf" required>
+        </div>
+        
+        <button type="submit" class="btn">Guardar</button>
+    </form>
+</div>
+
+</body>
+</html>
