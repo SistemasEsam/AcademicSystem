@@ -3,6 +3,7 @@ import Layout from "../../../layouts/Layout.astro";
 import HeroTitle from "../../../components/ui/HeroTitle.astro";
 import { infoDocentes } from "../../../api/infoDocentes";
 import PostulanteInfo from "../../../components/docentes/PostulanteInfo.astro";
+
 export function getStaticPaths() {
   return infoDocentes.map((docente) => ({
     params: { postulante: docente.nombre.toString() },
@@ -25,4 +26,7 @@ if (!postulanteDetails) {
   <section class="container">
     <PostulanteInfo postulante={postulanteDetails}/>
   </section>
+
+  <HeroTitle titulo={postulanteDetails?.nombre} />
+
 </Layout>
