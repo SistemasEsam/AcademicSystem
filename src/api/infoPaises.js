@@ -16,8 +16,14 @@ export const infoPaises = [
       }, {
         id: 5,
         pais: 'Ecuador'
-      }, {
+      },
+       {
         id: 6,
         pais: 'Peru'
+      },
+
+      {
+        id: 7,
+        pais: 'brasil'
       },
     ]

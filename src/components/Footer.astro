@@ -1,51 +1,108 @@
-<footer
-  data-v-15925d9e
-  class="v-footer v-theme--light custom-footer"
-  style="bottom: 0px; z-index: 1004; transform: translateY(0%); position: fixed; left: 0px; width: calc(100% + 0px);"
->
-  <div data-v-15925d9e class="v-container v-container--fluid v-locale--is-ltr">
-    <div data-v-15925d9e class="v-row">
-      <div data-v-15925d9e class="v-col-md-6 v-col-12 text-center text-md-left">
-        <div data-v-15925d9e class="v-spacer"></div><a
-          data-v-15925d9e
-          class="v-btn v-btn--elevated v-btn--icon v-theme--light bg-white v-btn--density-default v-btn--size-default v-btn--variant-elevated"
+<footer>
+  <div class="piePagina">
+    <div>
+      <div class="redesSociales">
+        <a
           href="https://www.facebook.com/esamcochabambasucursal"
-          ><span class="v-btn__overlay"></span><span class="v-btn__underlay"
-          ></span><span class="v-btn__content" data-no-activator
-            ><i
-              data-v-15925d9e
-              class="mdi-facebook mdi v-icon notranslate v-theme--light v-icon--size-default"
-              aria-hidden="true"></i></span
-          ></a
-        ><a
-          data-v-15925d9e
-          class="v-btn v-btn--elevated v-btn--icon v-theme--light bg-white v-btn--density-default v-btn--size-default v-btn--variant-elevated"
-          href="https://www.linkedin.com/company/esam-cochabamba/"
-          ><span class="v-btn__overlay"></span><span class="v-btn__underlay"
-          ></span><span class="v-btn__content" data-no-activator
-            ><i
-              data-v-15925d9e
-              class="mdi-linkedin mdi v-icon notranslate v-theme--light v-icon--size-default"
-              aria-hidden="true"></i></span
-          ></a
-        ><a
-          data-v-15925d9e
-          class="v-btn v-btn--elevated v-btn--icon v-theme--light bg-white v-btn--density-default v-btn--size-default v-btn--variant-elevated"
+          target="_blank"
+          ><img
+            class="ico"
+            src="/images/svg/facebook.svg"
+            alt=""
+            width="25px"
+          /></a
+        >
+        <a
           href="https://www.instagram.com/esamcochabambasucursal/"
-          ><span class="v-btn__overlay"></span><span class="v-btn__underlay"
-          ></span><span class="v-btn__content" data-no-activator
-            ><i
-              data-v-15925d9e
-              class="mdi-instagram mdi v-icon notranslate v-theme--light v-icon--size-default"
-              aria-hidden="true"></i></span
-          ></a>
-      </div><div
-        data-v-15925d9e
-        class="v-col-md-6 v-col-12 text-center text-md-right"
-      >
-        <div data-v-15925d9e class="v-spacer"></div><span data-v-15925d9e
-          >© 2024 ESAM COCHABAMBA SUCURSAL</span>
+          target="_blank"
+          ><img
+            class="ico"
+            src="/images/svg/instagram.svg"
+            alt=""
+            width="28px"
+          /></a
+        >
+        <a
+          href="https://bo.linkedin.com/company/esamcochabambasucursal"
+          target="_blank"
+          ><img
+            class="ico"
+            src="/images/svg/linkedin.svg"
+            alt=""
+            width="25px"
+          /></a
+        >
       </div>
+    </div>
+    <div>
+      <h5>©2024 ESAM COCHABAMBA SUCURSAL</h5>
+      <h5>TELEFONO: 44521541 - 71315551</h5>
     </div>
   </div>
 </footer>
+
+<style>
+  footer {
+    margin-top: 9.5rem;
+    height: 120px;
+    width: 100%;
+    background-color: #b8c7cc;
+
+    position: relative;
+
+    /* position: fixed; */
+    bottom: 0px;
+  }
+  @media (max-width: 1500px) {
+    footer {
+      position: relative;
+      height: 120px;
+
+      width: 100%;
+    }
+  }
+  @media (max-width: 768px) {
+    footer {
+      position: relative;
+      height: 180px;
+      margin-top: 50px;
+      width: 100%;
+      display: flex;
+
+      justify-content: center;
+    }
+
+    @media (max-width: 1500px) {
+      footer {
+        position: relative;
+        height: 120px;
+
+        width: 100%;
+      }
+    }
+
+    #logoEsam {
+      background-image: url(../img/Isotipo.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+      width: 50px;
+    }
+    #titulo {
+      margin-left: 10px;
+    }
+    h1 {
+      font-size: 18px;
+    }
+  }
+  .redesSociales {
+    display: grid;
+    grid-template-columns: 50px 50px 50px;
+    justify-content: center;
+    justify-items: center;
+  }
+  .ico {
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+</style>
