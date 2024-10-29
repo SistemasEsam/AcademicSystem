@@ -47,7 +47,7 @@ export const AcademicFilter = () => {
                 </div>
               </div>
               <div className="v-field__field" data-no-activator="">
-                <label className="v-label v-field-label" for="input-16">
+                <label className="v-label v-field-label" htmlFor="input-16">
                   Nombre
                 </label>
                 <select
@@ -110,7 +110,7 @@ export const AcademicFilter = () => {
                     </div>
                   </div>
                   <div className="v-field__field" data-no-activator="">
-                    <label className="v-label v-field-label" for="input-18">
+                    <label className="v-label v-field-label" htmlFor="input-18">
                       Nombres
                     </label>
                     <input
@@ -129,7 +129,7 @@ export const AcademicFilter = () => {
                       <label
                         className="v-label v-field-label v-field-label--floating"
                         aria-hidden="true"
-                        for="input-18"
+                        htmlFor="input-18"
                       >
                         Nombres
                       </label>
@@ -176,7 +176,7 @@ export const AcademicFilter = () => {
                     </div>
                   </div>
                   <div className="v-field__field" data-no-activator="">
-                    <label className="v-label v-field-label" for="input-20">
+                    <label className="v-label v-field-label" htmlFor="input-20">
                       Apellidos
                     </label>
                     <input
@@ -195,7 +195,7 @@ export const AcademicFilter = () => {
                       <label
                         className="v-label v-field-label v-field-label--floating"
                         aria-hidden="true"
-                        for="input-20"
+                        htmlFor="input-20"
                       >
                         Apellidos
                       </label>
@@ -242,7 +242,7 @@ export const AcademicFilter = () => {
                     </div>
                   </div>
                   <div className="v-field__field" data-no-activator="">
-                    <label className="v-label v-field-label" for="input-20">
+                    <label className="v-label v-field-label" htmlFor="input-20">
                       Correo
                     </label>
                     <input
@@ -261,7 +261,7 @@ export const AcademicFilter = () => {
                       <label
                         className="v-label v-field-label v-field-label--floating"
                         aria-hidden="true"
-                        for="input-20"
+                        htmlFor="input-20"
                       >
                         Correo
                       </label>
