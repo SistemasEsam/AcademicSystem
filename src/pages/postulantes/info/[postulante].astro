@@ -3,12 +3,6 @@ import Layout from "../../../layouts/Layout.astro";
 import HeroTitle from "../../../components/ui/HeroTitle.astro";
 import { infoDocentes } from "../../../api/infoDocentes";
 
-export function getStaticPaths() {
-  return infoDocentes.map((docente) => ({
-    params: { postulante: docente.nombre.toString() },
-  }));
-}
-
 const { postulante } = Astro.params;
 
 const postulanteDetails = infoDocentes.find(
