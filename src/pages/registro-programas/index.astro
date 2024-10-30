@@ -1,16 +1,13 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import HeroTitle from "../../components/ui/HeroTitle.astro";
-import { AcademicFilter } from "../../components/filters/AcademicFilter";
 import { LoadedDataComponent } from "../../components/ui-react-components/LoadedDataComponent";
-import { ProgramForm } from "../../components/ui-react-components/ProgramInfoComponent";
-import { ModuleForm } from "../../components/ui-react-components/ModuloInfoComponent";
+import {ProgramForm } from "../../components/ui-react-components/ProgramInfoComponent";
+
 ---
 
 <Layout title="Sistema Academico ESAM | Registro de Programas">
   <ProgramForm client:load/>
-  <AcademicFilter client:load />
-  <ModuleForm client:load/>
 </Layout>
 
 <style>
