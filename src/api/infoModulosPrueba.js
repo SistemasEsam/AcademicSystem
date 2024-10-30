@@ -1,6 +1,6 @@
 export const infoProgramas = [
   {
-    id_programa: "M-4090",
+    id_programa: 4090,
     modulos: [
       {
         id: "M-4090-M0",
@@ -69,7 +69,7 @@ export const infoProgramas = [
     ]
   },
   {
-    id_programa: "M-4508",
+    id_programa: 4508,
     modulos: [
       {
         id: "M-4508-M0",
@@ -138,7 +138,7 @@ export const infoProgramas = [
     ]
   },
   {
-    id_programa: "M-4493",
+    id_programa: 4493,
     modulos: [
       {
         id: "M-4493-M0",

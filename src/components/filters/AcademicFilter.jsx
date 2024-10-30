@@ -19,7 +19,7 @@ export const AcademicFilter = () => {
           Nota: Ingrese el nombre del coordinador/a
         </label>
         <div className="v-field__field" data-no-activator="">
-          <label className="v-label v-field-label" for="input-16">
+          <label className="v-label v-field-label">
             Nombre
           </label>
           <select

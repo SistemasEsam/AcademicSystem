@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { gql, request } from "graphql-request";
 import { GET_PROGRAM_BY_ID } from "../../api/graphqlqueries";
+import { ModuleForm } from "../../components/ui-react-components/ModuloInfoComponent";
+import { AcademicFilter } from "../../components/filters/AcademicFilter";
 
 // Definir la estructura del programa
 interface Program {
@@ -24,21 +26,23 @@ export const ProgramForm = () => {
   const [programData, setProgramData] = useState<Program | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [modulesEnabled, setModulesEnabled] = useState(false);
 
   const fetchProgramData = async (id: number) => {
     setLoading(true);
     setError(null);
 
     try {
-      // Especificar el tipo de respuesta que esperamos
       const data = await request<GetProgramResponse>(
         "https://webapitest.esam.edu.bo/graphql",
         GET_PROGRAM_BY_ID,
-        { id } // Pasar el ID como número entero
+        { id }
       );
       setProgramData(data.programa);
+      setModulesEnabled(true); // Habilitar selector de módulos al obtener los datos
     } catch (err: any) {
-      setError("Error al obtener el programa: " + err.message); // Manejar el error correctamente
+      setError("Error al obtener el programa: " + err.message);
+      setModulesEnabled(false); // Deshabilitar selector en caso de error
     } finally {
       setLoading(false);
     }
@@ -56,11 +60,11 @@ export const ProgramForm = () => {
       <h3>Información del Programa</h3>
       <h4>Buscar Programa por ID</h4>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="programId">ID del Programa:</label>
+        <label>ID del Programa:</label>
         <input
           type="number"
           id="programId"
-          value={programId !== null ? programId : ''}
+          value={programId !== null ? programId : ""}
           onChange={(e) => setProgramId(parseInt(e.target.value))}
           placeholder="Ejemplo: 3745"
           required
@@ -87,13 +91,20 @@ export const ProgramForm = () => {
             <strong>Sede:</strong> {programData.sede.nombre}
           </p>
           <p>
-            <strong>Área de Postgrado:</strong> {programData.postgrado.area.nombre}
+            <strong>Área de Postgrado:</strong>{" "}
+            {programData.postgrado.area.nombre}
           </p>
           <p>
-            <strong>Categoria de Postgrado:</strong> {programData.postgrado.categoria.nombre}
+            <strong>Categoria de Postgrado:</strong>{" "}
+            {programData.postgrado.categoria.nombre}
           </p>
         </div>
       )}
+      
+      <AcademicFilter />
+
+      {/* Pasar el ID del programa y habilitar/deshabilitar ModuleForm */}
+      <ModuleForm id_programa={programId !== null ? programId : 0} enabled={modulesEnabled} />
     </div>
   );
 };
