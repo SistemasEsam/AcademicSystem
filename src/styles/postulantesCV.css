@@ -1,0 +1,136 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 0 auto;
+  }
+  
+  .left-column {
+    width: 30%;
+    background-color: #1d2a44; 
+    color: white;
+    padding: 20px;
+    border-right: 2px solid black;
+  }
+  
+  .left-column img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+    border: 5px solid #fdd835; 
+  }
+  
+  .left-column h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .left-column p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+  }
+  
+  .left-column .contact-info,
+  .left-column .skills {
+    margin-top: 20px;
+  }
+  
+  .left-column .skills ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .left-column .skills ul li {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+  }
+  
+  .right-column {
+    width: 65%;
+    padding: 30px;
+    border-left: 2px solid #ddd; 
+    border-right: 2px solid black;
+    border-top: 2px solid black; 
+  border-bottom: 2px solid black;
+
+  }
+  
+  .right-column h2 {
+    font-size: 1.5rem;
+    color: #1d2a44; 
+    margin-bottom: 15px;
+    border-bottom: 2px solid #1d2a44;
+    padding-bottom: 5px;
+  }
+  
+  .right-column p {
+    margin: 8px 0;
+    font-size: 1rem;
+  }
+  
+  .right-column strong {
+    font-weight: bold;
+  }
+  
+  .right-column ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .right-column li {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .right-column li:last-child {
+    border-bottom: none;
+  }
+  
+  .right-column h3 {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    color: #1d2a44;
+  }
+  
+  /* Imagen de perfil */
+  .profile-pic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:30px;
+  }
+  
+  .profile-pic img {
+    border-radius: 60%; 
+    width: 150px;
+    height: 150px;
+  }
+  
+  /* Para el PDF */
+  @media print {
+    body {
+      font-size: 12px;
+    }
+  
+    .container {
+      display: block;
+    }
+  
+    .left-column {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  
+    .right-column {
+      width: 100%;
+    }
+  }
+  

@@ -2,6 +2,7 @@
 import Layout from "../../../layouts/Layout.astro";
 import HeroTitle from "../../../components/ui/HeroTitle.astro";
 import { infoDocentes } from "../../../api/infoDocentes";
+import PostulanteInfo from "../../../components/docentes/PostulanteInfo.astro";
 
 
 export function getStaticPaths() {
@@ -24,5 +25,11 @@ if (!postulanteDetails) {
 ---
 
 <Layout title=`Sistema Académico ESAM | ${postulante}`>
+  
+  <section class="container">
+    <PostulanteInfo postulante={postulanteDetails}/>
+  </section>
+
   <HeroTitle titulo={postulanteDetails?.nombre} />
+
 </Layout>
