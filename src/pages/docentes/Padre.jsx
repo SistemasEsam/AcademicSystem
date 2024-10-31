@@ -4,6 +4,12 @@ import Form2 from "./form2";
 import EducationForm from "../../components/formdoc/EducationForm";
 import CourseFormList from "../../components/formdoc/CourseForm";
 import IntellectualProductionFormList from "../../components/formdoc/IntellectualForm";
+import PostDegreeForm from '../../components/formdoc/PostDegreeForm';
+import WorkExperienceFormList from './WorkExperienceFormList';
+import DegreeForm from '../../components/formdoc/DegreeForm';
+import WorkDocentExper from './WorkDocentExper'
+import SoftSkillsAndLanguages from './HabilidadIdioma'
+
 
 const MultiStepForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -11,10 +17,13 @@ const MultiStepForm = () => {
   const steps = [
     <InputRegistroList />,
     <Form2 />,
-    <EducationForm title="FORMACIÓN DE PREGRADO" />,
-    <EducationForm title="FORMACIÓN DE POSTGRADO" />,
+    <EducationForm title="Formación Pregrado" FormComponent={DegreeForm} />,
+    <EducationForm title="Formación de Postgrado" FormComponent={PostDegreeForm} />,
     <CourseFormList />,
     <IntellectualProductionFormList />,
+    <WorkExperienceFormList/>,
+    <WorkDocentExper />,
+    <SoftSkillsAndLanguages/>
   ];
 
   const nextStep = () => {

@@ -10,6 +10,7 @@ interface IntellectualProductionFormProps {
 const IntellectualProductionForm: React.FC<IntellectualProductionFormProps> = ({ index, onDelete, isDisabled }) => {
   return (
     <div className="intellectual-production-form">
+       <h1 style={{ color: 'black' }}>Publicaciones</h1>
       <h3>PUBLICACIÓN {index + 1}</h3>
       <p>
         Llene el formulario con los artículos realizados más relevantes para el cargo.

@@ -11,7 +11,7 @@ const CourseForm: React.FC<CourseFormProps> = ({ index, onDelete, isDisabled }) 
   return (
     <div className="course-form">
         
-      <h1>CURSOS</h1>
+        <h1 style={{ color: 'black' }}>CURSOS</h1>
       <h3>CURSO {index + 1}</h3>
       <p>
         Llene el formulario con los cursos realizados más relevantes para el cargo.
