@@ -10,12 +10,7 @@ interface Module {
     monto_a_pagar: number;
     hora_inicio: string;
     hora_fin: string;
-    fecha_de_clases: {
-        sesion_1: string;
-        sesion_2: string;
-        sesion_3: string;
-        sesion_4: string;
-    };
+    fecha_de_clases: string[];
     contenido_minimo: string;
 }
 
@@ -76,8 +71,17 @@ export const ModuleForm: React.FC<ModuleFormProps> = ({ id_programa, enabled }) 
                     <p><strong>Hora Inicio:</strong> {selectedModule.hora_inicio}</p>
                     <p><strong>Hora Fin:</strong> {selectedModule.hora_fin}</p>
                     <p><strong>Contenido Mínimo:</strong> {selectedModule.contenido_minimo}</p>
+                    <p><strong>Sesiones:</strong></p>
+                        <ul>
+                        {selectedModule.fecha_de_clases.map((sesion, indice)=>(
+                                <li key={indice}>
+                                    Sesión {indice +1} : {selectedModule.hora_inicio}-{selectedModule.hora_fin}   {sesion}</li>
+                            ))}
+                        </ul>
                 </div>
             )}
+            <button type="submit">Invitación</button>
+            <button type="submit">Pago</button>
         </div>
     );
 };

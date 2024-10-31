@@ -10,12 +10,12 @@ export const infoProgramas = [
         monto_a_pagar: 3550,
         hora_inicio: "19:00",
         hora_fin: "22:00",
-        fecha_de_clases: {
-          sesion_1: "29/10/2024",
-          sesion_2: "5/11/2024",
-          sesion_3: "12/11/2024",
-          sesion_4: "19/10/2024",
-        },
+        fecha_de_clases: [
+          "29/10/2024",
+          "5/11/2024",
+          "12/11/2024",
+          "19/10/2024",
+        ],
         contenido_minimo: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
       },
       {
@@ -26,12 +26,12 @@ export const infoProgramas = [
         monto_a_pagar: 3550,
         hora_inicio: "19:00",
         hora_fin: "22:00",
-        fecha_de_clases: {
-          sesion_1: "29/10/2024",
-          sesion_2: "5/11/2024",
-          sesion_3: "12/11/2024",
-          sesion_4: "19/10/2024",
-        },
+        fecha_de_clases: [
+          "29/10/2024",
+          "5/11/2024",
+          "12/11/2024",
+          "19/10/2024",
+        ],
         contenido_minimo: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
       },
       {
@@ -42,12 +42,12 @@ export const infoProgramas = [
         monto_a_pagar: 3550,
         hora_inicio: "19:00",
         hora_fin: "22:00",
-        fecha_de_clases: {
-          sesion_1: "29/10/2024",
-          sesion_2: "5/11/2024",
-          sesion_3: "12/11/2024",
-          sesion_4: "19/10/2024",
-        },
+        fecha_de_clases: [
+          "29/10/2024",
+          "5/11/2024",
+          "12/11/2024",
+          "19/10/2024",
+        ],
         contenido_minimo: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
       },
       {
@@ -58,12 +58,12 @@ export const infoProgramas = [
         monto_a_pagar: 3550,
         hora_inicio:"19:00",
         hora_fin:"22:00",
-        fecha_de_clases:{
-          sesion_1:"29/10/2024",
-          sesion_2:"5/11/2024",
-          sesion_3:"12/11/2024",
-          sesion_4:"19/10/2024",
-        },
+        fecha_de_clases: [
+          "29/10/2024",
+          "5/11/2024",
+          "12/11/2024",
+          "19/10/2024",
+        ],
         contenido_minimo:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
       }
     ]
@@ -79,12 +79,12 @@ export const infoProgramas = [
         monto_a_pagar: 3550,
         hora_inicio: "19:00",
         hora_fin: "22:00",
-        fecha_de_clases: {
-          sesion_1: "29/10/2024",
-          sesion_2: "5/11/2024",
-          sesion_3: "12/11/2024",
-          sesion_4: "19/10/2024",
-        },
+        fecha_de_clases: [
+          "29/10/2024",
+          "5/11/2024",
+          "12/11/2024",
+          "19/10/2024",
+        ],
         contenido_minimo: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
       },
       {
@@ -95,12 +95,12 @@ export const infoProgramas = [
         monto_a_pagar: 3550,
         hora_inicio: "19:00",
         hora_fin: "22:00",
-        fecha_de_clases: {
-          sesion_1: "29/10/2024",
-          sesion_2: "5/11/2024",
-          sesion_3: "12/11/2024",
-          sesion_4: "19/10/2024",
-        },
+        fecha_de_clases: [
+          "29/10/2024",
+          "5/11/2024",
+          "12/11/2024",
+          "19/10/2024",
+        ],
         contenido_minimo: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
       },
       {
@@ -111,12 +111,12 @@ export const infoProgramas = [
         monto_a_pagar: 3550,
         hora_inicio: "19:00",
         hora_fin: "22:00",
-        fecha_de_clases: {
-          sesion_1: "29/10/2024",
-          sesion_2: "5/11/2024",
-          sesion_3: "12/11/2024",
-          sesion_4: "19/10/2024",
-        },
+        fecha_de_clases: [
+          "29/10/2024",
+          "5/11/2024",
+          "12/11/2024",
+          "19/10/2024",
+        ],
         contenido_minimo: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
       },
       {
@@ -127,12 +127,12 @@ export const infoProgramas = [
         monto_a_pagar: 3550,
         hora_inicio:"19:00",
         hora_fin:"22:00",
-        fecha_de_clases:{
-          sesion_1:"29/10/2024",
-          sesion_2:"5/11/2024",
-          sesion_3:"12/11/2024",
-          sesion_4:"19/10/2024",
-        },
+        fecha_de_clases: [
+          "29/10/2024",
+          "5/11/2024",
+          "12/11/2024",
+          "19/10/2024",
+        ],
         contenido_minimo:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
       }
     ]
@@ -148,12 +148,12 @@ export const infoProgramas = [
         monto_a_pagar: 3550,
         hora_inicio: "19:00",
         hora_fin: "22:00",
-        fecha_de_clases: {
-          sesion_1: "29/10/2024",
-          sesion_2: "5/11/2024",
-          sesion_3: "12/11/2024",
-          sesion_4: "19/10/2024",
-        },
+        fecha_de_clases: [
+          "29/10/2024",
+          "5/11/2024",
+          "12/11/2024",
+          "19/10/2024",
+        ],
         contenido_minimo: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
       },
       {
@@ -164,12 +164,12 @@ export const infoProgramas = [
         monto_a_pagar: 3550,
         hora_inicio: "19:00",
         hora_fin: "22:00",
-        fecha_de_clases: {
-          sesion_1: "29/10/2024",
-          sesion_2: "5/11/2024",
-          sesion_3: "12/11/2024",
-          sesion_4: "19/10/2024",
-        },
+        fecha_de_clases: [
+          "29/10/2024",
+          "5/11/2024",
+          "12/11/2024",
+          "19/10/2024",
+        ],
         contenido_minimo: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
       },
       {
@@ -180,12 +180,12 @@ export const infoProgramas = [
         monto_a_pagar: 3550,
         hora_inicio: "19:00",
         hora_fin: "22:00",
-        fecha_de_clases: {
-          sesion_1: "29/10/2024",
-          sesion_2: "5/11/2024",
-          sesion_3: "12/11/2024",
-          sesion_4: "19/10/2024",
-        },
+        fecha_de_clases: [
+          "29/10/2024",
+          "5/11/2024",
+          "12/11/2024",
+          "19/10/2024",
+        ],
         contenido_minimo: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
       },
       {
@@ -196,12 +196,12 @@ export const infoProgramas = [
         monto_a_pagar: 3550,
         hora_inicio:"19:00",
         hora_fin:"22:00",
-        fecha_de_clases:{
-          sesion_1:"29/10/2024",
-          sesion_2:"5/11/2024",
-          sesion_3:"12/11/2024",
-          sesion_4:"19/10/2024",
-        },
+        fecha_de_clases: [
+          "29/10/2024",
+          "5/11/2024",
+          "12/11/2024",
+          "19/10/2024",
+        ],
         contenido_minimo:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
       }
     ]  },

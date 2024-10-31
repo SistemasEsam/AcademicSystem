@@ -100,11 +100,12 @@ export const ProgramForm = () => {
           </p>
         </div>
       )}
-      
+
       <AcademicFilter />
 
       {/* Pasar el ID del programa y habilitar/deshabilitar ModuleForm */}
       <ModuleForm id_programa={programId !== null ? programId : 0} enabled={modulesEnabled} />
+      <button type="submit">Guardar</button>
     </div>
   );
 };
