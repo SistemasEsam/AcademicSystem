@@ -1,37 +1,34 @@
+---
+const redesSociales = [
+  {
+    link: "https://www.facebook.com/esamcochabambasucursal",
+    ico: "/images/svg/facebook.svg",
+    name: "facebook",
+  },
+  {
+    link: "https://www.instagram.com/esamcochabambasucursal/",
+    ico: "/images/svg/instagram.svg",
+    name: "instagram",
+  },
+  {
+    link: "https://bo.linkedin.com/company/esamcochabambasucursal",
+    ico: "/images/svg/linkedin.svg",
+    name: "linkedin",
+  },
+];
+---
+
 <footer>
   <div class="piePagina">
     <div>
       <div class="redesSociales">
-        <a
-          href="https://www.facebook.com/esamcochabambasucursal"
-          target="_blank"
-          ><img
-            class="ico"
-            src="/images/svg/facebook.svg"
-            alt=""
-            width="25px"
-          /></a
-        >
-        <a
-          href="https://www.instagram.com/esamcochabambasucursal/"
-          target="_blank"
-          ><img
-            class="ico"
-            src="/images/svg/instagram.svg"
-            alt=""
-            width="28px"
-          /></a
-        >
-        <a
-          href="https://bo.linkedin.com/company/esamcochabambasucursal"
-          target="_blank"
-          ><img
-            class="ico"
-            src="/images/svg/linkedin.svg"
-            alt=""
-            width="25px"
-          /></a
-        >
+        {
+          redesSociales.map((rs) => (
+            <a href={rs.link} target="_blank">
+              <img class="ico" src={rs.ico} alt={rs.name} width="25px" />
+            </a>
+          ))
+        }
       </div>
     </div>
     <div>
@@ -47,10 +44,10 @@
     height: 120px;
     width: 100%;
     background-color: #b8c7cc;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 
     position: relative;
-
-    /* position: fixed; */
     bottom: 0px;
   }
   @media (max-width: 1500px) {
