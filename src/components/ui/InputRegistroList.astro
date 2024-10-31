@@ -1,0 +1,93 @@
+---
+// InputRegistroList.astro
+import InputRegistro from '../ui/InputRegistro'; // Asegúrate de que la ruta sea correcta
+import { inputFields } from "../../api/campos" // Importa el array de datos
+import { infoPaises } from '../../api/infoPaises';
+import { ImageUpload } from "../../components/upload/uploadimages";
+
+import { infoDocumentos,extencion } from "../../api/infoDocumento";
+import { DecisionComponent } from "../../components/switches/Switch";
+
+
+const chunkArray = (array: string[], chunkSize: number): string[][] => {
+  return Array.from({ length: Math.ceil(array.length / chunkSize) }, (_, index) =>
+    array.slice(index * chunkSize, index * chunkSize + chunkSize)
+  );
+};
+
+const groupedFields = chunkArray(inputFields, 3);
+
+---
+
+<ImageUpload client:load/>
+<div class="v-container v-locale--is-ltr">
+    {groupedFields.map((group: string[], index: number) => (
+      <div class="v-row">
+        {group.map((info: string, subIndex: number) => (
+          <InputRegistro info={info} />
+        ))}
+      </div>
+    ))}
+  </div>
+
+  <div class="v-row">
+    <div class="v-col">
+      <select name="nombre_coordinador" id="input-16">
+        <option value="">Pais</option>
+        {infoPaises.map((pais) => (
+          <option value={pais.pais}>
+            {pais.pais}
+          </option>
+        ))}
+      </select>
+    </div>
+    <InputRegistro info="ciudad de Radicación" />
+    <InputRegistro info="Direccion" />
+  </div>
+
+  <div class="v-row">
+    <div class="v-col">
+      <div class="dp__main dp__theme_light">
+        <div>
+          <div class="dp__input_wrap">
+            <input
+              type="date"
+              class="dp__pointer dp__input_readonly dp__input dp__input_icon_pad dp__input_reg"
+              placeholder="Fecha de Nacimiento"
+              autocomplete="off"
+              aria-label="Datepicker input"
+            />
+           
+          </div>
+        </div>
+      </div>
+    </div>
+   
+
+  </div>
+
+  <div class="v-row">
+    <div class="v-col">
+      <select name="nombre_coordinador" id="input-16">
+        <option value="">Tipo de Documento</option>
+        {
+          infoDocumentos.map((tipo) => (
+            <option value={tipo.tipo}>{tipo.tipo}</option>
+          ))
+        }
+      </select>
+    </div>
+    <InputRegistro info="Numero de Documento" />
+    <div class="v-col">
+      <select name="nombre_coordinador" id="input-16">
+        <option value="">Extension</option>
+        {
+          extencion.map((ext) => (
+            <option value={ext.ext}>{ext.ext}</option>
+          ))
+        }
+      </select>
+    </div>
+  </div>
+
+  	<DecisionComponent client:load />

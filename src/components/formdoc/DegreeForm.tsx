@@ -1,5 +1,7 @@
 // src/components/DegreeForm.tsx
-import React, { useState } from 'react';
+import React from 'react';
+import { infoPaises } from '../../api/infoPaises';
+import { infoGrado, infoModalidad } from "../../api/infoModalidad";
 
 interface DegreeFormProps {
   index: number;
@@ -9,33 +11,45 @@ interface DegreeFormProps {
 const DegreeForm: React.FC<DegreeFormProps> = ({ index, onDelete }) => {
   return (
     <div className="degree-form">
-      <h3>FORMACIÓN DE PREGRADO</h3>
       <p>
         Llene el formulario con los títulos más relevantes para el cargo.
         <br />
         Escribe los nombres completos de las instituciones sin abreviaturas y verifica la ortografía.
       </p>
+
       <input type="text" placeholder="Universidad o Institución" required />
       <input type="text" placeholder="Carrera" required />
-      <select required>
-        <option value="">Nivel de Estudio</option>
-        <option value="licenciatura">Licenciatura</option>
-        <option value="tecnico">Técnico</option>
-      </select>
-      <select required>
-        <option value="">País</option>
-        <option value="bolivia">Bolivia</option>
-        <option value="chile">Chile</option>
-        <option value="peru">Perú</option>
-        {/* Agrega más países según sea necesario */}
-      </select>
+
+      <div className="v-col">
+              <select name="nombre_coordinador" id="input-16">
+                <option value="">Grado</option>
+                {
+                  infoGrado.map((grado) => (
+                    <option value={grado.grado} key={grado.grado}>{grado.grado}</option>
+                  ))
+                }
+              </select>
+            </div>
+      <div className="v-col">
+        <select name="nombre_coordinador" id="input-16" required>
+          <option value="">País</option>
+          {infoPaises.map((pais, paisIndex) => (
+            <option key={paisIndex} value={pais.pais}>
+              {pais.pais}
+            </option>
+          ))}
+        </select>
+      </div>
+
       <input type="date" placeholder="Año de Titulación" required />
-      <select required>
-        <option value="">Modalidad de Graduación</option>
-        <option value="tesis">Tesis</option>
-        <option value="monografia">Monografía</option>
-        <option value="proyecto">Proyecto de Grado</option>
-      </select>
+
+      <select name="nombre_coordinador" id="input-16">
+         <option value="">Modalidad de graduación</option>
+           {
+             infoModalidad.map((modalidad) => (
+             <option value={modalidad.mod} key={modalidad.mod}>{modalidad.mod}</option>))
+               }
+       </select>
       <button type="button" onClick={onDelete}>Eliminar</button>
     </div>
   );

@@ -1,12 +1,12 @@
 // src/components/EducationForm.tsx
 import React, { useState } from 'react';
-import DegreeForm from './DegreeForm';
 
 interface EducationFormProps {
-  title: string; // Nuevo prop para el título
+  title: string; 
+  FormComponent: React.FC<{ index: number; onDelete: () => void }>;
 }
 
-const EducationForm: React.FC<EducationFormProps> = ({ title }) => {
+const EducationForm: React.FC<EducationFormProps> = ({ title, FormComponent }) => {
   const [degreeForms, setDegreeForms] = useState<number[]>([0]);
 
   const addDegreeForm = () => {
@@ -19,13 +19,9 @@ const EducationForm: React.FC<EducationFormProps> = ({ title }) => {
 
   return (
     <div>
-      <h1>{title}</h1> {/* Usar el título pasado como prop */}
+      <h1 style={{ color: 'black' }}>{title}</h1>
       {degreeForms.map((_, index) => (
-        <DegreeForm
-          key={index}
-          index={index}
-          onDelete={() => deleteDegreeForm(index)}
-        />
+        <FormComponent key={index} index={index} onDelete={() => deleteDegreeForm(index)} />
       ))}
       <button onClick={addDegreeForm}>Agregar Formación</button>
     </div>

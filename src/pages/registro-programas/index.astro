@@ -2,6 +2,14 @@
 import Layout from "../../layouts/Layout.astro";
 import HeroTitle from "../../components/ui/HeroTitle.astro";
 import { AcademicFilter } from "../../components/filters/AcademicFilter";
+
+
+
+=======
+import { InputFormComponent } from "../../components/ui-react-components/InputFormComponent";
+import { LoadedDataComponent } from "../../components/ui-react-components/LoadedDataComponent";
+import { ProgramForm } from "../../components/ui-react-components/ProgramForm";
+
 ---
 
 <Layout title="Sistema Academico ESAM | Registro de Programas">
@@ -9,6 +17,20 @@ import { AcademicFilter } from "../../components/filters/AcademicFilter";
   <form class="v-form program-main" novalidate="">
     <div class="v-container v-locale--is-ltr program-form">
       <div class="v-col">
+        <ProgramForm client:load />
+        <LoadedDataComponent
+          title="Nombre"
+          data="Datos del portal"
+          client:load
+        />
+        <LoadedDataComponent
+          title="Cronograma"
+          data="Datos del portal"
+          client:load
+        />
+        <LoadedDataComponent title="Sede" data="Datos del portal" client:load />
+        <LoadedDataComponent title="Tipo" data="Datos del portal" client:load />
+        <LoadedDataComponent title="Area" data="Datos del portal" client:load />
         <div class="v-row">
           <h3>Código de Programa</h3>
           <div class="v-container v-locale--is-ltr">
@@ -1043,6 +1065,7 @@ import { AcademicFilter } from "../../components/filters/AcademicFilter";
     </div>
   </form>
 </Layout>
+
 
 <style>
   h3 {
