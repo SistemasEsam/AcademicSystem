@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import InputRegistroList from "../docentes/Formulario1";
+import InputRegistroList from "./Formulario1";
 import Form2 from "./form2";
 import EducationForm from "../../components/formdoc/EducationForm";
 import CourseFormList from "../../components/formdoc/CourseForm";

@@ -21,18 +21,12 @@ export const ImageUpload = () => {
       <div className="v-col d-flex justify-center align-center">
         <div
           className="v-avatar v-theme--light v-avatar--density-default v-avatar--variant-flat"
-          style={{
-            backgroundColor: 'rgb(178, 166, 18)',
-            color: 'rgb(255, 255, 255)',
-            caretColor: 'rgb(255, 255, 255)',
-            width: '150px',
-            height: '150px',
-          }}
+          
         >
           {/* Mostrar la imagen seleccionada o la imagen predeterminada */}
           <img
             className="mx-auto"
-            src={image || "/images/img1.jpeg"} // Cambiar la imagen automáticamente
+            src={image || "/images/perfil.png"} // Cambiar la imagen automáticamente
             width="150"
             height="150"
             alt="Avatar"

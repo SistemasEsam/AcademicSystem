@@ -1,8 +1,13 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import HeroTitle from "../../components/ui/HeroTitle.astro";
+import  Profile  from "../../components/perfil-doc/Profile";
 ---
 
 <Layout title="Sistema Academico ESAM | Perfil Personal">
   <HeroTitle titulo="Perfil Personal" />
+  
+<Profile client:load />
+
+
 </Layout>
