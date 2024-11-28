@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from "react";
 
 export const PdfUpload = () => {
   // Estado para almacenar el archivo PDF seleccionado
@@ -7,10 +7,10 @@ export const PdfUpload = () => {
   // Manejar el cambio de archivo
   const handlePdfChange = (event) => {
     const file = event.target.files[0]; // Capturar el archivo seleccionado
-    if (file && file.type === 'application/pdf') {
-      setPdf(file.name);  // Guardar el nombre del archivo PDF
+    if (file && file.type === "application/pdf") {
+      setPdf(file.name); // Guardar el nombre del archivo PDF
     } else {
-      alert('Por favor, selecciona un archivo PDF'); // Alerta si el archivo no es PDF
+      alert("Por favor, selecciona un archivo PDF"); // Alerta si el archivo no es PDF
     }
   };
 
@@ -20,7 +20,8 @@ export const PdfUpload = () => {
       <label htmlFor="pdf-upload">Selecciona un archivo PDF</label>
       <input
         type="file"
-        id="pdf-upload"
+        name="pdfUploadES"
+        id="pdfUploadES"
         accept="application/pdf"
         onChange={handlePdfChange}
       />

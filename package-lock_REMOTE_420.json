@@ -22,14 +22,12 @@
         "mysql2": "^3.11.4",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
-        "react-icons": "^5.3.0",
         "typescript": "^5.6.3",
         "valibot": "^1.0.0-beta.8",
         "vite-plugin-pwa": "^0.21.0"
       },
       "devDependencies": {
         "@types/node": "^22.9.0"
-
       }
     },
     "node_modules/@ampproject/remapping": {
@@ -7450,24 +7448,6 @@
         "react": "^18.3.1"
       }
     },
-<<<<<<< HEAD
-    "node_modules/react-icons": {
-      "version": "5.3.0",
-      "resolved": "https://registry.npmjs.org/react-icons/-/react-icons-5.3.0.tgz",
-      "integrity": "sha512-DnUk8aFbTyQPSkCfF8dbX6kQjXA9DktMeJqfjrg6cK9vwQVMxmcA3BfP4QoiztVmEHtwlTgLFsPuH2NskKT6eg==",
-      "license": "MIT",
-      "peerDependencies": {
-        "react": "*"
-      }
-    },
-    "node_modules/react-is": {
-      "version": "16.13.1",
-      "resolved": "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz",
-      "integrity": "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==",
-      "license": "MIT"
-    },
-=======
->>>>>>> origin/dev-1
     "node_modules/react-refresh": {
       "version": "0.14.2",
       "resolved": "https://registry.npmjs.org/react-refresh/-/react-refresh-0.14.2.tgz",

@@ -4,15 +4,6 @@ import HeroTitle from "../../../components/ui/HeroTitle.astro";
 import { infoDocentes } from "../../../api/infoDocentes";
 import PostulanteInfo from "../../../components/docentes/PostulanteInfo.astro";
 
-
-export function getStaticPaths() {
-  return infoDocentes.map((docente) => ({
-    params: { postulante: docente.nombre.toString() },
-  }));
-}
-
-=======
-
 const { postulante } = Astro.params;
 
 const postulanteDetails = infoDocentes.find(
@@ -24,12 +15,14 @@ if (!postulanteDetails) {
 }
 ---
 
-<Layout title=`Sistema Académico ESAM | ${postulante}`>
-  
+<Layout
+  title=`Sistema Académico ESAM | ${postulante}`
+  canonical="https://academico-docentes.esam.edu.bo/"
+  description="Sistema académico de ESAM para contratación y postulación de docentes."
+>
   <section class="container">
-    <PostulanteInfo postulante={postulanteDetails}/>
+    <PostulanteInfo postulante={postulanteDetails} />
   </section>
 
   <HeroTitle titulo={postulanteDetails?.nombre} />
-
 </Layout>

@@ -18,5 +18,3 @@ export const GET_PROGRAM_BY_ID = gql`
     }
   }
 `;
-
-import { gql } from "graphql-request";

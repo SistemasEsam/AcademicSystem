@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from "react";
 import InputRegistroList from "./Formulario1";
 import Form2 from "./form2";
 import EducationForm from "../../components/formdoc/EducationForm";
 import CourseFormList from "../../components/formdoc/CourseForm";
 import IntellectualProductionFormList from "../../components/formdoc/IntellectualForm";
-import PostDegreeForm from '../../components/formdoc/PostDegreeForm';
-import WorkExperienceFormList from './WorkExperienceFormList';
-import DegreeForm from '../../components/formdoc/DegreeForm';
-import WorkDocentExper from './WorkDocentExper'
-import SoftSkillsAndLanguages from './HabilidadIdioma'
-
+import PostDegreeForm from "../../components/formdoc/PostDegreeForm";
+import WorkExperienceFormList from "./WorkExperienceFormList";
+import DegreeForm from "../../components/formdoc/DegreeForm";
+import WorkDocentExper from "./WorkDocentExper";
+import SoftSkillsAndLanguages from "./HabilidadIdioma";
 
 const MultiStepForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -18,12 +17,15 @@ const MultiStepForm = () => {
     <InputRegistroList />,
     <Form2 />,
     <EducationForm title="Formación Pregrado" FormComponent={DegreeForm} />,
-    <EducationForm title="Formación de Postgrado" FormComponent={PostDegreeForm} />,
+    <EducationForm
+      title="Formación de Postgrado"
+      FormComponent={PostDegreeForm}
+    />,
     <CourseFormList />,
     <IntellectualProductionFormList />,
-    <WorkExperienceFormList/>,
+    <WorkExperienceFormList />,
     <WorkDocentExper />,
-    <SoftSkillsAndLanguages/>
+    <SoftSkillsAndLanguages />,
   ];
 
   const nextStep = () => {
@@ -46,7 +48,7 @@ const MultiStepForm = () => {
         {currentStep < steps.length - 1 ? (
           <button onClick={nextStep}>Guardar</button>
         ) : (
-          <button onClick={() => alert('Formulario enviado!')}>Enviar</button>
+          <button onClick={() => alert("Formulario enviado!")}>Enviar</button>
         )}
       </div>
     </div>

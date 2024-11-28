@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { DocenteFilter } from "../filters/DocenteFilter";
 import { ResultadosDocentes } from "./ResultadosDocentes";
 import { infoDocentes } from "../../api/infoDocentes";
@@ -8,13 +8,13 @@ export const DocenteSearch = () => {
 
   const handleSearch = (searchTerm) => {
     if (searchTerm.trim() === "") {
-      setFilteredDocentes(infoDocentes); 
+      setFilteredDocentes(infoDocentes);
     } else {
-    
-      const filtered = infoDocentes.filter((docente) =>
-        docente.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        docente.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        docente.documento.toString().includes(searchTerm)
+      const filtered = infoDocentes.filter(
+        (docente) =>
+          docente.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          docente.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          docente.documento.toString().includes(searchTerm)
       );
       setFilteredDocentes(filtered);
     }
@@ -22,8 +22,7 @@ export const DocenteSearch = () => {
 
   return (
     <div>
-     
-      <DocenteFilter onSearch={handleSearch} /> 
+      <DocenteFilter onSearch={handleSearch} />
       <div>
         {filteredDocentes.length > 0 ? (
           filteredDocentes.map((docente) => (
