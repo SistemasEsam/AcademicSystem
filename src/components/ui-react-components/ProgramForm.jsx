@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { gql, request } from "graphql-request";
 
 const GET_PROGRAM_BY_ID = gql`

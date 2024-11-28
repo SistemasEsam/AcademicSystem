@@ -1,22 +1,22 @@
-import React from 'react';
-import InputRegistro from '../../components/ui/InputRegistro'; // Asegúrate de que la ruta sea correcta
-import { inputFields } from "../../api/campos"; // Importa el array de datos
-import { infoPaises } from '../../api/infoPaises';
-import { ImageUpload } from "../../components/upload/uploadimages";
-import { infoDocumentos, extencion } from "../../api/infoDocumento";
-import { DecisionComponent } from "../../components/switches/Switch";
+import { InputRegistro } from "../../ui/InputRegistro";
+import { inputFieldsFirstSection } from "../../../api/campos";
+import { CountriesFormSelect } from "../../ui/CountriesFormSelect";
+import { ImageUpload } from "../../upload/Uploadimages";
+import { infoDocumentos, extencion } from "../../../api/infoDocumento";
+import { DecisionComponent } from "../../switches/Switch";
 
 // Función para dividir el array en chunks
 const chunkArray = (array, chunkSize) => {
-  return Array.from({ length: Math.ceil(array.length / chunkSize) }, (_, index) =>
-    array.slice(index * chunkSize, index * chunkSize + chunkSize)
+  return Array.from(
+    { length: Math.ceil(array.length / chunkSize) },
+    (_, index) => array.slice(index * chunkSize, index * chunkSize + chunkSize)
   );
 };
 
-// Agrupamos los campos de entrada en grupos de 3
-const groupedFields = chunkArray(inputFields, 3);
+// Agrupar los campos de entrada en grupos de 3
+const groupedFields = chunkArray(inputFieldsFirstSection, 3);
 
-const InputRegistroList = () => {
+export const Step1Form = () => {
   return (
     <>
       {/* Componente para subir imágenes */}
@@ -28,8 +28,13 @@ const InputRegistroList = () => {
         {groupedFields.map((group, index) => (
           <div className="v-row" key={index}>
             {/* Iteramos sobre cada campo del grupo */}
-            {group.map((info, subIndex) => (
-              <InputRegistro info={info} key={subIndex} />
+            {group.map((input) => (
+              <InputRegistro
+                info={input.input}
+                key={input.id}
+                name={input.nombre}
+                id={input.id}
+              />
             ))}
           </div>
         ))}
@@ -38,17 +43,8 @@ const InputRegistroList = () => {
       {/* Sección de país, ciudad y dirección */}
       <div className="v-row">
         <div className="v-col">
-          <select name="nombre_coordinador" id="input-16">
-            <option value="">Pais</option>
-            {infoPaises.map((pais, index) => (
-              <option key={index} value={pais.pais}>
-                {pais.pais}
-              </option>
-            ))}
-          </select>
+          <CountriesFormSelect valueAndId="pais" />
         </div>
-        <InputRegistro info="ciudad de Radicación" />
-        <InputRegistro info="Direccion" />
       </div>
 
       {/* Sección de fecha de nacimiento */}
@@ -58,11 +54,13 @@ const InputRegistroList = () => {
             <div>
               <div className="dp__input_wrap">
                 <input
+                  name="fechaNacimiento"
                   type="date"
                   className="dp__pointer dp__input_readonly dp__input dp__input_icon_pad dp__input_reg"
                   placeholder="Fecha de Nacimiento"
                   autoComplete="off"
                   aria-label="Datepicker input"
+                  id="fechaNacimiento"
                 />
               </div>
             </div>
@@ -73,7 +71,7 @@ const InputRegistroList = () => {
       {/* Sección de tipo de documento y extensión */}
       <div className="v-row">
         <div className="v-col">
-          <select name="nombre_coordinador" id="input-16">
+          <select name="tipoDocumento" id="tipoDocumento">
             <option value="">Tipo de Documento</option>
             {infoDocumentos.map((tipo, index) => (
               <option key={index} value={tipo.tipo}>
@@ -82,9 +80,13 @@ const InputRegistroList = () => {
             ))}
           </select>
         </div>
-        <InputRegistro info="Numero de Documento" />
+        <InputRegistro
+          info="Numero de Documento"
+          name="numeroDocumento"
+          id="numeroDocumento"
+        />
         <div className="v-col">
-          <select name="nombre_coordinador" id="input-16">
+          <select name="extension" id="extension">
             <option value="">Extension</option>
             {extencion.map((ext, index) => (
               <option key={index} value={ext.ext}>
@@ -95,10 +97,7 @@ const InputRegistroList = () => {
         </div>
       </div>
 
-      
       <DecisionComponent />
     </>
   );
 };
-
-export default InputRegistroList;

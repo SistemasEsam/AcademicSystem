@@ -1,11 +1,70 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import MultiStepForm from "../docentes/Padre"
+import Layout from "../../layouts/LayoutForm.astro";
+import { SingleForm } from "../../components/formdoc/SingleForm";
 ---
-<Layout title="Formulario">
-  
-  <MultiStepForm client:load />
-  
+
+<Layout title="Formulario de registro Docentes ESAM">
+  <SingleForm client:load />
 </Layout>
 
-
+<style>
+  .no-support {
+    z-index: 100;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: #5b5d65;
+  }
+  .no-support__wrapper {
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    margin-top: -250px;
+    margin-left: -250px;
+    position: absolute;
+  }
+  html.no-js .no-support.no-support--js,
+  html.no-ie .no-support.no-support--ie {
+    display: block;
+  }
+  html.no-ie #pagecontainer,
+  html.no-js #pagecontainer {
+    display: none;
+  }
+  .no-support__title {
+    color: #fff;
+    font-size: 30px;
+    line-height: 36px;
+    font-weight: 700;
+    font-family: "Courier New", Courier, monospace;
+  }
+  .no-support__description {
+    color: #b9bcbe;
+    font-size: 14px;
+    line-height: 36px;
+    font-weight: 400;
+    font-family: "Courier New", Courier, monospace;
+  }
+  .no-support__link {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 2px solid #fff;
+  }
+  .no-support__link:hover,
+  .no-support__link:active {
+    border-color: #b9bcbe;
+  }
+  .no-support__image {
+    margin: 0 0 25px;
+  }
+  .no-support__pw-icon {
+    width: 40px;
+    height: 20px;
+    margin: 100px 0 0;
+  }
+</style>

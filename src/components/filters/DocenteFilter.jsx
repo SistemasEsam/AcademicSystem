@@ -23,7 +23,6 @@ export const DocenteFilter = ({ onSearch }) => {
                   aria-valuemax="100"
                   style={{
                     top: "0px",
-                    height: "0px",
                     height: "2px",
                     left: "50%",
                     transform: "translateX(-50%)",
@@ -40,7 +39,6 @@ export const DocenteFilter = ({ onSearch }) => {
                 </div>
               </div>
               <div className="v-field__field" data-no-activator="">
-               
                 <label className="v-label v-field-label" htmlFor="input-1">
                   Ingrese datos a buscar
                 </label>{" "}
@@ -178,7 +176,6 @@ export const DocenteFilter = ({ onSearch }) => {
                   aria-valuemax="100"
                   style={{
                     top: "0px",
-                    height: "0px",
                     height: "2px",
                     left: "50%",
                     transform: "translateX(-50%)",
@@ -195,7 +192,6 @@ export const DocenteFilter = ({ onSearch }) => {
                 </div>
               </div>
               <div className="v-field__field" data-no-activator="">
-              
                 <label className="v-label v-field-label" htmlFor="input-10">
                   Nivel Postgrado
                 </label>

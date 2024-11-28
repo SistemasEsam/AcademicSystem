@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { infoAcademicos } from "../../api/infoAcademicos";
 
 export const AcademicFilter = () => {
