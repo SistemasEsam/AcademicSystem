@@ -2,7 +2,7 @@
 import React from 'react';
 import { infoPaises } from '../../api/infoPaises';
 import { infoGrado, infoModalidad } from "../../api/infoModalidad";
-
+import './style/DegreeForm.css';
 interface DegreeFormProps {
   index: number;
   onDelete: () => void;

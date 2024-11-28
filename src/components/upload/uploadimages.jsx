@@ -1,32 +1,27 @@
 import React, { useState } from 'react';
+import { FaUpload } from 'react-icons/fa'; // Paquete para íconos (react-icons)
 
-export const ImageUpload = () => {
-  // Estado para almacenar la imagen seleccionada
+export const ImageUpload = ({ buttonClass = '', iconClass = '' }) => {
   const [image, setImage] = useState(null);
 
-  // Manejar el cambio de archivo
   const handleImageChange = (event) => {
-    const file = event.target.files[0]; // Capturar el archivo seleccionado
+    const file = event.target.files[0];
     if (file) {
-      const reader = new FileReader(); // Crear un nuevo FileReader
+      const reader = new FileReader();
       reader.onloadend = () => {
-        setImage(reader.result);  // Guardar la imagen en base64
+        setImage(reader.result);
       };
-      reader.readAsDataURL(file);  // Leer el archivo como una URL base64
+      reader.readAsDataURL(file);
     }
   };
 
   return (
     <div className="v-container v-locale--is-ltr">
       <div className="v-col d-flex justify-center align-center">
-        <div
-          className="v-avatar v-theme--light v-avatar--density-default v-avatar--variant-flat"
-          
-        >
-          {/* Mostrar la imagen seleccionada o la imagen predeterminada */}
+        <div className="v-avatar v-theme--light v-avatar--density-default v-avatar--variant-flat">
           <img
             className="mx-auto"
-            src={image || "/images/perfil.png"} // Cambiar la imagen automáticamente
+            src={image || "/images/perfil.png"}
             width="150"
             height="150"
             alt="Avatar"
@@ -35,18 +30,29 @@ export const ImageUpload = () => {
         </div>
       </div>
 
-      {/* Input para seleccionar la imagen */}
+      {/* Botón para seleccionar imagen */}
       <div style={{ marginTop: '20px', textAlign: 'center' }}>
-        <label htmlFor="image-upload" className="v-label v-field-label">
+        <label htmlFor="image-upload" className={`v-label v-field-label`}>
           SELECCIONA UNA IMAGEN FORMAL
         </label>
+
+        {/* Input oculto */}
         <input
           type="file"
           id="image-upload"
           accept="image/*"
           onChange={handleImageChange}
-          style={{ display: 'block', margin: '10px auto' }}
+          style={{ display: 'none' }} // Ocultar el input
         />
+
+        {/* Botón personalizado */}
+        <button
+          type="button"
+          className={`upload-button ${buttonClass}`}
+          onClick={() => document.getElementById('image-upload').click()} // Simula clic en el input
+        >
+          <FaUpload className={`upload-icon ${iconClass}`} /> Subir Imagen
+        </button>
       </div>
     </div>
   );

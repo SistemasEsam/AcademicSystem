@@ -43,30 +43,32 @@ const Profile = () => {
 
   return (
     <div className="profile-container">
-      <div className="profile-header">
-        <div className="profile-photo">
-          <ImageUpload />
-        </div>
-        <div className="profile-info">
-          <h1>{docente.nombre}</h1>
-          <p>{docente.email}</p>
-        </div>
-      </div>
+  <div className="background-polygon"></div>
+  <div className="profile-content">
+  <div className="profile-photo">
+  <ImageUpload 
+    containerClass="profile-image-container" 
+    labelClass="profile-image-label" 
+    avatarClass="profile-avatar"
+    buttonClass="custom-upload-button"
+   iconClass="custom-upload-icon"
+  />
+</div>
+    <div className="profile-info">
+      <h1>{docente.nombre}</h1>
+      <p>{docente.email}</p>
+    </div>
+  </div>
 
       {/* Información Personal */}
       <PersonalInfo docente={docente} />
-
       {/* Sección de Educación: Pregrado y Postgrado */}
       <EducationSection title="Pregrado" data={docente.pregrado} type="pregrado" />
       <EducationSection title="Postgrado" data={docente.postgrado} type="postgrado" />
-
-      {/* Botón para agregar una nueva sección */}
-      <div className="profile-container">
+      {/* Botón para agregar una nueva sección */}  
         <button className="add-button" onClick={handleAddSectionClick}>
           Agregar Sección
         </button>
-      </div>
-
       {/* Modal para agregar nueva sección (Pregrado o Postgrado) */}
       <AddProfileSection
         isOpen={isModalOpen}

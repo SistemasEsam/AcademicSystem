@@ -1,4 +1,5 @@
 import React from 'react';
+import './InputRegistro.css';  // Importamos el archivo CSS
 
 // Si estás usando TypeScript (.tsx), puedes declarar la interfaz Props
 interface Props {
@@ -7,7 +8,7 @@ interface Props {
 
 const InputRegistro = ({ info }: Props) => {
   return (
-    <div className="v-col">
+    <div className="input-registro-container"> {/* Usamos la clase aquí */}
       <div className="v-input v-input--horizontal v-input--center-affix v-input--density-default v-text-field">
         <div className="v-input__control">
           <div className="v-field v-field--center-affix v-field--variant-filled">
