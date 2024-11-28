@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import HeroTitle from "../../components/ui/HeroTitle.astro";
+import  Profile  from "../../components/perfil-doc/Profile";
 ---
 
 <Layout
@@ -9,4 +10,9 @@ import HeroTitle from "../../components/ui/HeroTitle.astro";
   title="Sistema Academico ESAM | Certificaciones"
 >
   <HeroTitle titulo="Certificaciones" />
+
+  
+  
+<Profile client:load />
+
 </Layout>

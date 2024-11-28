@@ -202,26 +202,40 @@ export const infoDocentes = [
             anio: "2006",
             modalidad: "Exámen de Grado"
         }],
-        postgrado:[{
+        postgrado:[
+            {
+                nombre: "Maestría M.Sc. en MAESTRIA EN SALUD PUBLICA",
+                universidad: "UNIVERSIDAD MAYOR DE SAN ANDRES",
+                pais: "Bolivia",
+                anio: "2024",
+                modalidad: "Tesis"
+                ,tipo :"Maestria"
+            },
+            {
+                nombre: "Especialidad Clínico Quirúrgico en ESPECIALIDAD BOLIVIANA",
+                universidad: "UNIVERSIDAD MAYOR DE SAN ANDRES",
+                pais: "Bolivia",
+                anio: "2009",
+                modalidad: "Tesis",
+                tipo :"Especialidad"
+            },
+
+
+            {
+                nombre: "Especialidad Clínico Quirúrgico en ESPECIALIDAD BOLIVIANA",
+                universidad: "UNIVERSIDAD MAYOR DE SAN ANDRES",
+                pais: "Bolivia",
+                anio: "2009",
+                modalidad: "Tesis",
+                tipo :"Diplomado"
+            },
+        {
             nombre: "Maestria en ESPECIALISTA EN PEDIATRIA",
             universidad: "MINISTERIO DE SALUD Y DEPORTES UNIVERSIDAD BOLIVIANA",
             pais: "Bolivia",
             anio: "2009",
             modalidad: "Otros"
-        },
-        {
-            nombre: "Maestría M.Sc. en MAESTRIA EN SALUD PUBLICA",
-            universidad: "UNIVERSIDAD MAYOR DE SAN ANDRES",
-            pais: "Bolivia",
-            anio: "2024",
-            modalidad: "Tesis"
-        },
-        {
-            nombre: "Especialidad Clínico Quirúrgico en ESPECIALIDAD BOLIVIANA",
-            universidad: "UNIVERSIDAD MAYOR DE SAN ANDRES",
-            pais: "Bolivia",
-            anio: "2009",
-            modalidad: "Tesis"
+            ,tipo :"Maestria"
         },
         {
             nombre: "Especialidad Clínico Quirúrgico en SUBESPECIALIDAD ENDOCRINOLOGIA PEDIATRICA",
@@ -229,6 +243,7 @@ export const infoDocentes = [
             pais: "Mexico",
             anio: "2012",
             modalidad: "Tesis"
+            ,tipo :"Especialidad"
         }]
     },
     {
@@ -243,6 +258,7 @@ export const infoDocentes = [
             pais: "Bolivia",
             anio: "2004",
             modalidad: "Tesis"
+            ,tipo :"Maestri"
         }]
     },
     {
