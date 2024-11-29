@@ -3,6 +3,10 @@ import Layout from "../../../layouts/Layout.astro";
 import HeroTitle from "../../../components/ui/HeroTitle.astro";
 import { infoDocentes } from "../../../api/infoDocentes";
 import PostulanteInfo from "../../../components/docentes/PostulanteInfo.astro";
+import { PostulantePDF } from "../../../components/docentes/PostulantePDF";
+import { ScheduleMeetingButton } from "../../../components/docentes/agendarReu/ScheduleMeetingButton";
+import { AprobarRechazarDocente } from "../../../components/docentes/AprobarRechazarDocente";
+import { ReprogramMeetingButton } from "../../../components/docentes/ReprogramMeetingButton"; 
 
 const { postulante } = Astro.params;
 
@@ -15,14 +19,65 @@ if (!postulanteDetails) {
 }
 ---
 
-<Layout
-  title=`Sistema Académico ESAM | ${postulante}`
-  canonical="https://academico-docentes.esam.edu.bo/"
-  description="Sistema académico de ESAM para contratación y postulación de docentes."
->
+<Layout title={`Sistema Académico ESAM | ${postulante}`}>
+  <div class="back-button-container">
+    <a href="/postulantes" class="backbutton">
+      <img src="/images/iconos/back.png" alt="Regresar" class="back-icon" />
+    </a>
+  </div>
+
+  <!-- Contenedor de los botones -->
+  <div class="buttons-container">
+    <!-- Columna izquierda: Descargar PDF y Agendar Reunión -->
+    <div class="left-buttons">
+      <div class="download-pdf">
+        <PostulantePDF client:only="react" postulante={postulanteDetails} />
+      </div>
+    
+      {!postulanteDetails.agendado && (
+        <ScheduleMeetingButton
+          client:only="react"
+          telefono={postulanteDetails.telefono}
+          email={postulanteDetails.email}
+        />
+      )}
+      
+      {postulanteDetails.agendado && (
+        <div class="meeting-details">
+          <h2>Reunión Agendada</h2>
+          <p>
+            <strong>Fecha:</strong> {postulanteDetails.detalles[0].fecha}
+          </p>
+          <p>
+            <strong>Link de Zoom:</strong>
+            <a href={postulanteDetails.detalles[0].link} target="_blank">
+              Ingrese aquí
+            </a>
+          </p>
+          <ReprogramMeetingButton
+            client:only="react"
+            telefono={postulanteDetails.telefono}
+            email={postulanteDetails.email}
+            fecha={postulanteDetails.detalles[0].fecha || null}
+            link={postulanteDetails.detalles[0].link || ""}
+          />
+        </div>
+      )}
+          
+      
+    </div>
+    
+    <!-- Columna derecha: Aprobar y Rechazar -->
+    <div class="right-buttons">
+      <AprobarRechazarDocente
+        client:only="react"
+        postulanteId={postulanteDetails.id}
+      />
+    </div>
+  </div>
   <section class="container">
+       <!-- Información del postulante -->
     <PostulanteInfo postulante={postulanteDetails} />
   </section>
 
-  <HeroTitle titulo={postulanteDetails?.nombre} />
 </Layout>
