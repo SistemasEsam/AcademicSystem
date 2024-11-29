@@ -1,12 +1,12 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
-import HeroTitle from "../../../components/ui/HeroTitle.astro";
 import { infoDocentes } from "../../../api/infoDocentes";
 import PostulanteInfo from "../../../components/docentes/PostulanteInfo.astro";
 import { PostulantePDF } from "../../../components/docentes/PostulantePDF";
 import { ScheduleMeetingButton } from "../../../components/docentes/agendarReu/ScheduleMeetingButton";
 import { AprobarRechazarDocente } from "../../../components/docentes/AprobarRechazarDocente";
 import { ReprogramMeetingButton } from "../../../components/docentes/ReprogramMeetingButton"; 
+import LayoutForm from "../../../layouts/LayoutForm.astro";
 
 const { postulante } = Astro.params;
 
@@ -19,7 +19,7 @@ if (!postulanteDetails) {
 }
 ---
 
-<Layout title={`Sistema Académico ESAM | ${postulante}`}>
+<LayoutForm title={`Sistema Académico ESAM | ${postulante}`}>
   <div class="back-button-container">
     <a href="/postulantes" class="backbutton">
       <img src="/images/iconos/back.png" alt="Regresar" class="back-icon" />
@@ -80,4 +80,4 @@ if (!postulanteDetails) {
     <PostulanteInfo postulante={postulanteDetails} />
   </section>
 
-</Layout>
+</LayoutForm>
