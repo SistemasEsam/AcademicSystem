@@ -42,6 +42,18 @@ export const infoGrado = [
         grado: "Licenciatura",
         
       },
+      
+      {
+        id: 4,
+        grado: "Doctorado",
+        
+      },
+      
+      {
+        id: 5,
+        grado: "Post Doctorado",
+        
+      },
     
 ]
 

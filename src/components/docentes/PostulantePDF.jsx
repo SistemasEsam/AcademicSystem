@@ -1,5 +1,6 @@
 import React from "react";
 import { PDFDownloadLink, Document, Page, View, Text, Image, StyleSheet } from "@react-pdf/renderer";
+import "../../styles/postulantes.css";
 
 const styles = StyleSheet.create({
   page: {
@@ -22,11 +23,13 @@ const styles = StyleSheet.create({
     borderRight: "2px solid black",
   },
   profileImage: {
-    borderRadius: "50%",
+    borderRadius: 55,
     width: 110,
     height: 110,
     marginBottom: 20,
-    border: "5px solid #fdd835",
+    borderWidth: 5,     
+    borderColor: "#000000", 
+    borderStyle: "solid"
   },
   leftColumnHeading: {
     fontSize: 14,
@@ -56,7 +59,7 @@ const styles = StyleSheet.create({
     padding: 5,
     borderBottom: "1px solid #ddd",
   },
-  
+
 });
 
 const PDFContent = ({ postulante }) => (
@@ -64,12 +67,16 @@ const PDFContent = ({ postulante }) => (
     <Page size="LEGAL" style={styles.page} wrap>
       <View style={styles.container}>
       
-        <View style={styles.leftColumn}>
+      <View style={styles.leftColumn}>
           <Image src="/images/Amed.jpg" style={styles.profileImage} />
-          <Text style={styles.leftColumnHeading}>{postulante.nombre}</Text>
-          <Text style={{ fontSize: 9 }}>{postulante.email}</Text>
-          <Text style={styles.leftColumnText}>{postulante.documento}</Text>
-          <Text style={styles.leftColumnText}>{postulante.telefono}</Text>
+          <Text style={styles.leftColumnHeading}><Image src="/images/iconos/usuario (1).png" style={styles.icon} /> {postulante.nombre}</Text>
+          <Text style={styles.leftColumnText}><Image src="/images/iconos/carnet-de-identidad.png" style={styles.icon} /> {postulante.documento}</Text>
+          <Text style={styles.leftColumnText}><Image src="/images/iconos/pastel.png" style={styles.icon} /> Fecha de Nacimiento</Text>
+          <Text style={styles.leftColumnText}><Image src="/images/iconos/sobre-de-papel-blanco.png" style={styles.icon} /> {postulante.email}</Text>
+          <Text style={styles.leftColumnText}><Image src="/images/iconos/telefono.png" style={styles.icon} /> {postulante.telefono}</Text>
+          <Text style={styles.leftColumnText}><Image src="/images/iconos/genero.png" style={styles.icon} /> Género</Text>
+          <Text style={styles.leftColumnText}><Image src="/images/iconos/mapa.png" style={styles.icon} /> Ciudad</Text>
+          <Text style={styles.leftColumnText}><Image src="/images/iconos/ubicacion (2).png" style={styles.icon} /> Ubicación</Text>
         </View>
 
      
@@ -95,6 +102,17 @@ const PDFContent = ({ postulante }) => (
               <Text style={styles.rightColumnText}>Modalidad: {postgrado.modalidad}</Text>
             </View>
           ))}
+
+            <Text style={styles.rightColumnHeading}>Cursos</Text>
+            {postulante.cursos?.map((cursos, index) => (
+            <View key={index} style={styles.listItem} wrap={false}>
+              <Text style={styles.rightColumnText}>Nombre: {cursos.nombre}</Text>
+              <Text style={styles.rightColumnText}>Universidad: {cursos.universidad}</Text>
+              <Text style={styles.rightColumnText}>País: {cursos.pais}</Text>
+              <Text style={styles.rightColumnText}>Año: {cursos.anio}</Text>
+            </View>
+          ))}
+
         </View>
       </View>
     </Page>
@@ -102,16 +120,17 @@ const PDFContent = ({ postulante }) => (
 );
 
 export const PostulantePDF = ({ postulante }) => (
-  <div>
-    <PDFDownloadLink
-      document={<PDFContent postulante={postulante} />}
-      fileName={`${postulante.nombre}_CV.pdf`}
-    >
-      {({ loading }) => (
-        <button className="download-btn">
-          {loading ? "Generando PDF..." : "Descargar PDF"}
-        </button>
-      )}
-    </PDFDownloadLink>
-  </div>
+  <div className="download-pdf-container"> {/* Contenedor principal */}
+  <PDFDownloadLink
+    document={<PDFContent postulante={postulante} />}
+    fileName={`${postulante.nombre}_CV.pdf`}
+  >
+    {({ loading }) => (
+      <button className="download-btn">
+        <img src="/images/iconos/download-pdf.png" alt="Icono PDF" className="download-icon" />
+        {loading ? "Generando PDF..." : ""}
+      </button>
+    )}
+  </PDFDownloadLink>
+</div>
 );

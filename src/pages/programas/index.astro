@@ -1,8 +1,10 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import HeroTitle from "../../components/ui/HeroTitle.astro";
+import { ProgramSearch } from "../../components/programas/ProgramSearch";
 ---
 
 <Layout title="Sistema Academico ESAM | Programas">
   <HeroTitle titulo="Programas" />
+  <ProgramSearch client:load/>
 </Layout>

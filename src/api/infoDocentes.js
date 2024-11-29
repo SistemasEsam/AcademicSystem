@@ -2,9 +2,9 @@ export const infoDocentes = [
     {
         id: 1,
         nombre: "AMED RAYMUNDO MALFERT FLORES",
-        email:"amed.es.30@gmail.com",
+        email:"joseph.hinojosa@esam.edu.bo",
         documento: "7519245",
-        telefono: "63746536",
+        telefono: "78949488",
         pregrado: [{
             carrera: "Licenciatura en DERECHO",
             universidad: "UNIVERSIDAD DE SAN FRANCISCO XAVIER DE CHUQUISACA",
@@ -62,6 +62,7 @@ export const infoDocentes = [
             modalidad: "Exámen de Grado"
         }],
         postgrado:[{
+            tipo:"Maestria",
             nombre: "Maestria en MAESTRIA EN DERECHO CONSTITUCIONAL Y PROCESAL CONSTITUCIONAL",
             universidad: "UNIVERSIDAD ANDINA SIMON BOLIVAR",
             pais: "Estado plurinacional de bolivia",
@@ -69,6 +70,7 @@ export const infoDocentes = [
             modalidad: "Tesis"
         },
         {
+            tipo:"Maestria",
             nombre: "Maestría Mgr. en MAESTRIA EN INVESTIGACION CUALITATIVA APLICADA A LAS CIENCIAS SOCIALES",
             universidad: "UNIVERSIDAD MAYOR DE SAN SIMON - FACSO",
             pais: "Bolivia",
@@ -76,6 +78,7 @@ export const infoDocentes = [
             modalidad: "Tesis"
         },
         {
+            tipo:"Maestria",
             nombre: "Maestría M.Sc. en MAESTRIA EN DERECHO PENAL Y PROCESAL PENAL",
             universidad: "UNIVERSIDAD NACIONAL SIGLO XX",
             pais: "Bolivia",
@@ -83,6 +86,7 @@ export const infoDocentes = [
             modalidad: "Tesis"
         },
         {
+            tipo:"Diplomado",
             nombre: "Diplomado en DIPLOMADO EN INVESTIGACION CIENTIFICA",
             universidad: "UNIVERSIDAD PRIVADA DEL VALLE",
             pais: "Bolivia",
@@ -90,13 +94,41 @@ export const infoDocentes = [
             modalidad: "Otros"
         },
         {
+            tipo:"Diplomado",
             nombre: "Diplomado en DIPLOMADO EN DOCENCIA PARA LA EDUCACION SUPERIOR",
             universidad: "UNIVERSIDAD MAYOR REAL Y PONTIFICIA DE SAN FRANCISCO XAVIER DE CHUQUISACA",
             pais: "Bolivia",
             anio: "2018",
             modalidad: "Monografia"
         }
-        ]
+        ],
+        cursos:[{nombre: "Diplomado en DIPLOMADO EN DOCENCIA PARA LA EDUCACION SUPERIOR",
+            universidad: "UNIVERSIDAD MAYOR REAL Y PONTIFICIA DE SAN FRANCISCO XAVIER DE CHUQUISACA",
+            pais: "Bolivia",
+            anio: "2018",
+            },
+            {nombre: "Diplomado en DIPLOMADO EN DOCENCIA PARA LA EDUCACION SUPERIOR",
+                universidad: "UNIVERSIDAD MAYOR REAL Y PONTIFICIA DE SAN FRANCISCO XAVIER DE CHUQUISACA",
+                pais: "Bolivia",
+                anio: "2018",
+                },
+                {nombre: "Diplomado en DIPLOMADO EN DOCENCIA PARA LA EDUCACION SUPERIOR",
+                    universidad: "UNIVERSIDAD MAYOR REAL Y PONTIFICIA DE SAN FRANCISCO XAVIER DE CHUQUISACA",
+                    pais: "Bolivia",
+                    anio: "2018",
+                    },
+                    {nombre: "Diplomado en DIPLOMADO EN DOCENCIA PARA LA EDUCACION SUPERIOR",
+                        universidad: "UNIVERSIDAD MAYOR REAL Y PONTIFICIA DE SAN FRANCISCO XAVIER DE CHUQUISACA",
+                        pais: "Bolivia",
+                        anio: "2018",
+                        },
+        ],
+        estado:"PENDIENTE",
+        agendado:false,
+        detalles:[{
+             fecha:"",
+             link:""
+     }]
     },
     {
         id: 2,
@@ -112,12 +144,24 @@ export const infoDocentes = [
             modalidad: "Proyecto de Grado"
         }],
         postgrado:[{
+            tipo:"Diplomado",
             nombre: "Diplomado en DIPLOMADO EN EDUCACION SUPERIOR BASADO EN COMPETENCIAS",
             universidad: "UCATEC",
             pais: "Bolivia",
             anio: "2024",
             modalidad: "Tesis"
-        }]
+        }],
+        cursos:[{nombre: "Diplomado en DIPLOMADO EN DOCENCIA PARA LA EDUCACION SUPERIOR",
+            universidad: "UNIVERSIDAD MAYOR REAL Y PONTIFICIA DE SAN FRANCISCO XAVIER DE CHUQUISACA",
+            pais: "Bolivia",
+            anio: "2018",
+            }],
+        estado:"PENDIENTE",
+        agendado:false,
+        detalles:[{
+             fecha:"",
+             link:""
+     }]
     },
     {
         id: 3,
@@ -133,6 +177,7 @@ export const infoDocentes = [
             modalidad: "Trabajo Dirigido"
         }],
         postgrado:[{
+            tipo:"Diplomado",
             nombre: "Diplomado en POSGRADO DE CIENCIAS ECONOMICAS",
             universidad: "UNIVERSIDAD MAYOR DE SAN SIMON",
             pais: "Bolivia",
@@ -140,6 +185,7 @@ export const infoDocentes = [
             modalidad: "Otros"
         },
         {
+            tipo:"Diplomado",
             nombre: "Diplomado en UNIVERSIDAD PÚBLICA DE EL ALTO",
             universidad: "UNIVERSIDAD PÚBLICA DE EL ALTO",
             pais: "Bolivia",
@@ -147,6 +193,7 @@ export const infoDocentes = [
             modalidad: "Monografia"
         },
         {
+            tipo:"Diplomado",
             nombre: "Diplomado en UNIVERSIDAD PÚBLICA DE EL ALTO",
             universidad: "UNIVERSIDAD PÚBLICA DE EL ALTO",
             pais: "Bolivia",
@@ -154,12 +201,24 @@ export const infoDocentes = [
             modalidad: "Monografia"
         },
         {
+            tipo:"Diplomado",
             nombre: "Diplomado en POSGRADO DE CIENCIAS ECONOMCAS",
             universidad: "UNIVERSIDAD MAYOR DE SAN SIMON",
             pais: "Bolivia",
             anio: "2017",
             modalidad: "Monografia"
-        }]
+        }],
+        cursos:[{nombre: "Diplomado en DIPLOMADO EN DOCENCIA PARA LA EDUCACION SUPERIOR",
+            universidad: "UNIVERSIDAD MAYOR REAL Y PONTIFICIA DE SAN FRANCISCO XAVIER DE CHUQUISACA",
+            pais: "Bolivia",
+            anio: "2018",
+            }],
+        estado:"PENDIENTE",
+        agendado:false,
+        detalles:[{
+             fecha:"",
+             link:""
+     }]
     },
     {
         id: 4,
@@ -175,6 +234,7 @@ export const infoDocentes = [
             modalidad: "Trabajo Dirigido"
         }],
         postgrado:[{
+            tipo:"Diplomado",
             nombre: "Diplomado en ESPECIALIDAD EN HEMATOPATOLOGIA",
             universidad: "ESCUELA NACIONAL DE CIENCIAS BIOLOGICAS",
             pais: "Mexico",
@@ -182,12 +242,37 @@ export const infoDocentes = [
             modalidad: "Monografía"
         },
         {
+            tipo:"Especialidad",
             nombre: "Especialidad Superior en PATOLOGIA CLINICA",
             universidad: "UNIVERSIDAD NACIONAL AUTONOMA DE MEXICO",
             pais: "Mexico",
             anio: "2011",
             modalidad: "Tesis"
-        }]
+        }],
+        cursos:[{
+            nombre:"Curso de medicina transfucional",
+            universidad:"Centro medico nacional La Raza",
+            pais:"Mexico",
+            anio:"2012"
+        },
+        {
+            nombre:"Curso Administracion y desarrollo general de los servicios de salud",
+            universidad:"Universidad nacional autonoma de Mexico",
+            pais:"Mexico",
+            anio:"2016"
+        },
+        {
+            nombre:"Diplomado en inmunohematologia",
+            universidad:"Secretaria de salud del gobierno del distrito federal",
+            pais:"Mexico",
+            anio:"2015"
+        }],
+        estado:"PENDIENTE",
+        agendado:false,
+        detalles:[{
+             fecha:"",
+             link:""
+     }]
     },
     {
         id: 5,
@@ -203,6 +288,7 @@ export const infoDocentes = [
             modalidad: "Exámen de Grado"
         }],
         postgrado:[{
+            tipo:"Maestria",
             nombre: "Maestria en ESPECIALISTA EN PEDIATRIA",
             universidad: "MINISTERIO DE SALUD Y DEPORTES UNIVERSIDAD BOLIVIANA",
             pais: "Bolivia",
@@ -210,6 +296,7 @@ export const infoDocentes = [
             modalidad: "Otros"
         },
         {
+            tipo:"Maestria",
             nombre: "Maestría M.Sc. en MAESTRIA EN SALUD PUBLICA",
             universidad: "UNIVERSIDAD MAYOR DE SAN ANDRES",
             pais: "Bolivia",
@@ -217,6 +304,7 @@ export const infoDocentes = [
             modalidad: "Tesis"
         },
         {
+            tipo:"Especialidad",
             nombre: "Especialidad Clínico Quirúrgico en ESPECIALIDAD BOLIVIANA",
             universidad: "UNIVERSIDAD MAYOR DE SAN ANDRES",
             pais: "Bolivia",
@@ -224,12 +312,24 @@ export const infoDocentes = [
             modalidad: "Tesis"
         },
         {
+            tipo:"Especialidad",
             nombre: "Especialidad Clínico Quirúrgico en SUBESPECIALIDAD ENDOCRINOLOGIA PEDIATRICA",
             universidad: "UNIVERSIDAD NACIONAL AUTONOMA DE MEXICO (UNAM)",
             pais: "Mexico",
             anio: "2012",
             modalidad: "Tesis"
-        }]
+        }],
+        cursos:[{nombre: "Diplomado en DIPLOMADO EN DOCENCIA PARA LA EDUCACION SUPERIOR",
+            universidad: "UNIVERSIDAD MAYOR REAL Y PONTIFICIA DE SAN FRANCISCO XAVIER DE CHUQUISACA",
+            pais: "Bolivia",
+            anio: "2018",
+            }],
+        estado:"PENDIENTE",
+        agendado:false,
+        detalles:[{
+             fecha:"",
+             link:""
+     }]
     },
     {
         id: 6,
@@ -238,19 +338,42 @@ export const infoDocentes = [
         documento: "4128122",
         telefono: "72994493",
         postgrado:[{
+            tipo:"Maestria",
             nombre: "Maestria en MASTRIA EN SALUD PUBLICA",
             universidad: "U.A.J.M.S",
             pais: "Bolivia",
             anio: "2004",
             modalidad: "Tesis"
-        }]
+        }],
+        cursos:[{nombre: "Diplomado en DIPLOMADO EN DOCENCIA PARA LA EDUCACION SUPERIOR",
+            universidad: "UNIVERSIDAD MAYOR REAL Y PONTIFICIA DE SAN FRANCISCO XAVIER DE CHUQUISACA",
+            pais: "Bolivia",
+            anio: "2018",
+            }],
+        estado:"PENDIENTE",
+        agendado:false,
+        detalles:[{
+             fecha:"",
+             link:""
+     }]
     },
     {
         id: 7,
         nombre: "JOSE ANTONIO GOITIA DURAN",
         email:"consultoresforenses@gmail.com",
         documento: "1382690",
-        telefono: "77999973"
+        telefono: "77999973",
+        cursos:[{nombre: "Diplomado en DIPLOMADO EN DOCENCXXRA LA EDUCACION SUPERIOR",
+            universidad: "UNIVERSIDAD MAYOR REAL Y PONTIFICIA DE SAN FRANCISCO XAVIER DE CHUQUISACA",
+            pais: "Bolivia",
+            anio: "2018",
+            }],
+        estado:"PENDIENTE",
+        agendado:false,
+        detalles:[{
+             fecha:"",
+             link:""
+     }]
     },
     {
         id: 8,
@@ -266,19 +389,43 @@ export const infoDocentes = [
             modalidad: "Tesis"
         }],
         postgrado:[{
+            tipo:"Maestria",
             nombre: "Maestria en MAESTRÍA EN EDUCACION SUPERIOR",
             universidad: "SNA FRANCISCO XAVIER",
             pais: "Bolivia",
             anio: "2003",
             modalidad: "Tesis"
-        }]
+        }],
+        cursos:[{
+            nombre: "Maestria en MAESTRÍA EN EDUCACION SUPERIOR",
+            universidad: "SNA FRANCISCO XAVIER",
+            pais: "Bolivia",
+            anio: "2003",      
+        }],
+        estado:"PENDIENTE",
+        agendado:false,
+        detalles:[{
+             fecha:"",
+             link:""
+     }]
     },
     {
         id: 9,
         nombre: "GAIL GUISELA GARCIA GUTIERREZ",
         email:"dr.g.g.garcia@gmail.com",
         documento: "5354731",
-        telefono: "65379365"
+        telefono: "65379365",
+        cursos:[{nombre: "Diplomado en DIPLOMADO EN DOCENCIA PARA LA EDUCACION SUPERIOR",
+            universidad: "UNIVERSIDAD MAYOR REAL Y PONTIFICIA DE SAN FRANCISCO XAVIER DE CHUQUISACA",
+            pais: "Bolivia",
+            anio: "2018",
+            }],
+         estado:"PENDIENTE",
+         agendado:false,
+         detalles:[{
+              fecha:"",
+              link:""
+      }]
     },
     {
         id: 10,
@@ -294,6 +441,7 @@ export const infoDocentes = [
             modalidad: "Tesis"
         }],
         postgrado:[{
+            tipo:"Maestria",
             nombre: "Maestria en MAESTRIA EN GEOMECANICA Y GEOTECNIA MINERA",
             universidad: "UNIVERSIDAD TECNICA DE ORURO",
             pais: "Bolivia",
@@ -301,12 +449,24 @@ export const infoDocentes = [
             modalidad: "Tesis"
         },
         {
+            tipo:"Diplomado",
             nombre: "Diplomado en EDUCACION SUPERIOR",
             universidad: "UNIVERSIDAD DEL BENI JOSE BALLIVIAN",
             pais: "Bolivia",
             anio: "2022",
             modalidad: "Monografía"
-        }]  
+        }],
+        cursos:[{nombre: "Diplomado en DIPLOMADO EN DOCENCIA PARA LA EDUCACION SUPERIOR",
+            universidad: "UNIVERSIDAD MAYOR REAL Y PONTIFICIA DE SAN FRANCISCO XAVIER DE CHUQUISACA",
+            pais: "Bolivia",
+            anio: "2018",
+            }],
+         estado:"PENDIENTE",
+         agendado:false,
+         detalles:[{
+              fecha:"",
+              link:""
+      }]
     },
     {
         id: 11,
@@ -322,6 +482,7 @@ export const infoDocentes = [
             modalidad: "Tesis"
         }],
         postgrado:[{
+            tipo:"Maestria",
             nombre: "Maestria en MESTRADO EM ENGENHARIA CIVIL",
             universidad: "UNIVERSIDADE FEDERAL DO RIO GRANDE DO SUL",
             pais: "Brazil",
@@ -329,6 +490,7 @@ export const infoDocentes = [
             modalidad: "Tesis"
         },
         {
+            tipo:"Diplomado",
             nombre: "Diplomado en DIPLOMADO EN GERENCIA DE LA CONSTRUCCIÓN",
             universidad: "UNIVERSIDAD PRIVADA DEL VALLE",
             pais: "Bolivia",
@@ -336,12 +498,24 @@ export const infoDocentes = [
             modalidad: "Monografía"
         },
         {
+            tipo:"Doctorado",
             nombre: "Diplomado en DIPLOMADO EN INGENIERÍA ESTRUCTURAL",
             universidad: "UNIVERSIDAD SALESIANA DE SAN FRANCISCO DE ASÍS",
             pais: "Bolivia",
             anio: "2014",
             modalidad: "Monografía"
-        }]  
+        }],
+        cursos:[{nombre: "Diplomado en DIPLOMADO EN DOCENCIA PARA LA EDUCACION SUPERIOR",
+            universidad: "UNIVERSIDAD MAYOR REAL Y PONTIFICIA DE SAN FRANCISCO XAVIER DE CHUQUISACA",
+            pais: "Bolivia",
+            anio: "2018",
+            }],
+         estado:"PENDIENTE",
+         agendado:false,
+         detalles:[{
+              fecha:"",
+              link:""
+      }]
     },
     {
         id: 12,
@@ -357,6 +531,7 @@ export const infoDocentes = [
             modalidad: "Trabajo Dirigido"
         }],
         postgrado:[{
+            tipo:"Maestria",
             nombre: "Maestria en MAESTRIA EN FINANZAS EMPRESARIALES",
             universidad: "UNIVERSIDAD CATÓLICA BOLIVIANA. MAESTRÍAS PARA EL DESARROLLO",
             pais: "Bolivia",
@@ -364,12 +539,24 @@ export const infoDocentes = [
             modalidad: "Tesis"
         },
         {
+            tipo:"Diplomado",
             nombre: "Diplomado en FORMACIÓN DOCENTE PARA LA EDUCACIÓN SUPERIOR",
             universidad: "UNIVERSIDAD CATÓLICA BOLIVIANA",
             pais: "Bolivia",
             anio: "2009",
             modalidad: "Otros"
-        }]
+        }],
+        cursos:[{nombre: "Diplomado en DIPLOMADO EN DOCENCIA PARA LA EDUCACION SUPERIOR",
+            universidad: "UNIVERSIDAD MAYOR REAL Y PONTIFICIA DE SAN FRANCISCO XAVIER DE CHUQUISACA",
+            pais: "Bolivia",
+            anio: "2018",
+            }],
+        estado:"PENDIENTE",
+        agendado:false,
+        detalles:[{
+             fecha:"",
+             link:""
+     }]
     },
     {
         id: 13,
@@ -385,6 +572,7 @@ export const infoDocentes = [
             modalidad: "Tesis"
         }],
         postgrado:[{
+            tipo:"Diplomado",
             nombre: "Diplomado en EDUCACION SUPERIOR",
             universidad: "UMSS",
             pais: "Bolivia",
@@ -392,25 +580,76 @@ export const infoDocentes = [
             modalidad: "Monografia"
         },
         {
+            tipo:"Diplomado",
             nombre: "Diplomado en EDUCACION SUPERIOR",
             universidad: "UMSS",
             pais: "Bolivia",
             anio: "2020",
             modalidad: "Monografia"
-        }]
+        }],
+        cursos:[{nombre: "Diplomado en DIPLOMADO EN DOCENCIA PARA LA EDUCACION SUPERIOR",
+            universidad: "UNIVERSIDAD MAYOR REAL Y PONTIFICIA DE SAN FRANCISCO XAVIER DE CHUQUISACA",
+            pais: "Bolivia",
+            anio: "2018",
+            }],
+        estado:"PENDIENTE",
+        agendado:false,
+        detalles:[{
+             fecha:"",
+             link:""
+     }]
     },
     {
         id: 14,
         nombre: "JUAN CARLOS CUCUNA BARRIOS",
         email:"juancarloscucunabarrios@gmail.com",
         documento: "5721447",
-        telefono: "68354786"
+        telefono: "68354786",
+        cursos:[{nombre: "Diplomado en DIPLOMADO EN DOCENCIA PARA LA EDUCACION SUPERIOR",
+            universidad: "UNIVERSIDAD MAYOR REAL Y PONTIFICIA DE SAN FRANCISCO XAVIER DE CHUQUISACA",
+            pais: "Bolivia",
+            anio: "2018",
+            }],
+            estado:"PENDIENTE",
+            agendado:false,
+       detalles:[{
+            fecha:"",
+            link:""
+    }]
     },
     {
         id: 15,
         nombre: "JUAN PABLO FUENTES ENCINAS",
         email:"juanpablo.fuentes@hotmail.com",
         documento: "5496578",
-        telefono: "73511180"
+        telefono: "73511180",
+        cursos:[{nombre: "Diplomado en DIPLOMADO EN DOCENCIA PARA LA EDUCACION SUPERIOR",
+            universidad: "UNIVERSIDAD MAYOR REAL Y PONTIFICIA DE SAN FRANCISCO XAVIER DE CHUQUISACA",
+            pais: "Bolivia",
+            anio: "2018",
+            }],
+        estado:"PENDIENTE",
+        agendado:true,
+       detalles:[{
+            fecha:"12/10/2024",
+            link:"https://zoom.us/j/95217377539?pwd=EKyG6eJR3DQAW5KSunXAXDCvBX5Jl1.1"
+    }]
     },   
 ];
+
+export const updateDocenteStatus = (id, estado) => {
+    const docenteIndex = infoDocentes.findIndex(docente => docente.id === id);
+  
+    if (docenteIndex !== -1) {
+      const estadoAnterior = infoDocentes[docenteIndex].estado;
+
+      infoDocentes[docenteIndex].estado = estado;
+      console.log(`El docente ${id} con estado ${estadoAnterior} ha sido actualizado a ${estado}`);
+    } else {
+      console.error('Docente no encontrado');
+    }
+  };
+  
+  
+  
+  
