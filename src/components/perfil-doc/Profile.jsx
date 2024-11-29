@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { infoDocentes } from "../../api/infoDocentes";
 import "./Profile.css";
-import { ImageUpload } from "../../components/upload/uploadimages";
+import { ImageUpload } from "../upload/Uploadimages";
 import PersonalInfo from "./PersonalInfo";
 import EducationSection from "./EducationSection";
 import AddProfileSection from "./AddProfileSection";
@@ -57,8 +57,16 @@ const Profile = () => {
       <PersonalInfo docente={docente} />
 
       {/* Sección de Educación: Pregrado y Postgrado */}
-      <EducationSection title="Pregrado" data={docente.pregrado} type="pregrado" />
-      <EducationSection title="Postgrado" data={docente.postgrado} type="postgrado" />
+      <EducationSection
+        title="Pregrado"
+        data={docente.pregrado}
+        type="pregrado"
+      />
+      <EducationSection
+        title="Postgrado"
+        data={docente.postgrado}
+        type="postgrado"
+      />
 
       {/* Botón para agregar una nueva sección */}
       <div className="profile-container">
