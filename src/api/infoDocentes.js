@@ -287,8 +287,34 @@ export const infoDocentes = [
             anio: "2006",
             modalidad: "Exámen de Grado"
         }],
-        postgrado:[{
-            tipo:"Maestria",
+
+        postgrado:[
+            {
+                nombre: "Maestría M.Sc. en MAESTRIA EN SALUD PUBLICA",
+                universidad: "UNIVERSIDAD MAYOR DE SAN ANDRES",
+                pais: "Bolivia",
+                anio: "2024",
+                modalidad: "Tesis"
+                ,tipo :"Maestria"
+            },
+            {
+                nombre: "Especialidad Clínico Quirúrgico en ESPECIALIDAD BOLIVIANA",
+                universidad: "UNIVERSIDAD MAYOR DE SAN ANDRES",
+                pais: "Bolivia",
+                anio: "2009",
+                modalidad: "Tesis",
+                tipo :"Especialidad"
+            },
+            {
+                nombre: "Especialidad Clínico Quirúrgico en ESPECIALIDAD BOLIVIANA",
+                universidad: "UNIVERSIDAD MAYOR DE SAN ANDRES",
+                pais: "Bolivia",
+                anio: "2009",
+                modalidad: "Tesis",
+                tipo :"Diplomado"
+            },
+        {
+
             nombre: "Maestria en ESPECIALISTA EN PEDIATRIA",
             universidad: "MINISTERIO DE SALUD Y DEPORTES UNIVERSIDAD BOLIVIANA",
             pais: "Bolivia",

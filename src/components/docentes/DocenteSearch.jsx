@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { DocenteFilter } from "../filters/DocenteFilter";
 import { DocenteFilterByGrade } from "../filters/DocenteFilterByGrade";
 import { ResultadosDocentes } from "./ResultadosDocentes";
@@ -7,6 +7,7 @@ import "../../styles/docenteSearch.css";
 
 export const DocenteSearch = () => {
   const [filteredDocentes, setFilteredDocentes] = useState(infoDocentes);
+
 
   const handleSearch = (searchTerm, postgradeTerm,courseTerm) => {
     let filtered = infoDocentes;
@@ -17,6 +18,17 @@ export const DocenteSearch = () => {
         docente.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
         docente.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
         docente.documento.toString().includes(searchTerm)
+
+  const handleSearch = (searchTerm) => {
+    if (searchTerm.trim() === "") {
+      setFilteredDocentes(infoDocentes);
+    } else {
+      const filtered = infoDocentes.filter(
+        (docente) =>
+          docente.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          docente.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          docente.documento.toString().includes(searchTerm)
+
       );
     }
 
@@ -61,7 +73,7 @@ export const DocenteSearch = () => {
     setFilteredDocentes(agendados);
   };
 
-  return (
+ return (
     <div className="docente-search-container">
       <div className="filters-container">
         <DocenteFilter onSearch={handleSearch} />

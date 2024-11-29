@@ -1,44 +1,66 @@
-// src/components/DegreeForm.tsx
-import React, { useState } from 'react';
+import React from "react";
+import { infoGrado, infoModalidad } from "../../api/infoModalidad";
 
 interface DegreeFormProps {
   index: number;
   onDelete: () => void;
 }
 
-const DegreeForm: React.FC<DegreeFormProps> = ({ index, onDelete }) => {
+export const DegreeForm: React.FC<DegreeFormProps> = ({ onDelete }) => {
   return (
     <div className="degree-form">
-      <h3>FORMACIÓN DE PREGRADO</h3>
       <p>
         Llene el formulario con los títulos más relevantes para el cargo.
         <br />
-        Escribe los nombres completos de las instituciones sin abreviaturas y verifica la ortografía.
+        Escribe los nombres completos de las instituciones sin abreviaturas y
+        verifica la ortografía.
       </p>
-      <input type="text" placeholder="Universidad o Institución" required />
-      <input type="text" placeholder="Carrera" required />
-      <select required>
-        <option value="">Nivel de Estudio</option>
-        <option value="licenciatura">Licenciatura</option>
-        <option value="tecnico">Técnico</option>
+
+      <input
+        name="universidadPregrado"
+        id="universidadPregrado"
+        type="text"
+        placeholder="Universidad o Institución"
+        required
+      />
+      <input
+        name="carreraPregrado"
+        id="carreraPregrado"
+        type="text"
+        placeholder="Carrera"
+        required
+      />
+
+      <div className="v-col">
+        <select name="gradoPregrado" id="gradoPregrado">
+          <option value="">Grado</option>
+          {infoGrado.map((grado) => (
+            <option value={grado.grado} key={grado.grado}>
+              {grado.grado}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <input
+        name="titulacionPregrado"
+        id="titulacionPregrado"
+        type="date"
+        placeholder="Año de Titulación"
+        required
+      />
+
+      <select name="modalidadPregrado" id="modalidadPregrado">
+        <option value="">Modalidad de graduación</option>
+        {infoModalidad.map((modalidad) => (
+          <option value={modalidad.mod} key={modalidad.mod}>
+            {modalidad.mod}
+          </option>
+        ))}
       </select>
-      <select required>
-        <option value="">País</option>
-        <option value="bolivia">Bolivia</option>
-        <option value="chile">Chile</option>
-        <option value="peru">Perú</option>
-        {/* Agrega más países según sea necesario */}
-      </select>
-      <input type="date" placeholder="Año de Titulación" required />
-      <select required>
-        <option value="">Modalidad de Graduación</option>
-        <option value="tesis">Tesis</option>
-        <option value="monografia">Monografía</option>
-        <option value="proyecto">Proyecto de Grado</option>
-      </select>
-      <button type="button" onClick={onDelete}>Eliminar</button>
+      <button type="button" onClick={onDelete}>
+        Eliminar
+      </button>
     </div>
   );
 };
-
-export default DegreeForm;

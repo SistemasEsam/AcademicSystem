@@ -1,13 +1,15 @@
+
 import React from "react";
 import { PDFDownloadLink, Document, Page, View, Text, Image, StyleSheet } from "@react-pdf/renderer";
 import "../../styles/postulantes.css";
+
 
 const styles = StyleSheet.create({
   page: {
     margin: 10,
     paddingTop: 15,
-    paddingBottom:40,
-    paddingHorizontal: 20
+    paddingBottom: 40,
+    paddingHorizontal: 20,
   },
   container: {
     display: "flex",
@@ -66,8 +68,9 @@ const PDFContent = ({ postulante }) => (
   <Document>
     <Page size="LEGAL" style={styles.page} wrap>
       <View style={styles.container}>
+
       
-      <View style={styles.leftColumn}>
+        <View style={styles.leftColumn}>
           <Image src="/images/Amed.jpg" style={styles.profileImage} />
           <Text style={styles.leftColumnHeading}><Image src="/images/iconos/usuario (1).png" style={styles.icon} /> {postulante.nombre}</Text>
           <Text style={styles.leftColumnText}><Image src="/images/iconos/carnet-de-identidad.png" style={styles.icon} /> {postulante.documento}</Text>
@@ -79,27 +82,38 @@ const PDFContent = ({ postulante }) => (
           <Text style={styles.leftColumnText}><Image src="/images/iconos/ubicacion (2).png" style={styles.icon} /> Ubicación</Text>
         </View>
 
-     
         <View style={styles.rightColumn}>
           <Text style={styles.rightColumnHeading}>Estudios Pregrado</Text>
           {postulante.pregrado?.map((pregrado, index) => (
             <View key={index} style={styles.listItem} wrap={false}>
-              <Text style={styles.rightColumnText}>Carrera: {pregrado.carrera}</Text>
-              <Text style={styles.rightColumnText}>Universidad: {pregrado.universidad}</Text>
+              <Text style={styles.rightColumnText}>
+                Carrera: {pregrado.carrera}
+              </Text>
+              <Text style={styles.rightColumnText}>
+                Universidad: {pregrado.universidad}
+              </Text>
               <Text style={styles.rightColumnText}>País: {pregrado.pais}</Text>
               <Text style={styles.rightColumnText}>Año: {pregrado.anio}</Text>
-              <Text style={styles.rightColumnText}>Modalidad: {pregrado.modalidad}</Text>
+              <Text style={styles.rightColumnText}>
+                Modalidad: {pregrado.modalidad}
+              </Text>
             </View>
           ))}
 
           <Text style={styles.rightColumnHeading}>Estudios Postgrado</Text>
           {postulante.postgrado?.map((postgrado, index) => (
             <View key={index} style={styles.listItem} wrap={false}>
-              <Text style={styles.rightColumnText}>Nombre: {postgrado.nombre}</Text>
-              <Text style={styles.rightColumnText}>Universidad: {postgrado.universidad}</Text>
+              <Text style={styles.rightColumnText}>
+                Nombre: {postgrado.nombre}
+              </Text>
+              <Text style={styles.rightColumnText}>
+                Universidad: {postgrado.universidad}
+              </Text>
               <Text style={styles.rightColumnText}>País: {postgrado.pais}</Text>
               <Text style={styles.rightColumnText}>Año: {postgrado.anio}</Text>
-              <Text style={styles.rightColumnText}>Modalidad: {postgrado.modalidad}</Text>
+              <Text style={styles.rightColumnText}>
+                Modalidad: {postgrado.modalidad}
+              </Text>
             </View>
           ))}
 

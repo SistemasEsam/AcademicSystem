@@ -1,16 +1,15 @@
 export const infoAcademicos = [
   {
     id: 1,
-    nombres: "Alejandra Lili",
-    apellido_paterno: "Rodriguez",
-    apellido_materno: "Flores",
-    correo: "alejandra.rodriguez@esam.edu.bo",
+    contacto: "Numero de Contacto",
+    ref: "Número de Referencia",
+    correo: "Correo Electrónico",
   },
   {
     id: 2,
     nombres: "Alejandra",
     apellido_paterno: "Camacho",
-    apellido_materno: "Ferrer",
+    apellido_materno: "Ferrel",
     correo: "alejandra.camacho@esam.edu.bo",
   },
   {

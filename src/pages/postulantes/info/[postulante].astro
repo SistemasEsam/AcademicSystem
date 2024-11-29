@@ -8,12 +8,6 @@ import { ScheduleMeetingButton } from "../../../components/docentes/agendarReu/S
 import { AprobarRechazarDocente } from "../../../components/docentes/AprobarRechazarDocente";
 import { ReprogramMeetingButton } from "../../../components/docentes/ReprogramMeetingButton"; 
 
-export function getStaticPaths() {
-  return infoDocentes.map((docente) => ({
-    params: { postulante: docente.nombre.toString() },
-  }));
-}
-
 const { postulante } = Astro.params;
 
 const postulanteDetails = infoDocentes.find(
@@ -85,4 +79,5 @@ if (!postulanteDetails) {
        <!-- Información del postulante -->
     <PostulanteInfo postulante={postulanteDetails} />
   </section>
+
 </Layout>
