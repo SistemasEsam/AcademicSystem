@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "../style/step6.css";
 // Componente para un formulario individual de experiencia laboral
 interface WorkExperienceFormProps {
   index: number;
@@ -28,110 +28,123 @@ const WorkExperienceForm: React.FC<WorkExperienceFormProps> = ({
 
   return (
     <div className="work-experience-form">
-      <h1 style={{ color: "black" }}>Experiencia Laboral</h1>
-      <h3>Experiencia Laboral últimos 3 años {index + 1}</h3>
-
-      <input
-        name="empresaLaboral"
-        type="text"
-        placeholder="Nombre de Empresa o Institución"
-        onChange={handleInputChange}
-        required
-        disabled={isDisabled}
-      />
-      <input
-        name="cargo"
-        type="text"
-        placeholder="Cargo"
-        onChange={handleInputChange}
-        required
-        disabled={isDisabled}
-      />
-      <input
-        name="paisLaboral"
-        type="text"
-        placeholder="País"
-        onChange={handleInputChange}
-        required
-        disabled={isDisabled}
-      />
-
-      <label>Fecha de inicio:</label>
-      <input
-        name="dateLaboralDesde"
-        type="date"
-        onChange={handleInputChange}
-        required
-        disabled={isDisabled}
-      />
-
-      {!isCurrentJob && (
-        <>
-          <label>Fecha de fin:</label>
-          <input
-            name="dateLaboralHasta"
-            type="date"
-            onChange={handleInputChange}
-            required
-            disabled={isDisabled}
-          />
-        </>
-      )}
-
-      <button
-        type="button"
-        onClick={handleCurrentJobToggle}
-        disabled={isDisabled}
-      >
-        {isCurrentJob ? "Trabajo Actual (Desmarcar)" : "Trabajo Actual"}
-      </button>
-
-      <input
-        name="descripcionLaboral"
-        type="text"
-        placeholder="Descripcion de funciones realizadas"
-        onChange={handleInputChange}
-        required
-        disabled={isDisabled}
-      />
-
-      <h1>Referencias</h1>
-      <input
-        name="nombreRef"
-        type="text"
-        placeholder="Nombre"
-        onChange={handleInputChange}
-        required
-        disabled={isDisabled}
-      />
-      <input
-        name="apellidosRef"
-        type="text"
-        placeholder="Apellidos"
-        onChange={handleInputChange}
-        required
-        disabled={isDisabled}
-      />
-      <input
-        name="cargoSup"
-        type="text"
-        placeholder="Cargo de Inmediato Superior"
-        onChange={handleInputChange}
-        required
-        disabled={isDisabled}
-      />
-      <input
-        name="numeroRef"
-        type="number"
-        placeholder="Número de contacto"
-        onChange={handleInputChange}
-        required
-        disabled={isDisabled}
-      />
+    <h1>Experiencia Laboral</h1>
+    <h3>Experiencia Laboral últimos 3 años {index + 1}</h3>
+  
+    <input
+      className="input-field"
+      name="empresaLaboral"
+      type="text"
+      placeholder="Nombre de Empresa o Institución"
+      onChange={handleInputChange}
+      required
+      disabled={isDisabled}
+    />
+    <input
+      className="input-field"
+      name="cargo"
+      type="text"
+      placeholder="Cargo"
+      onChange={handleInputChange}
+      required
+      disabled={isDisabled}
+    />
+    <input
+      className="input-field"
+      name="paisLaboral"
+      type="text"
+      placeholder="País"
+      onChange={handleInputChange}
+      required
+      disabled={isDisabled}
+    />
+  
+    <label>Fecha de inicio:</label>
+    <input
+      className="input-field"
+      name="dateLaboralDesde"
+      type="date"
+      onChange={handleInputChange}
+      required
+      disabled={isDisabled}
+    />
+  
+    {!isCurrentJob && (
+      <>
+        <label>Fecha de fin:</label>
+        <input
+          className="input-field"
+          name="dateLaboralHasta"
+          type="date"
+          onChange={handleInputChange}
+          required
+          disabled={isDisabled}
+        />
+      </>
+    )}
+  
+    <button
+      type="button"
+      onClick={handleCurrentJobToggle}
+      disabled={isDisabled}
+    >
+      {isCurrentJob ? "Trabajo Actual (Desmarcar)" : "Trabajo Actual"}
+    </button>
+  
+    <input
+      className="input-field"
+      name="descripcionLaboral"
+      type="text"
+      placeholder="Descripcion de funciones realizadas"
+      onChange={handleInputChange}
+      required
+      disabled={isDisabled}
+    />
+  
+    <h1>Referencias</h1>
+    <input
+      className="input-field"
+      name="nombreRef"
+      type="text"
+      placeholder="Nombre"
+      onChange={handleInputChange}
+      required
+      disabled={isDisabled}
+    />
+    <input
+      className="input-field"
+      name="apellidosRef"
+      type="text"
+      placeholder="Apellidos"
+      onChange={handleInputChange}
+      required
+      disabled={isDisabled}
+    />
+    <input
+      className="input-field"
+      name="cargoSup"
+      type="text"
+      placeholder="Cargo de Inmediato Superior"
+      onChange={handleInputChange}
+      required
+      disabled={isDisabled}
+    />
+    <input
+      className="input-field"
+      name="numeroRef"
+      type="number"
+      placeholder="Número de contacto"
+      onChange={handleInputChange}
+      required
+      disabled={isDisabled}
+    />
+    <div className="button-group">
       <button type="button" onClick={onDelete} disabled={isDisabled}>
         Eliminar
       </button>
     </div>
+  </div>
+  
   );
 };
 
@@ -176,30 +189,36 @@ const WorkExperienceFormList: React.FC = () => {
   };
 
   return (
-    <div>
-      <button type="button" onClick={handleNoCourses}>
-        {isFormDisabled ? "Tengo experiencia" : "No cuento con experiencia"}
-      </button>
-      {workExperiences.map((_, index) => (
-        <WorkExperienceForm
-          key={index}
-          index={index}
-          onDelete={() => deleteWorkExperienceForm(index)}
-          onChange={handleFormChange}
-          isDisabled={isFormDisabled}
-        />
-      ))}
-      <button
-        type="button"
-        onClick={addWorkExperienceForm}
-        disabled={isFormDisabled}
-      >
-        Agregar nueva experiencia Laboral
-      </button>
-      <button type="button" onClick={handleSubmit} disabled={isFormDisabled}>
-        Enviar Experiencia Laboral
-      </button>
-    </div>
+    <div className="work-experience-list">
+  <button type="button" onClick={handleNoCourses}>
+    {isFormDisabled ? "Tengo experiencia" : "No cuento con experiencia"}
+  </button>
+  {workExperiences.map((_, index) => (
+    <WorkExperienceForm
+      key={index}
+      index={index}
+      onDelete={() => deleteWorkExperienceForm(index)}
+      onChange={handleFormChange}
+      isDisabled={isFormDisabled}
+    />
+  ))}
+  <button
+    className="add-button"
+    type="button"
+    onClick={addWorkExperienceForm}
+    disabled={isFormDisabled}
+  >
+    Agregar nueva experiencia Laboral
+  </button>
+  <button
+    className="submit-button"
+    type="button"
+    onClick={handleSubmit}
+    disabled={isFormDisabled}
+  >
+    Enviar Experiencia Laboral
+  </button>
+</div>
   );
 };
 

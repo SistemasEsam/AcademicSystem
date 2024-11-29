@@ -1,8 +1,8 @@
 import React from 'react';
-import InputRegistro from "../../components/ui/InputRegistro";
-import { infoGrado, infoModalidad } from "../../api/infoModalidad";
-import { PdfUpload } from "../../components/upload/uploadpdf";
-import  "../../components/formdoc/style/Form2.css";
+import {InputRegistro} from "../../ui/InputRegistro";
+import { infoGrado, infoModalidad } from "../../../api/infoModalidad";
+import { PdfUpload } from "../../upload/uploadpdf";
+import "../style/Form2.css";
 
 export const Step2Form = () => {
   return (
@@ -19,10 +19,10 @@ export const Step2Form = () => {
               </label>
             </b>
           </div>
-          <div className="v-row form-row">
+          <div className="form-row">
             <InputRegistro info="Universidad o Institucion" />
             <InputRegistro info="Nombre de postgrado" />
-            <div className="v-col form-col">
+            <div className="select">
               <select name="grado" id="grado-select" className="form-select">
                 <option value="">Grado</option>
                 {infoGrado.map((grado) => (
@@ -31,9 +31,9 @@ export const Step2Form = () => {
               </select>
             </div>
           </div>
-          <div className="v-row form-row">
+          <div className="form-row">
             <InputRegistro info="Pais" />
-            <div className="v-col form-col">
+            <div className="form-col">
               <select name="modalidad" id="modalidad-select" className="form-select">
                 <option value="">Modalidad de graduación</option>
                 {infoModalidad.map((modalidad) => (

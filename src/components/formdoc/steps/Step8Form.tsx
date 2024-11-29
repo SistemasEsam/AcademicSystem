@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { languageOptions } from "../../../api/infoModalidad";
-import "../../components/formdoc/style/SkillSoft.css";
+import  "../style/SkillSoft.css";
 
 // Interface for language proficiency levels
 interface Language {

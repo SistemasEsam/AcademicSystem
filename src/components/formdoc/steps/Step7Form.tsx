@@ -1,7 +1,7 @@
 // WorkExperienceFormList.tsx
 import React, { useState } from "react";
 import { infoTitu, gradoAcadem } from "../../../api/infoModalidad";
-
+import  "../style/step7.css";
 // Componente para un formulario individual de experiencia laboral
 interface WorkExperienceFormProps {
   index: number;
@@ -137,7 +137,7 @@ const WorkExperienceFormList: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="work-experience-list">
       <button type="button" onClick={handleNoCourses}>
         {isFormDisabled ? "Tengo experiencia" : "No cuento con experiencia"}
       </button>

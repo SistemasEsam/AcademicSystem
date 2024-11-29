@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { infoDocentes } from "../../api/infoDocentes";
 import "./Profile.css";
-import { ImageUpload } from "../../components/upload/uploadimages";
+import { ImageUpload } from "../../components/upload/Uploadimages";
 import PersonalInfo from "./PersonalInfo";
 import EducationSection from "./EducationSection";
 import AddProfileSection from "./AddProfileSection";
+
 
 const Profile = () => {
   const [docente, setDocente] = useState(null);

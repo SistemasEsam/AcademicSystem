@@ -1,9 +1,12 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import MultiStepForm from "../docentes/Padre";
+import { SingleForm } from "../../components/formdoc/SingleForm";
 ---
 
-<Layout title="Formulario de registro Docentes ESAM">
+<Layout 
+title="Formulario de registro Docentes ESAM"
+description=""
+>
   <SingleForm client:load />
 </Layout>
 

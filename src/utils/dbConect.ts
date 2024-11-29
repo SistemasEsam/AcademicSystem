@@ -6,7 +6,7 @@ export async function connectToDatabase() {
       host: "localhost",
       user: "root",
       password: "",
-      database: "esamdb",
+      database: "esam_db",
     });
 
     console.log("Conexión a la base de datos establecida exitosamente.");

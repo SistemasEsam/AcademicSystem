@@ -1,6 +1,6 @@
 
 import React from 'react';
-import './InputRegistro.css';  // Importamos el archivo CSS
+  // Importamos el archivo CSS
 
 // Si estás usando TypeScript (.tsx), puedes declarar la interfaz Props
 interface Props {
