@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import {Modal} from "../util/Modale";
+import { Modal } from "../util/Modale";
 import "./AddProfileSection.css";
 import EducationForm from "../formdoc/EducationForm";
+<<<<<<< HEAD
 import {Step8Form  } from "../formdoc/steps/Step8Form";
 import { DegreeForm} from "../formdoc/DegreeForm";
 import {PostDegreeForm} from "../formdoc/PostDegreeForm";
@@ -10,9 +11,18 @@ import { Step2Form } from "../formdoc/steps/Step2Form";
 import IntellectualProductionFormList from '../formdoc/steps/Step5Form'
 import  WorkExperienceFormList  from "../formdoc/steps/Step6Form";
 import WorkExperience from "../formdoc/steps/Step7Form";
+=======
+import { DegreeForm } from "../formdoc/DegreeForm";
+import { PostDegreeForm } from "../formdoc/PostDegreeForm";
+>>>>>>> c92e692b8f84e8236c511d97ab952d59892d86c0
 
-
-const AddProfileSection = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+const AddProfileSection = ({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}) => {
   const [activeStep, setActiveStep] = useState<string>("options");
 
   const formOptions: { [key: string]: React.ReactNode } = {
@@ -20,16 +30,22 @@ const AddProfileSection = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =
     informacion: <Step1Form/>,
     diplomado: <Step2Form/>,
     postgrado: (
-      <EducationForm title="Formación de Postgrado" FormComponent={PostDegreeForm} />
+      <EducationForm
+        title="Formación de Postgrado"
+        FormComponent={PostDegreeForm}
+      />
     ),
     pregrado: (
       <EducationForm title="Formación de Pregrado" FormComponent={DegreeForm} />
     ),
+<<<<<<< HEAD
     publi:<IntellectualProductionFormList/>,
     work:<WorkExperienceFormList/>,
     workd:<WorkExperience/>,
     skills: <Step8Form />,
 
+=======
+>>>>>>> c92e692b8f84e8236c511d97ab952d59892d86c0
   };
 
   const handleOptionClick = (option: string) => setActiveStep(option);
