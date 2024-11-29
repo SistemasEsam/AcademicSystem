@@ -1,23 +1,29 @@
 import React, { useState } from "react";
-import {Modal} from "../util/Modale";
+import { Modal } from "../util/Modale";
 import "./AddProfileSection.css";
 import EducationForm from "../formdoc/EducationForm";
-import SoftSkillsAndLanguages from "../../pages/docentes/HabilidadIdioma";
-import DegreeForm from "../formdoc/DegreeForm";
-import PostDegreeForm from "../formdoc/DegreeForm";
+import { DegreeForm } from "../formdoc/DegreeForm";
+import { PostDegreeForm } from "../formdoc/PostDegreeForm";
 
-
-const AddProfileSection = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+const AddProfileSection = ({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}) => {
   const [activeStep, setActiveStep] = useState<string>("options");
 
   const formOptions: { [key: string]: React.ReactNode } = {
     postgrado: (
-      <EducationForm title="Formación de Postgrado" FormComponent={PostDegreeForm} />
+      <EducationForm
+        title="Formación de Postgrado"
+        FormComponent={PostDegreeForm}
+      />
     ),
     pregrado: (
       <EducationForm title="Formación de Pregrado" FormComponent={DegreeForm} />
     ),
-    skills: <SoftSkillsAndLanguages />,
   };
 
   const handleOptionClick = (option: string) => setActiveStep(option);
