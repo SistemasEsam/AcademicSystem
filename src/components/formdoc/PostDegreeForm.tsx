@@ -1,6 +1,5 @@
 import React from "react";
 import { infoGrado, infoModalidad } from "../../api/infoModalidad";
-import { CountriesFormSelect } from "../ui/CountriesFormSelect";
 
 interface PostDegreeFormProps {
   index: number;
