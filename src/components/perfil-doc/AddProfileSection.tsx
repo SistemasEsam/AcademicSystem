@@ -1,59 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal } from "../util/Modale";
 import "./AddProfileSection.css";
 import EducationForm from "../formdoc/EducationForm";
-<<<<<<< HEAD
-import {Step8Form  } from "../formdoc/steps/Step8Form";
-import { DegreeForm} from "../formdoc/DegreeForm";
-import {PostDegreeForm} from "../formdoc/PostDegreeForm";
+import { PostDegreeForm } from "../formdoc/PostDegreeForm";
+import { DegreeForm } from "../formdoc/DegreeForm";
 import { Step1Form } from "../formdoc/steps/Step1Form";
 import { Step2Form } from "../formdoc/steps/Step2Form";
-import IntellectualProductionFormList from '../formdoc/steps/Step5Form'
-import  WorkExperienceFormList  from "../formdoc/steps/Step6Form";
+import IntellectualProductionFormList from "../formdoc/steps/Step5Form";
+import WorkExperienceFormList from "../formdoc/steps/Step6Form";
 import WorkExperience from "../formdoc/steps/Step7Form";
-=======
-import { DegreeForm } from "../formdoc/DegreeForm";
-import { PostDegreeForm } from "../formdoc/PostDegreeForm";
->>>>>>> c92e692b8f84e8236c511d97ab952d59892d86c0
+import { Step8Form } from "../formdoc/steps/Step8Form";
 
 const AddProfileSection = ({
   isOpen,
   onClose,
+  selectedType, // Recibimos el tipo seleccionado
+  onSaveInfo, // Recibimos la función para guardar la información
 }: {
   isOpen: boolean;
   onClose: () => void;
+  selectedType: "pregrado" | "postgrado" | ""; // Tipo seleccionado
+  onSaveInfo: (newInfo: any) => void; // Función para guardar la nueva información
 }) => {
   const [activeStep, setActiveStep] = useState<string>("options");
 
-  const formOptions: { [key: string]: React.ReactNode } = {
+  useEffect(() => {
+    if (selectedType) {
+      // Si el tipo seleccionado es pregrado o postgrado, cambiamos el paso activo
+      setActiveStep(selectedType);
+    }
+  }, [selectedType]);
 
-    informacion: <Step1Form/>,
-    diplomado: <Step2Form/>,
+  const formOptions: { [key: string]: React.ReactNode } = {
+    informacion: <Step1Form />,
+    diplomado: <Step2Form />,
     postgrado: (
-      <EducationForm
-        title="Formación de Postgrado"
-        FormComponent={PostDegreeForm}
-      />
+      <EducationForm title="Formación de Postgrado" FormComponent={PostDegreeForm} />
     ),
     pregrado: (
       <EducationForm title="Formación de Pregrado" FormComponent={DegreeForm} />
     ),
-<<<<<<< HEAD
-    publi:<IntellectualProductionFormList/>,
-    work:<WorkExperienceFormList/>,
-    workd:<WorkExperience/>,
+    publi: <IntellectualProductionFormList />,
+    work: <WorkExperienceFormList />,
+    workd: <WorkExperience />,
     skills: <Step8Form />,
-
-=======
->>>>>>> c92e692b8f84e8236c511d97ab952d59892d86c0
   };
 
   const handleOptionClick = (option: string) => setActiveStep(option);
   const goBack = () => setActiveStep("options");
   const handleSave = () => {
     alert("Formulario guardado con éxito.");
+    onSaveInfo({}); // Aquí deberías pasar la información que se ha guardado
     goBack();
   };
+
+  
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Agregar Perfil">
@@ -63,12 +64,12 @@ const AddProfileSection = ({
           <ul>
             {Object.keys(formOptions).map((option) => (
               <li key={option} onClick={() => handleOptionClick(option)}>
-                {option === "informacion" && "Agregar mas Informacion"}
+                {option === "informacion" && "Agregar más Información"}
                 {option === "diplomado" && "Agregar diplomado"}
                 {option === "postgrado" && "Agregar Postgrado"}
                 {option === "pregrado" && "Agregar Pregrado"}
-                {option === "publi" && "Agregar publicacion"} 
-                {option === "work" && "Agrega Informacion laboral"}
+                {option === "publi" && "Agregar publicación"}
+                {option === "work" && "Agregar Información laboral"}
                 {option === "skills" && "Agregar Habilidades"}
               </li>
             ))}

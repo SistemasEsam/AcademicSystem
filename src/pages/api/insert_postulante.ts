@@ -6,7 +6,6 @@ import path from "path";
 export async function POST({ request }: APIContext) {
   try {
     const formData = await request.formData();
-
     // Extraer los datos del formulario
     const nombres = formData.get("nombres")?.toString();
     const apellidoPaterno = formData.get("apellidoPaterno")?.toString();

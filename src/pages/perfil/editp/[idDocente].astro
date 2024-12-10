@@ -1,0 +1,15 @@
+---
+import EditDocente from "../../../components/perfil-doc/EditDocente";
+
+
+const params = Astro.params;
+const idDocente = Number(params.idDocente);
+// Aseguramos que el parámetro sea un número
+const docenteId = Number(idDocente);
+if (isNaN(docenteId)) {
+  throw new Error("El ID del docente debe ser un número");
+}
+---
+
+<EditDocente idDocente={idDocente} client:load />
+
