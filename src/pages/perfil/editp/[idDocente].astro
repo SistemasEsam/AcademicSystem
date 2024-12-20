@@ -1,7 +1,7 @@
 ---
+import Layout from "../../../layouts/Layout.astro";
+import HeroTitle from "../../../components/ui/HeroTitle.astro";
 import EditDocente from "../../../components/perfil-doc/EditDocente";
-
-
 const params = Astro.params;
 const idDocente = Number(params.idDocente);
 // Aseguramos que el parámetro sea un número
@@ -11,5 +11,18 @@ if (isNaN(docenteId)) {
 }
 ---
 
-<EditDocente idDocente={idDocente} client:load />
 
+
+<Layout
+  title="Sistema Academico ESAM | Programas"
+  canonical="https://academico-docentes.esam.edu.bo/"
+  description="Sistema académico de ESAM para contratación y postulación de docentes."
+>
+  <HeroTitle titulo="Perfil" />
+  <body>
+    <div id="docente-info">
+      <EditDocente idDocente={idDocente} client:load />
+
+    </div>
+  </body>
+</Layout>

@@ -22,7 +22,6 @@ interface Docente {
   correo: string;
   ciudadRadicacion: string;
   telefono: string;
- 
   pregrado: Array<Education>;
   postgrado: Array<Education>;
 }
@@ -112,7 +111,8 @@ export const DocenteInfo: React.FC<DocenteInfoProps> = ({ idDocente }) => {
 
   return (
     <div className="profile-container">
-      <div className="background-polygon"></div>
+      <div className="background-polygon">
+      </div>
       <div className="profile-content">
         <div className="profile-photo">
           <ImageUpload

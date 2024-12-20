@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Modal } from "../util/Modale";
-import "./AddProfileSection.css";
+import "../perfil-doc/syles/AddProfileSection.css";
 import EducationForm from "../formdoc/EducationForm";
 import { PostDegreeForm } from "../formdoc/PostDegreeForm";
 import { DegreeForm } from "../formdoc/DegreeForm";
-import { Step1Form } from "../formdoc/steps/Step1Form";
+import {Step1Form}  from "../formdoc/steps/Step1Form";
 import { Step2Form } from "../formdoc/steps/Step2Form";
 import IntellectualProductionFormList from "../formdoc/steps/Step5Form";
 import WorkExperienceFormList from "../formdoc/steps/Step6Form";
