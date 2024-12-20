@@ -119,8 +119,8 @@ export const DocenteInfo: React.FC<DocenteInfoProps> = ({ idDocente }) => {
             containerClass="profile-image-container"
             labelClass="profile-image-label"
             avatarClass="profile-avatar"
-            buttonClass="custom-upload-button"
-            iconClass="custom-upload-icon"
+              buttonClass="custom-upload-button"
+              iconClass="custom-upload-icon"
             onImageSelect={(file) =>
               console.log(file ? `Imagen seleccionada: ${file.name}` : "No se seleccionó ninguna imagen.")
             }
