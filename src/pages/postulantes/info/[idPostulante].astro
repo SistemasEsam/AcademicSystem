@@ -1,0 +1,111 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import PostulanteInfo from "../../../components/docentes/PostulanteInfo.astro";
+import { PostulantePDF } from "../../../components/docentes/PostulantePDF";
+import { ScheduleMeetingButton } from "../../../components/docentes/agendarReu/ScheduleMeetingButton";
+import { AprobarRechazarDocente } from "../../../components/docentes/AprobarRechazarDocente";
+import { ReprogramMeetingButton } from "../../../components/docentes/ReprogramMeetingButton";
+import LayoutForm from "../../../layouts/LayoutForm.astro";
+import "../../../styles/postulantes.css";
+
+// Obtener el parámetro idDocente desde Astro.params
+const { idPostulante } = Astro.params;
+
+// URL de la API dinámica
+const apiUrl = `http://localhost:4321/api/docentes/${idPostulante}`;
+
+let docenteData = null;
+
+try {
+  // Realizar la petición a la API
+  const response = await fetch(apiUrl);
+
+  // Verificar si la respuesta es válida
+  if (!response.ok) {
+    throw new Error(
+      `Error al obtener los datos del docente: ${response.statusText}`
+    );
+  }
+
+  // Parsear los datos como JSON
+  docenteData = await response.json();
+} catch (error) {
+  console.error("Hubo un problema al obtener los datos del docente:", error);
+}
+
+if (!idPostulante) {
+  return Astro.redirect("/404");
+}
+---
+
+<LayoutForm title={`Sistema Académico ESAM | ${docenteData.nombres}`}>
+  <div class="back-button-container">
+    <a href="/postulantes" class="backbutton">
+      <img src="/images/iconos/back.png" alt="Regresar" class="back-icon" />
+    </a>
+  </div>
+
+  <!-- Contenedor de los botones -->
+  <div class="buttons-container">
+    <!-- Columna izquierda: Descargar PDF y Agendar Reunión -->
+    <div class="left-buttons">
+      <div class="download-pdf">
+        <PostulantePDF client:only="react" postulante={docenteData} />
+      </div>
+
+      {docenteData.agendado === 0 && (
+        <ScheduleMeetingButton
+          client:only="react"
+          telefono={docenteData.telefono}
+          email={docenteData.correo}
+          idDocente={docenteData.idDocente}
+        />
+      )}
+      
+
+      {docenteData.agendado === 1 && docenteData.detalles && docenteData.detalles.length > 0 && (
+          <div class="meeting-details">
+            <h2>Reunión Agendada</h2>
+            <p>
+              <strong>Fecha:</strong>{" "}
+              {docenteData.detalles[0].fecha || "Sin información"}
+            </p>
+            <p>
+              <strong>Link de Zoom:</strong>{" "}
+              {docenteData.detalles[0].link ? (
+                <a
+                  href={docenteData.detalles[0].link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ingrese aquí
+                </a>
+              ) : (
+                "No disponible"
+              )}
+            </p>
+            <ReprogramMeetingButton
+              client:only="react"
+              telefono={docenteData.telefono}
+              email={docenteData.email}
+              fecha={docenteData.detalles[0].fecha || null}
+              link={docenteData.detalles[0].link || ""}
+              idDocente={docenteData.idDocente}
+            />
+          </div>
+      )}
+    </div>
+
+    <!-- Columna derecha: Aprobar y Rechazar -->
+    <div class="right-buttons">
+      <AprobarRechazarDocente
+        client:only="react"
+        postulanteId={docenteData.idDocente}
+      />
+    </div>
+  </div>
+  <section class="container">
+    <!-- Información del postulante -->
+    <PostulanteInfo postulante={docenteData} />
+  </section>
+</LayoutForm>

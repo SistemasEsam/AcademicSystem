@@ -2,16 +2,18 @@ import React from "react";
 import "../../styles/docenteSearch.css";
 
 interface ResultProps {
-  nombre: string;
-  email: string;
-  documento: string;
+  idDocente:number;
+  nombres: string;
+  correo: string;
+  numeroDocumento: string;
   telefono: string;
 }
 
 export const ResultadosDocentes: React.FC<ResultProps> = ({
-  nombre,
-  email,
-  documento,
+  idDocente,
+  nombres,
+  correo,
+  numeroDocumento,
   telefono,
 }) => {
   return (
@@ -43,13 +45,13 @@ export const ResultadosDocentes: React.FC<ResultProps> = ({
       <div className="result-item">
         {/* Aquí mostramos los datos del docente */}
         <div className="v-card-content">
-          <div className="v-card-title sub-title">{nombre}</div>
+          <div className="v-card-title sub-title">{nombres}</div>
           <div className="v-card-subtitle">
             <p>
-              <strong>Correo:</strong> {email}
+              <strong>Correo:</strong> {correo}
             </p><br />
             <p>
-              <strong>CI:</strong> {documento}
+              <strong>CI:</strong> {numeroDocumento}
             </p><br />
             <p>
               <strong>Teléfono:</strong> {telefono}
@@ -63,7 +65,7 @@ export const ResultadosDocentes: React.FC<ResultProps> = ({
           >
             <span className="v-btn__overlay"></span>
             <span className="v-btn__underlay"></span>
-            <a href={`/postulantes/info/${nombre}`}>ABRIR</a>
+            <a href={`/postulantes/info/${idDocente}`}>ABRIR</a>
           </button>
         </div>
       </div>

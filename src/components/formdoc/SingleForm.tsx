@@ -6,6 +6,8 @@ import { AreaForm } from "../ui/AreaForm";
 
 export const SingleForm = () => {
   const [formData, setFormData] = useState({
+    usuario: "", 
+    password: "", 
     nombres: "",
     apellidoPaterno: "",
     apellidoMaterno: "",
@@ -21,15 +23,34 @@ export const SingleForm = () => {
   });
 
   const [profileImage, setProfileImage] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [message, setMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShow) => !prevShow);
+  };
 
-  const handleImageSelect = (file: File | null) => {
-    setProfileImage(file); // Guardar el archivo seleccionado
+  const handleImageSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0] || null;
+    setProfileImage(file); // Guardar el archivo en el estado
+
+    // Generar la previsualización de la imagen
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setImagePreview(null); // Limpiar la previsualización si no hay archivo
+    }
+
+    console.log("Imagen seleccionada:", file);
   };
 
   const handleSubmit = async (e: any) => {
@@ -47,9 +68,15 @@ export const SingleForm = () => {
 
     // Añadir la imagen al FormData si existe
     if (profileImage) {
-      formDataToSend.append("imagen", profileImage);
+      console.log("Imagen a enviar:", profileImage); // Log para verificar antes de añadir al FormData
+      formDataToSend.append("fotografia", profileImage);
+    } else {
+      console.warn("No se seleccionó ninguna imagen");
     }
-
+    // Verificar todo el contenido del FormData
+    formDataToSend.forEach((value, key) => {
+      console.log(`${key}:`, value);
+    });
     try {
       const response = await fetch("/api/insert_postulante", {
         method: "POST",
@@ -60,6 +87,8 @@ export const SingleForm = () => {
       if (response.ok) {
         setMessage("Postulación enviada correctamente.");
         setFormData({
+          usuario: "", // Nuevo campo
+          password: "", 
           nombres: "",
           apellidoPaterno: "",
           apellidoMaterno: "",
@@ -114,10 +143,114 @@ export const SingleForm = () => {
               </div>
               <div className="col-md-6 col-sm-12">
                 <form encType="multipart/form-data" onSubmit={handleSubmit}>
-                  <div className="form-row">
-                    <ImageUpload onImageSelect={handleImageSelect} />
+                <div
+                    style={{
+                      marginTop: "15px",
+                      textAlign: "center",
+                      marginBottom: "15px",
+                    }}
+                  >
+                    <img
+                      src={
+                        imagePreview || "/images/perfil-docente-pordefecto.png"
+                      }
+                      alt="Previsualización"
+                      width="150"
+                      height="150"
+                      style={{
+                        border: "1px solid #ccc",
+                        borderRadius: "8px",
+                        objectFit: "cover",
+                      }}
+                    />
                   </div>
+                  <div className="form-row" style={{marginBottom:"10px"}}>
+                    
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageSelect} // Selección de imagen
+                    />
+                    
+                  </div>
+                
                   <div className="form-row">
+                  <div className="form-group input__group">
+                  <input
+                      type="text"
+                      name="usuario"
+                      id="usuario"
+                      className="form-control js-control-input"
+                      value={formData.usuario}
+                      onChange={handleChange}
+                    />
+                      <label htmlFor="usuario">Usuario</label>
+                      <span className="error-text"></span>
+                      <i className="error-icon"></i>
+                    </div>
+                    <div className="form-group input__group">
+                    <div className="password-group">
+      <input
+        type={showPassword ? "text" : "password"}
+        name="password"
+        id="password"
+        className="form-control js-control-input"
+        value={formData.password}
+        onChange={handleChange}
+      />
+      <label htmlFor="password">Contraseña</label>
+      <span className="error-text"></span>
+      <i className="error-icon"></i>
+      <span
+        className="toggle-password"
+        onClick={togglePasswordVisibility}
+        title={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+      >
+         {showPassword ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+            >
+              <path
+                d="M12 4.5C7.5 4.5 3.8 7.3 2 12c1.8 4.7 5.5 7.5 10 7.5s8.2-2.8 10-7.5c-1.8-4.7-5.5-7.5-10-7.5zm0 13c-3.1 0-5.6-2.5-5.6-5.5S8.9 6.5 12 6.5s5.6 2.5 5.6 5.5-2.5 5.5-5.6 5.5zm0-2.1c1.8 0 3.3-1.4 3.3-3.4s-1.4-3.4-3.3-3.4-3.3 1.4-3.3 3.4 1.4 3.4 3.3 3.4z"
+              />
+            </svg>
+          ) : (
+            <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+          >
+            <path
+              d="M2 12c1.8 4.7 5.5 7.5 10 7.5 2.5 0 4.9-.9 6.9-2.5l2.4 2.4 1.4-1.4-19-19-1.4 1.4 2.4 2.4C3.1 7.1 2 9.4 2 12zm10-7.5c-2.5 0-4.9.9-6.9 2.5l9.9 9.9c2-.5 3.9-1.7 5.2-3.4-1.8-4.7-5.5-7.5-10-7.5zm-6 3.6 3.3 3.3C9.1 10.1 10 10 12 10c1.4 0 2.7.1 4 .4l1.7 1.7c-.4-.1-.9-.1-1.7-.1-2.1 0-4 .5-5.7 1.3L4.5 8.1z"
+            />
+          </svg>
+          )}
+      </span>
+
+      <style >{`
+        .password-group {
+          position: relative;
+        }
+
+        .password-group input {
+          padding-right: 40px; /* Espacio para el icono */
+        }
+
+        .password-group .toggle-password {
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          cursor: pointer;
+          font-size: 18px;
+        }
+      `}</style>
+    </div>
+                    </div>
                     <div className="form-group input__group">
                       <input
                         type="text"

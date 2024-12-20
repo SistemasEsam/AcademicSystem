@@ -5,7 +5,16 @@ export const infoDocentes = [
         email:"joseph.hinojosa@esam.edu.bo",
         documento: "7519245",
         telefono: "78949488",
-        pregrado: [{
+        estudios_superiores: [{
+            tipo: "pregrado",
+            carrera: "Licenciatura en DERECHO",
+            universidad: "UNIVERSIDAD DE SAN FRANCISCO XAVIER DE CHUQUISACA",
+            pais: "Bolivia",
+            anio: 2014,
+            modalidad: "Exámen de Grado"
+        },
+        {
+            tipo: "postgrado",
             carrera: "Licenciatura en DERECHO",
             universidad: "UNIVERSIDAD DE SAN FRANCISCO XAVIER DE CHUQUISACA",
             pais: "Bolivia",
@@ -55,14 +64,7 @@ export const infoDocentes = [
             modalidad: "Exámen de Grado"
         },
         {
-            carrera: "Licenciatura en DERECHO",
-            universidad: "UNIVERSIDAD DE SAN FRANCISCO XAVIER DE CHUQUISACA",
-            pais: "Bolivia",
-            anio: 2014,
-            modalidad: "Exámen de Grado"
-        }],
-        postgrado:[{
-            tipo:"Maestria",
+            grado:"Maestria",
             nombre: "Maestria en MAESTRIA EN DERECHO CONSTITUCIONAL Y PROCESAL CONSTITUCIONAL",
             universidad: "UNIVERSIDAD ANDINA SIMON BOLIVAR",
             pais: "Estado plurinacional de bolivia",

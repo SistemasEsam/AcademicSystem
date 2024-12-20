@@ -25,7 +25,7 @@
   background: linear-gradient(to right, #095b95, #01101a); /* Degradado azul a negro */
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Espacio entre el logo y el título */
+  justify-content: center; /* Centra el contenido */
   padding: 20px;
   color: #fff;
   border: 5px solid #d4af37; /* Borde dorado */
@@ -33,18 +33,10 @@
   border-radius: 8px 8px 0 0; /* Bordes superiores redondeados */
 }
 
-.header img {
-  max-width: 100px; /* Ajusta el tamaño del logo */
-  height: auto; /* Mantiene la proporción del logo */
+.header h1 {
+  margin: 0; /* Elimina márgenes predeterminados */
 }
 
-.header h1 {
-  margin: 0;
-  padding-left: 64px;
-  font-size: 24px;
-  text-align: center; /* Centra el texto */
-  flex-grow: 1; /* Esto asegura que el título ocupe el espacio disponible */
-}
 
     .content {
       padding: 20px;
@@ -88,8 +80,6 @@
 <body>
   <div class="container">
     <div class="header">
-      <!-- Inserta aquí tu logo en formato JPG o PNG -->
-      <img src="/public/images/LogoUniversidadXX.jpeg" alt="Logo de ESAM"/>
       <h1>ESAM DOCENTES</h1>
     </div>
 

@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   container: {
+    flex:1,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
@@ -23,14 +24,15 @@ const styles = StyleSheet.create({
     color: "white",
     padding: 20,
     borderRight: "2px solid black",
+    flexGrow:1,
   },
   profileImage: {
     borderRadius: 55,
     width: 110,
     height: 110,
     marginBottom: 20,
-    borderWidth: 5,     
-    borderColor: "#000000", 
+    borderWidth: 4,     
+    borderColor: "#fdd835", 
     borderStyle: "solid"
   },
   leftColumnHeading: {
@@ -71,11 +73,11 @@ const PDFContent = ({ postulante }) => (
 
       
         <View style={styles.leftColumn}>
-          <Image src="/images/Amed.jpg" style={styles.profileImage} />
-          <Text style={styles.leftColumnHeading}><Image src="/images/iconos/usuario (1).png" style={styles.icon} /> {postulante.nombre}</Text>
-          <Text style={styles.leftColumnText}><Image src="/images/iconos/carnet-de-identidad.png" style={styles.icon} /> {postulante.documento}</Text>
+          <Image src={postulante.fotografia} style={styles.profileImage} />
+          <Text style={styles.leftColumnHeading}><Image src="/images/iconos/usuario (1).png" style={styles.icon} /> {postulante.nombres}</Text>
+          <Text style={styles.leftColumnText}><Image src="/images/iconos/carnet-de-identidad.png" style={styles.icon} /> {postulante.numeroDocumento}</Text>
           <Text style={styles.leftColumnText}><Image src="/images/iconos/pastel.png" style={styles.icon} /> Fecha de Nacimiento</Text>
-          <Text style={styles.leftColumnText}><Image src="/images/iconos/sobre-de-papel-blanco.png" style={styles.icon} /> {postulante.email}</Text>
+          <Text style={styles.leftColumnText}><Image src="/images/iconos/sobre-de-papel-blanco.png" style={styles.icon} /> {postulante.correo}</Text>
           <Text style={styles.leftColumnText}><Image src="/images/iconos/telefono.png" style={styles.icon} /> {postulante.telefono}</Text>
           <Text style={styles.leftColumnText}><Image src="/images/iconos/genero.png" style={styles.icon} /> Género</Text>
           <Text style={styles.leftColumnText}><Image src="/images/iconos/mapa.png" style={styles.icon} /> Ciudad</Text>
@@ -84,35 +86,39 @@ const PDFContent = ({ postulante }) => (
 
         <View style={styles.rightColumn}>
           <Text style={styles.rightColumnHeading}>Estudios Pregrado</Text>
-          {postulante.pregrado?.map((pregrado, index) => (
+          {postulante.estudiossuperiores && postulante.estudiossuperiores
+    .filter((estudios) => estudios.tipo === "pregrado") // Filtrar solo los de tipo "pregrado"
+    .map((estudios, index) => (
             <View key={index} style={styles.listItem} wrap={false}>
               <Text style={styles.rightColumnText}>
-                Carrera: {pregrado.carrera}
+                Carrera: {estudios.carrera}
               </Text>
               <Text style={styles.rightColumnText}>
-                Universidad: {pregrado.universidad}
+                Universidad: {estudios.universidad}
               </Text>
-              <Text style={styles.rightColumnText}>País: {pregrado.pais}</Text>
-              <Text style={styles.rightColumnText}>Año: {pregrado.anio}</Text>
+              <Text style={styles.rightColumnText}>País: {estudios.pais}</Text>
+              <Text style={styles.rightColumnText}>Año: {estudios.fecha}</Text>
               <Text style={styles.rightColumnText}>
-                Modalidad: {pregrado.modalidad}
+                Modalidad: {estudios.modalidad}
               </Text>
             </View>
           ))}
 
           <Text style={styles.rightColumnHeading}>Estudios Postgrado</Text>
-          {postulante.postgrado?.map((postgrado, index) => (
+          {postulante.estudiossuperiores && postulante.estudiossuperiores
+    .filter((estudios) => estudios.tipo === "postgrado") // Filtrar solo los de tipo "pregrado"
+    .map((estudios, index) => (
             <View key={index} style={styles.listItem} wrap={false}>
               <Text style={styles.rightColumnText}>
-                Nombre: {postgrado.nombre}
+                Nombre: {estudios.nombre}
               </Text>
               <Text style={styles.rightColumnText}>
-                Universidad: {postgrado.universidad}
+                Universidad: {estudios.universidad}
               </Text>
-              <Text style={styles.rightColumnText}>País: {postgrado.pais}</Text>
-              <Text style={styles.rightColumnText}>Año: {postgrado.anio}</Text>
+              <Text style={styles.rightColumnText}>País: {estudios.pais}</Text>
+              <Text style={styles.rightColumnText}>Año: {estudios.fecha}</Text>
               <Text style={styles.rightColumnText}>
-                Modalidad: {postgrado.modalidad}
+                Modalidad: {estudios.modalidad}
               </Text>
             </View>
           ))}
@@ -137,7 +143,7 @@ export const PostulantePDF = ({ postulante }) => (
   <div className="download-pdf-container"> {/* Contenedor principal */}
   <PDFDownloadLink
     document={<PDFContent postulante={postulante} />}
-    fileName={`${postulante.nombre}_CV.pdf`}
+    fileName={`${postulante.nombres}_CV.pdf`}
   >
     {({ loading }) => (
       <button className="download-btn">

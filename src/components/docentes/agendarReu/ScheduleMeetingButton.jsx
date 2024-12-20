@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { ScheduleMeeting } from "./ScheduleMeeting";
-import "../../../styles/postulantes.css";
 
 
-export function ScheduleMeetingButton({ telefono, email }) {
+export function ScheduleMeetingButton({ telefono, email,idDocente }) {
   const [showScheduler, setShowScheduler] = useState(false);
 
   const handleOpenModal = () => {
@@ -26,6 +25,7 @@ export function ScheduleMeetingButton({ telefono, email }) {
         <ScheduleMeeting
           telefono={telefono}
           email={email}
+          idDocente={idDocente} 
           setShowScheduler={handleCloseModal}
         />
       )}

@@ -196,5 +196,18 @@ body {
   .v-card-subtitle p strong {
     font-weight: bold; 
   }
+  .filter-select {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    margin-left: 10px;
+    width: 200px;
+  }
+  
+  .filter-select:focus {
+    border-color: #0066cc;
+    outline: none;
+  }
   
   

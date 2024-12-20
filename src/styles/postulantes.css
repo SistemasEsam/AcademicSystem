@@ -15,14 +15,13 @@
   border-radius: 5px;
   text-decoration: none;
   cursor: pointer;
-  width: 40px; /* Tamaño fijo del botón */
+  width: 50px; /* Tamaño fijo del botón */
   height: 40px; /* Tamaño fijo del botón */
 }
-
 /* Tamaño del ícono */
 .back-icon {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   transition: transform 0.3s ease; /* Transición suave */
 }
 
@@ -217,20 +216,13 @@
     gap: 15px;
   }
   
-  .zoom-input {
-    padding: 8px;
-    margin-top: 5px;
-    width: 100%;
-    max-width: 400px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
   
   .modal-buttons {
     display: flex;
     justify-content: space-between;
     width: 100%;
     gap: 10px;
+    padding-top: 20px;
   }
   
   .v-btn {
@@ -267,9 +259,10 @@
 .schedule-meeting-container .zoom-input,
 .schedule-meeting-container .react-datepicker-wrapper {
   width: 100%; /* Hacerlos del mismo tamaño */
-  max-width: 450px; /* Limitar el ancho máximo */
+  max-width: 500px; /* Limitar el ancho máximo */
   padding: 10px;
-  margin-top: 15px;
+  padding-bottom: 15px;
+  margin-top: 20px;
   border-radius: 5px;
   border: 1px solid #ddd;
   font-size: 16px;
@@ -284,7 +277,7 @@
 }
 
 .react-datepicker__input-container input {
-    width: 95%; 
+    width: 100%; 
     padding: 10px;
     margin: 0; 
     border-radius: 5px;

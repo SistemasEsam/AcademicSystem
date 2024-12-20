@@ -2,12 +2,15 @@ import { connectToDatabase } from "../../utils/dbConect";
 import type { APIContext } from "astro";
 import fs from "fs";
 import path from "path";
+import bcrypt from "bcryptjs";
 
 export async function POST({ request }: APIContext) {
   try {
     const formData = await request.formData();
 
     // Extraer los datos del formulario
+    const usuario = formData.get("usuario")?.toString(); // Nuevo campo
+    const password = formData.get("password")?.toString();
     const nombres = formData.get("nombres")?.toString();
     const apellidoPaterno = formData.get("apellidoPaterno")?.toString();
     const apellidoMaterno = formData.get("apellidoMaterno")?.toString();
@@ -18,10 +21,14 @@ export async function POST({ request }: APIContext) {
     const fechaNacimiento = formData.get("fechaNacimiento")?.toString();
     const idAreaInteres = formData.get("idAreaInteres")?.toString();
     const idSector = formData.get("idSector")?.toString();
-    const imagen = formData.get("imagen") as File | null; // Recibir la imagen
+    const imagen = formData.get("fotografia") as File | null;
+    console.log("Imagen recibida en el backend:", imagen);
+
 
     // Validar los campos requeridos
     if (
+      !usuario ||
+      !password ||
       !nombres ||
       !apellidoPaterno ||
       !correo ||
@@ -37,36 +44,54 @@ export async function POST({ request }: APIContext) {
         { status: 400 }
       );
     }
-
-    // Guardar la imagen en el servidor
-    let imagePath = "";
-    if (imagen) {
-      const uploadDir = path.join(process.cwd(), "public/images/docentes");
-      if (!fs.existsSync(uploadDir)) {
-        fs.mkdirSync(uploadDir, { recursive: true });
-      }
-
-      const fileName = `${Date.now()}-${imagen.name}`;
-      const filePath = path.join(uploadDir, fileName);
-
-      // Leer la imagen y guardarla en el servidor
-      const buffer = Buffer.from(await imagen.arrayBuffer());
-      fs.writeFileSync(filePath, buffer);
-
-      imagePath = `/images/docentes/${fileName}`;
-    }
-
+  // Encriptar la contraseña
+  const hashedPassword = await bcrypt.hash(password.trim(), 10); // 10 es el número de rondas de salt
+     // Guardar la imagen en el servidor
+     let imagePath = null;
+     if (imagen) {
+          console.log("Nombre del archivo:", imagen.name);
+      console.log("Tipo de archivo:", imagen.type);
+       const uploadDir = path.join(process.cwd(), "public/images/docentes");
+       if (!fs.existsSync(uploadDir)) {
+         fs.mkdirSync(uploadDir, { recursive: true });
+       }
+ 
+       const fileName = `${Date.now()}-${imagen.name || "imagen"}`;
+       const filePath = path.join(uploadDir, fileName);
+ 
+       try {
+         // Leer la imagen y guardarla en el servidor
+         if (imagen) {
+          const buffer = Buffer.from(await imagen.arrayBuffer());
+          console.log("Buffer de imagen:", buffer);
+        
+          fs.writeFileSync(filePath, buffer);
+          console.log("Ruta donde se guardará la imagen:", filePath);
+        }
+        
+ 
+         imagePath = `/images/docentes/${fileName}`;
+       } catch (err) {
+         console.error("Error al guardar la imagen:", err);
+         return new Response(
+           JSON.stringify({ error: "Error al guardar la imagen" }),
+           { status: 500 }
+         );
+       }
+     }
     // Conectar a la base de datos e insertar los datos
     const db = await connectToDatabase();
 
     const query = `
       INSERT INTO docentes (
-        nombres, apellidoPaterno, apellidoMaterno, correo,
+        usuario, password, nombres, apellidoPaterno, apellidoMaterno, correo,
         ciudadRadicacion, idPais, telefono, fechaNacimiento,
         idAreaInteres, idSector, fotografia, estado
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)
     `;
     const values = [
+      usuario.trim(),
+      hashedPassword, // Contraseña encriptada
       nombres.trim(),
       apellidoPaterno.trim(),
       apellidoMaterno?.trim() || null,
@@ -79,6 +104,7 @@ export async function POST({ request }: APIContext) {
       Number(idSector),
       imagePath || null, // Guardar la ruta de la imagen en la base de datos
       "postulante",
+ 
     ];
 
     await db.execute(query, values);
