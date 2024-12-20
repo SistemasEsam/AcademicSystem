@@ -7,7 +7,6 @@ import bcrypt from "bcryptjs";
 export async function POST({ request }: APIContext) {
   try {
     const formData = await request.formData();
-
     // Extraer los datos del formulario
     const usuario = formData.get("usuario")?.toString(); // Nuevo campo
     const password = formData.get("password")?.toString();

@@ -1,10 +1,23 @@
 import React, { useState } from "react";
 
+// Agrega las propiedades de clase a la interfaz Props
 interface Props {
   onImageSelect: (file: File | null) => void;
+  containerClass: string; // Clases para el contenedor
+  labelClass: string;     // Clases para la etiqueta
+  avatarClass: string;    // Clases para el avatar
+  buttonClass: string;    // Clases para el botón
+  iconClass: string;      // Clases para el icono
 }
 
-export const ImageUpload: React.FC<Props> = ({ onImageSelect }) => {
+export const ImageUpload: React.FC<Props> = ({
+  onImageSelect,
+  containerClass,
+  labelClass,
+  avatarClass,
+  buttonClass,
+  iconClass,
+}) => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +36,7 @@ export const ImageUpload: React.FC<Props> = ({ onImageSelect }) => {
   };
 
   return (
-    <div className="v-container v-locale--is-ltr">
+    <div className={containerClass}> {/* Usar la clase pasada como prop */}
       <div className="v-col d-flex justify-center align-center">
         <div
           style={{
@@ -34,7 +47,7 @@ export const ImageUpload: React.FC<Props> = ({ onImageSelect }) => {
           }}
         >
           <img
-            className="mx-auto"
+            className={avatarClass} // Usar la clase pasada como prop
             data-name="imagen"
             src={imagePreview || "/images/perfil-docente-pordefecto.png"}
             width="150"
@@ -46,7 +59,7 @@ export const ImageUpload: React.FC<Props> = ({ onImageSelect }) => {
       </div>
 
       <div style={{ marginTop: "20px", textAlign: "center" }}>
-        <label htmlFor="image-upload" className="v-label v-field-label">
+        <label htmlFor="image-upload" className={labelClass}> {/* Usar la clase pasada como prop */}
           SELECCIONA UNA IMAGEN FORMAL
         </label>
         <input
@@ -54,6 +67,7 @@ export const ImageUpload: React.FC<Props> = ({ onImageSelect }) => {
           id="image-upload"
           accept="image/*"
           onChange={handleImageChange}
+          className={buttonClass} // Usar la clase pasada como prop
           style={{ display: "block", margin: "10px auto" }}
         />
       </div>

@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+
+// src/components/EducationForm.tsx
+import React, { useState } from 'react';
+import './style/Education.css'
 
 interface EducationFormProps {
   title: string;
@@ -29,7 +32,7 @@ const EducationForm: React.FC<EducationFormProps> = ({
           onDelete={() => deleteDegreeForm(index)}
         />
       ))}
-      <button onClick={addDegreeForm}>Agregar Formación</button>
+      <button className='button-agr' onClick={addDegreeForm}>Agregar Formación</button>
     </div>
   );
 };

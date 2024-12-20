@@ -1,6 +1,24 @@
-import React from "react";
+import type { ChangeEvent } from "react"; // Cambia esto
 
-const PersonalInfo = ({ docente, isEditing, handleInputChange }) => {
+
+// Definimos las interfaces para las props del componente
+interface Docente {
+  documento: string;
+  telefono: string;
+}
+
+interface PersonalInfoProps {
+  docente: Docente | null; // Si el docente puede ser nulo
+  isEditing: boolean;
+  handleInputChange: (event: ChangeEvent<HTMLInputElement>) => void;
+}
+
+const PersonalInfo: React.FC<PersonalInfoProps> = ({ docente, isEditing, handleInputChange }) => {
+  // Aseguramos que docente no sea null antes de acceder a sus propiedades
+  if (!docente) {
+    return <p>Información del docente no disponible</p>;
+  }
+
   return (
     <div className="profile-details">
       <h2>Información Personal</h2>

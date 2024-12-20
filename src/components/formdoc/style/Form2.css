@@ -1,0 +1,90 @@
+/* Estilo general del contenedor */
+.form-container {
+  width: 90%; /* Ocupa el 90% del ancho de la modal */
+  max-width: 500px; /* Máximo tamaño para evitar que sea demasiado grande */
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+  
+  /* Encabezado del formulario */
+  .header-form {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    
+  }
+  
+  /* Tarjeta de fondo para el formulario */
+  .card-style {
+    padding: 20px;
+    background-color: #efefef;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Espaciado entre filas */
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    
+    margin-bottom: 20px;
+    display: flex; /* Activa el modelo flexbox */
+    display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Espaciado entre filas */
+  }
+  
+  /* Columnas dentro de una fila */
+  .form-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Selectores de grado y modalidad */
+  .form-select {
+    display: flex; /* Activa el modelo flexbox */
+    gap: 10px; /* Espaciado entre los elementos */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+
+  /* Input para fecha */
+  .date-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  /* Instrucciones para la subida de documentos */
+  .upload-instruction {
+    text-align: left;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  /* Botones de subida */
+  .pdf-upload {
+    margin-top: 10px;
+    
+  }
+  
+  /* Etiquetas de texto en el formulario */
+  label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 14px;
+    
+  }
+  
+  /* Estilo de los inputs personalizados */
+  input, select {
+    margin-top: 5px;
+    
+  }
+  
+  

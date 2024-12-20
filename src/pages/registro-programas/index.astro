@@ -1,0 +1,1085 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import HeroTitle from "../../components/ui/HeroTitle.astro";
+import { AcademicFilter } from "../../components/filters/AcademicFilter";
+
+import { LoadedDataComponent } from "../../components/ui-react-components/LoadedDataComponent";
+import { ProgramForm } from "../../components/ui-react-components/ProgramForm";
+
+---
+
+<Layout title="Sistema Academico ESAM | Registro de Programas">
+  <HeroTitle titulo="Registro de Programas" />
+  <form class="v-form program-main" novalidate="">
+    <div class="v-container v-locale--is-ltr program-form">
+      <div class="v-col">
+        <ProgramForm client:load />
+        <LoadedDataComponent
+          title="Nombre"
+          data="Datos del portal"
+          client:load
+        />
+        <LoadedDataComponent
+          title="Cronograma"
+          data="Datos del portal"
+          client:load
+        />
+        <LoadedDataComponent title="Sede" data="Datos del portal" client:load />
+        <LoadedDataComponent title="Tipo" data="Datos del portal" client:load />
+        <LoadedDataComponent title="Area" data="Datos del portal" client:load />
+        <div class="v-row">
+          <h3>Código de Programa</h3>
+          <div class="v-container v-locale--is-ltr">
+            <label class="v-label">
+              Ingrese el código del programa que se obtiene del portal.
+            </label><div
+              class="v-input v-input--horizontal v-input--center-affix v-input--density-default v-locale--is-ltr v-text-field"
+            >
+              <div class="v-input__control">
+                <div
+                  class="v-field v-field--center-affix v-field--variant-outlined v-theme--light v-locale--is-ltr"
+                >
+                  <div class="v-field__overlay"></div><div
+                    class="v-field__loader"
+                  >
+                    <div
+                      class="v-progress-linear v-theme--light v-locale--is-ltr"
+                      role="progressbar"
+                      aria-hidden="true"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style="top: 0px; height: 0px; --v-progress-linear-height: 2px; left: 50%; transform: translateX(-50%);"
+                    >
+                      <div
+                        class="v-progress-linear__background"
+                        style="width: 100%;"
+                      >
+                      </div><div class="v-progress-linear__indeterminate">
+                        <div class="v-progress-linear__indeterminate long">
+                        </div><div
+                          class="v-progress-linear__indeterminate short"
+                        >
+                        </div>
+                      </div>
+                    </div>
+                  </div><div class="v-field__field" data-no-activator="">
+                    <label class="v-label v-field-label" for="input-1" style=""
+                      >Código del Programa</label
+                    >
+                    <input
+                      type="text"
+                      id="input-1"
+                      aria-describedby="input-1-messages"
+                      required=""
+                      class="v-field__input"
+                      placeholder="Ej: MBT-15041-24"
+                    />
+                  </div><div class="v-field__outline">
+                    <div class="v-field__outline__start"></div><div
+                      class="v-field__outline__end"
+                    >
+                    </div>
+                  </div>
+                </div>
+              </div><div class="v-input__details">
+                <div
+                  class="v-messages"
+                  role="alert"
+                  aria-live="polite"
+                  id="input-1-messages"
+                >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="v-container v-locale--is-ltr">
+            <div
+              class="v-input v-input--horizontal v-input--center-affix v-input--density-default v-locale--is-ltr v-text-field"
+            >
+              <div class="v-input__control">
+                <div
+                  class="v-field v-field--center-affix v-field--variant-outlined v-theme--light v-locale--is-ltr"
+                >
+                  <div class="v-field__overlay"></div><div
+                    class="v-field__loader"
+                  >
+                    <div
+                      class="v-progress-linear v-theme--light v-locale--is-ltr"
+                      role="progressbar"
+                      aria-hidden="true"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style="top: 0px; height: 0px; --v-progress-linear-height: 2px; left: 50%; transform: translateX(-50%);"
+                    >
+                      <div
+                        class="v-progress-linear__background"
+                        style="width: 100%;"
+                      >
+                      </div><div class="v-progress-linear__indeterminate">
+                        <div class="v-progress-linear__indeterminate long">
+                        </div><div
+                          class="v-progress-linear__indeterminate short"
+                        >
+                        </div>
+                      </div>
+                    </div>
+                  </div><div class="v-field__outline">
+                    <div class="v-field__outline__start"></div><div
+                      class="v-field__outline__notch"
+                    >
+                      <label
+                        class="v-label v-field-label v-field-label--floating"
+                        aria-hidden="true"
+                        for="input-3">ID del Programa</label
+                      >
+                    </div><div class="v-field__outline__end"></div>
+                  </div>
+                </div>
+              </div><div class="v-input__details">
+                <div
+                  class="v-messages"
+                  role="alert"
+                  aria-live="polite"
+                  id="input-3-messages"
+                >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><div class="v-row">
+          <h3>Nombre del Programa</h3><div class="v-container v-locale--is-ltr">
+            <label class="v-label">
+              Nota: Escriba el nombre completo del programa, tome en cuenta la
+              ortografía.
+            </label><div
+              class="v-input v-input--horizontal v-input--center-affix v-input--density-default v-locale--is-ltr v-text-field"
+            >
+              <div class="v-input__control">
+                <div
+                  class="v-field v-field--center-affix v-field--variant-outlined v-theme--light v-locale--is-ltr"
+                >
+                  <div class="v-field__overlay"></div><div
+                    class="v-field__loader"
+                  >
+                    <div
+                      class="v-progress-linear v-theme--light v-locale--is-ltr"
+                      role="progressbar"
+                      aria-hidden="true"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style="top: 0px; height: 0px; --v-progress-linear-height: 2px; left: 50%; transform: translateX(-50%);"
+                    >
+                      <div
+                        class="v-progress-linear__background"
+                        style="width: 100%;"
+                      >
+                      </div><div class="v-progress-linear__indeterminate">
+                        <div class="v-progress-linear__indeterminate long">
+                        </div><div
+                          class="v-progress-linear__indeterminate short"
+                        >
+                        </div>
+                      </div>
+                    </div>
+                  </div><div class="v-field__field" data-no-activator="">
+                    <label class="v-label v-field-label" for="input-5"
+                      >Nombre del Programa</label
+                    ><input
+                      size="1"
+                      type="text"
+                      id="input-5"
+                      aria-describedby="input-5-messages"
+                      required=""
+                      class="v-field__input"
+                    />
+                  </div><div class="v-field__outline">
+                    <div class="v-field__outline__start"></div><div
+                      class="v-field__outline__notch"
+                    >
+                      <label
+                        class="v-label v-field-label v-field-label--floating"
+                        aria-hidden="true"
+                        for="input-5">Nombre del Programa</label
+                      >
+                    </div><div class="v-field__outline__end"></div>
+                  </div>
+                </div>
+              </div><div class="v-input__details">
+                <div
+                  class="v-messages"
+                  role="alert"
+                  aria-live="polite"
+                  id="input-5-messages"
+                >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><div class="v-row">
+          <h3>Cronograma</h3><div class="v-container v-locale--is-ltr">
+            <label class="v-label">
+              Nota: Ingrese la fecha de inicio y la fecha de finalización.
+            </label><div class="dp__main dp__theme_light">
+              <div>
+                <div class="dp__input_wrap">
+                  <input
+                    class="dp__pointer dp__input_readonly dp__input dp__input_icon_pad dp__input_reg"
+                    inputmode="none"
+                    placeholder="Inicio y Fin"
+                    autocomplete="off"
+                    aria-label="Datepicker input"
+                  /><div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 32 32"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      class="dp__icon dp__input_icon dp__input_icons"
+                      ><path
+                        d="M29.333 8c0-2.208-1.792-4-4-4h-18.667c-2.208 0-4 1.792-4 4v18.667c0 2.208 1.792 4 4 4h18.667c2.208 0 4-1.792 4-4v-18.667zM26.667 8v18.667c0 0.736-0.597 1.333-1.333 1.333 0 0-18.667 0-18.667 0-0.736 0-1.333-0.597-1.333-1.333 0 0 0-18.667 0-18.667 0-0.736 0.597-1.333 1.333-1.333 0 0 18.667 0 18.667 0 0.736 0 1.333 0.597 1.333 1.333z"
+                      ></path><path
+                        d="M20 2.667v5.333c0 0.736 0.597 1.333 1.333 1.333s1.333-0.597 1.333-1.333v-5.333c0-0.736-0.597-1.333-1.333-1.333s-1.333 0.597-1.333 1.333z"
+                      ></path><path
+                        d="M9.333 2.667v5.333c0 0.736 0.597 1.333 1.333 1.333s1.333-0.597 1.333-1.333v-5.333c0-0.736-0.597-1.333-1.333-1.333s-1.333 0.597-1.333 1.333z"
+                      ></path><path
+                        d="M4 14.667h24c0.736 0 1.333-0.597 1.333-1.333s-0.597-1.333-1.333-1.333h-24c-0.736 0-1.333 0.597-1.333 1.333s0.597 1.333 1.333 1.333z"
+                      ></path></svg
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><div class="v-row">
+          <h3>Sede</h3><div class="v-container v-locale--is-ltr">
+            <label class="v-label mb-2">
+              Nota: Seleccione la sucursal a la que corresponde el programa.
+            </label><div
+              class="v-input v-input--horizontal v-input--center-affix v-input--density-default v-locale--is-ltr v-text-field v-select v-select--single v-select--selected"
+            >
+              <div class="v-input__control">
+                <div
+                  class="v-field v-field--active v-field--appended v-field--center-affix v-field--dirty v-field--variant-outlined v-theme--light v-locale--is-ltr"
+                  role="combobox"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                  aria-owns="v-menu-9"
+                >
+                  <div class="v-field__overlay"></div><div
+                    class="v-field__loader"
+                  >
+                    <div
+                      class="v-progress-linear v-theme--light v-locale--is-ltr"
+                      role="progressbar"
+                      aria-hidden="true"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style="top: 0px; height: 0px; --v-progress-linear-height: 2px; left: 50%; transform: translateX(-50%);"
+                    >
+                      <div
+                        class="v-progress-linear__background"
+                        style="width: 100%;"
+                      >
+                      </div><div class="v-progress-linear__indeterminate">
+                        <div class="v-progress-linear__indeterminate long">
+                        </div><div
+                          class="v-progress-linear__indeterminate short"
+                        >
+                        </div>
+                      </div>
+                    </div>
+                  </div><div class="v-field__field" data-no-activator="">
+                    <label class="v-label v-field-label" for="input-7"
+                      >Sede del Programa</label
+                    ><div class="v-field__input" data-no-activator="">
+                      <div class="v-select__selection">
+                        <span class="v-select__selection-text"></span>
+                      </div><input
+                        size="1"
+                        type="text"
+                        id="input-7"
+                        aria-describedby="input-7-messages"
+                        inputmode="none"
+                        aria-label="Open"
+                        title="Open"
+                        required=""
+                      />
+                    </div>
+                  </div><div class="v-field__append-inner">
+                    <i
+                      class="mdi-menu-down mdi v-icon notranslate v-theme--light v-icon--size-default v-select__menu-icon"
+                      aria-hidden="true"></i>
+                  </div><div class="v-field__outline">
+                    <div class="v-field__outline__start"></div><div
+                      class="v-field__outline__notch"
+                    >
+                      <label
+                        class="v-label v-field-label v-field-label--floating"
+                        aria-hidden="true"
+                        for="input-7">Sede del Programa</label
+                      >
+                    </div><div class="v-field__outline__end"></div>
+                  </div>
+                </div>
+              </div><div class="v-input__details">
+                <div
+                  class="v-messages"
+                  role="alert"
+                  aria-live="polite"
+                  id="input-7-messages"
+                >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><div class="v-row">
+          <h3>Tipo de Programa</h3><div class="v-container v-locale--is-ltr">
+            <label class="v-label mb-2">
+              Nota: Seleccione el tipo de programa.
+            </label><div
+              class="v-input v-input--horizontal v-input--center-affix v-input--density-default v-locale--is-ltr v-text-field v-select v-select--single v-select--selected"
+            >
+              <div class="v-input__control">
+                <div
+                  class="v-field v-field--active v-field--appended v-field--center-affix v-field--dirty v-field--variant-outlined v-theme--light v-locale--is-ltr"
+                  role="combobox"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                  aria-owns="v-menu-12"
+                >
+                  <div class="v-field__overlay"></div><div
+                    class="v-field__loader"
+                  >
+                    <div
+                      class="v-progress-linear v-theme--light v-locale--is-ltr"
+                      role="progressbar"
+                      aria-hidden="true"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style="top: 0px; height: 0px; --v-progress-linear-height: 2px; left: 50%; transform: translateX(-50%);"
+                    >
+                      <div
+                        class="v-progress-linear__background"
+                        style="width: 100%;"
+                      >
+                      </div><div class="v-progress-linear__indeterminate">
+                        <div class="v-progress-linear__indeterminate long">
+                        </div><div
+                          class="v-progress-linear__indeterminate short"
+                        >
+                        </div>
+                      </div>
+                    </div>
+                  </div><div class="v-field__field" data-no-activator="">
+                    <label class="v-label v-field-label" for="input-10"
+                      >Tipo de Programa</label
+                    ><div class="v-field__input" data-no-activator="">
+                      <div class="v-select__selection">
+                        <span class="v-select__selection-text"></span>
+                      </div><input
+                        size="1"
+                        type="text"
+                        id="input-10"
+                        aria-describedby="input-10-messages"
+                        inputmode="none"
+                        aria-label="Open"
+                        title="Open"
+                      />
+                    </div>
+                  </div><div class="v-field__append-inner">
+                    <i
+                      class="mdi-menu-down mdi v-icon notranslate v-theme--light v-icon--size-default v-select__menu-icon"
+                      aria-hidden="true"></i>
+                  </div><div class="v-field__outline">
+                    <div class="v-field__outline__start"></div><div
+                      class="v-field__outline__notch"
+                    >
+                      <label
+                        class="v-label v-field-label v-field-label--floating"
+                        aria-hidden="true"
+                        for="input-10">Tipo de Programa</label
+                      >
+                    </div><div class="v-field__outline__end"></div>
+                  </div>
+                </div>
+              </div><div class="v-input__details">
+                <div
+                  class="v-messages"
+                  role="alert"
+                  aria-live="polite"
+                  id="input-10-messages"
+                >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><div class="v-row">
+          <h3>Area del Programa</h3><div class="v-container v-locale--is-ltr">
+            <label class="v-label mb-2">
+              Nota: Seleccione el area a la que pertenece el programa.
+            </label><div
+              class="v-input v-input--horizontal v-input--center-affix v-input--density-default v-locale--is-ltr v-text-field v-select v-select--single v-select--selected"
+            >
+              <div class="v-input__control">
+                <div
+                  class="v-field v-field--active v-field--appended v-field--center-affix v-field--dirty v-field--variant-outlined v-theme--light v-locale--is-ltr"
+                  role="combobox"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                  aria-owns="v-menu-15"
+                >
+                  <div class="v-field__overlay"></div><div
+                    class="v-field__loader"
+                  >
+                    <div
+                      class="v-progress-linear v-theme--light v-locale--is-ltr"
+                      role="progressbar"
+                      aria-hidden="true"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style="top: 0px; height: 0px; --v-progress-linear-height: 2px; left: 50%; transform: translateX(-50%);"
+                    >
+                      <div
+                        class="v-progress-linear__background"
+                        style="width: 100%;"
+                      >
+                      </div><div class="v-progress-linear__indeterminate">
+                        <div class="v-progress-linear__indeterminate long">
+                        </div><div
+                          class="v-progress-linear__indeterminate short"
+                        >
+                        </div>
+                      </div>
+                    </div>
+                  </div><div class="v-field__field" data-no-activator="">
+                    <label class="v-label v-field-label" for="input-13"
+                      >Area</label
+                    ><div class="v-field__input" data-no-activator="">
+                      <div class="v-select__selection">
+                        <span class="v-select__selection-text"></span>
+                      </div><input
+                        size="1"
+                        type="text"
+                        id="input-13"
+                        aria-describedby="input-13-messages"
+                        inputmode="none"
+                        aria-label="Open"
+                        title="Open"
+                      />
+                    </div>
+                  </div><div class="v-field__append-inner">
+                    <i
+                      class="mdi-menu-down mdi v-icon notranslate v-theme--light v-icon--size-default v-select__menu-icon"
+                      aria-hidden="true"></i>
+                  </div><div class="v-field__outline">
+                    <div class="v-field__outline__start"></div><div
+                      class="v-field__outline__notch"
+                    >
+                      <label
+                        class="v-label v-field-label v-field-label--floating"
+                        aria-hidden="true"
+                        for="input-13">Area</label
+                      >
+                    </div><div class="v-field__outline__end"></div>
+                  </div>
+                </div>
+              </div><div class="v-input__details">
+                <div
+                  class="v-messages"
+                  role="alert"
+                  aria-live="polite"
+                  id="input-13-messages"
+                >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <AcademicFilter client:load />
+        <div class="v-row">
+          <h3>Módulos</h3><div class="v-container v-locale--is-ltr">
+            <form class="v-form" novalidate="">
+              <h4>Nombre de módulo:</h4><label class="v-label">
+                Nota: Ingrese el nombre del módulo, tome en cuenta la
+                ortografía.
+              </label><div
+                class="v-input v-input--horizontal v-input--center-affix v-input--density-default v-locale--is-ltr v-text-field"
+              >
+                <div class="v-input__control">
+                  <div
+                    class="v-field v-field--center-affix v-field--variant-outlined v-theme--light v-locale--is-ltr"
+                  >
+                    <div class="v-field__overlay"></div><div
+                      class="v-field__loader"
+                    >
+                      <div
+                        class="v-progress-linear v-theme--light v-locale--is-ltr"
+                        role="progressbar"
+                        aria-hidden="true"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        style="top: 0px; height: 0px; --v-progress-linear-height: 2px; left: 50%; transform: translateX(-50%);"
+                      >
+                        <div
+                          class="v-progress-linear__background"
+                          style="width: 100%;"
+                        >
+                        </div><div class="v-progress-linear__indeterminate">
+                          <div class="v-progress-linear__indeterminate long">
+                          </div><div
+                            class="v-progress-linear__indeterminate short"
+                          >
+                          </div>
+                        </div>
+                      </div>
+                    </div><div class="v-field__field" data-no-activator="">
+                      <label class="v-label v-field-label" for="input-22"
+                        >Nombre del Módulo</label
+                      ><input
+                        size="1"
+                        type="text"
+                        id="input-22"
+                        aria-describedby="input-22-messages"
+                        class="v-field__input"
+                      />
+                    </div><div class="v-field__outline">
+                      <div class="v-field__outline__start"></div><div
+                        class="v-field__outline__notch"
+                      >
+                        <label
+                          class="v-label v-field-label v-field-label--floating"
+                          aria-hidden="true"
+                          for="input-22">Nombre del Módulo</label
+                        >
+                      </div><div class="v-field__outline__end"></div>
+                    </div>
+                  </div>
+                </div><div class="v-input__details">
+                  <div
+                    class="v-messages"
+                    role="alert"
+                    aria-live="polite"
+                    id="input-22-messages"
+                  >
+                  </div>
+                </div>
+              </div><h4 class="mb-2">Requerimientos:</h4><div
+                class="v-input v-input--horizontal v-input--center-affix v-input--density-default v-locale--is-ltr v-text-field v-select v-select--single v-select--selected"
+              >
+                <div class="v-input__control">
+                  <div
+                    class="v-field v-field--active v-field--appended v-field--center-affix v-field--dirty v-field--variant-outlined v-theme--light v-locale--is-ltr"
+                    role="combobox"
+                    aria-haspopup="listbox"
+                    aria-expanded="false"
+                    aria-owns="v-menu-26"
+                  >
+                    <div class="v-field__overlay"></div><div
+                      class="v-field__loader"
+                    >
+                      <div
+                        class="v-progress-linear v-theme--light v-locale--is-ltr"
+                        role="progressbar"
+                        aria-hidden="true"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        style="top: 0px; height: 0px; --v-progress-linear-height: 2px; left: 50%; transform: translateX(-50%);"
+                      >
+                        <div
+                          class="v-progress-linear__background"
+                          style="width: 100%;"
+                        >
+                        </div><div class="v-progress-linear__indeterminate">
+                          <div class="v-progress-linear__indeterminate long">
+                          </div><div
+                            class="v-progress-linear__indeterminate short"
+                          >
+                          </div>
+                        </div>
+                      </div>
+                    </div><div class="v-field__field" data-no-activator="">
+                      <label class="v-label v-field-label" for="input-24"
+                        >Docente</label
+                      ><div class="v-field__input" data-no-activator="">
+                        <div class="v-select__selection">
+                          <span class="v-select__selection-text"></span>
+                        </div><input
+                          size="1"
+                          type="text"
+                          id="input-24"
+                          aria-describedby="input-24-messages"
+                          inputmode="none"
+                          aria-label="Open"
+                          title="Open"
+                        />
+                      </div>
+                    </div><div class="v-field__append-inner">
+                      <i
+                        class="mdi-menu-down mdi v-icon notranslate v-theme--light v-icon--size-default v-select__menu-icon"
+                        aria-hidden="true"></i>
+                    </div><div class="v-field__outline">
+                      <div class="v-field__outline__start"></div><div
+                        class="v-field__outline__notch"
+                      >
+                        <label
+                          class="v-label v-field-label v-field-label--floating"
+                          aria-hidden="true"
+                          for="input-24">Docente</label
+                        >
+                      </div><div class="v-field__outline__end"></div>
+                    </div>
+                  </div>
+                </div><div class="v-input__details">
+                  <div
+                    class="v-messages"
+                    role="alert"
+                    aria-live="polite"
+                    id="input-24-messages"
+                  >
+                  </div>
+                </div>
+              </div><div
+                class="v-input v-input--horizontal v-input--center-affix v-input--density-default v-locale--is-ltr v-text-field v-select v-select--single v-select--selected"
+              >
+                <div class="v-input__control">
+                  <div
+                    class="v-field v-field--active v-field--appended v-field--center-affix v-field--dirty v-field--variant-outlined v-theme--light v-locale--is-ltr"
+                    role="combobox"
+                    aria-haspopup="listbox"
+                    aria-expanded="false"
+                    aria-owns="v-menu-29"
+                  >
+                    <div class="v-field__overlay"></div><div
+                      class="v-field__loader"
+                    >
+                      <div
+                        class="v-progress-linear v-theme--light v-locale--is-ltr"
+                        role="progressbar"
+                        aria-hidden="true"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        style="top: 0px; height: 0px; --v-progress-linear-height: 2px; left: 50%; transform: translateX(-50%);"
+                      >
+                        <div
+                          class="v-progress-linear__background"
+                          style="width: 100%;"
+                        >
+                        </div><div class="v-progress-linear__indeterminate">
+                          <div class="v-progress-linear__indeterminate long">
+                          </div><div
+                            class="v-progress-linear__indeterminate short"
+                          >
+                          </div>
+                        </div>
+                      </div>
+                    </div><div class="v-field__field" data-no-activator="">
+                      <label class="v-label v-field-label" for="input-27"
+                        >Facturación</label
+                      ><div class="v-field__input" data-no-activator="">
+                        <div class="v-select__selection">
+                          <span class="v-select__selection-text"></span>
+                        </div><input
+                          size="1"
+                          type="text"
+                          id="input-27"
+                          aria-describedby="input-27-messages"
+                          inputmode="none"
+                          aria-label="Open"
+                          title="Open"
+                        />
+                      </div>
+                    </div><div class="v-field__append-inner">
+                      <i
+                        class="mdi-menu-down mdi v-icon notranslate v-theme--light v-icon--size-default v-select__menu-icon"
+                        aria-hidden="true"></i>
+                    </div><div class="v-field__outline">
+                      <div class="v-field__outline__start"></div><div
+                        class="v-field__outline__notch"
+                      >
+                        <label
+                          class="v-label v-field-label v-field-label--floating"
+                          aria-hidden="true"
+                          for="input-27">Facturación</label
+                        >
+                      </div><div class="v-field__outline__end"></div>
+                    </div>
+                  </div>
+                </div><div class="v-input__details">
+                  <div
+                    class="v-messages"
+                    role="alert"
+                    aria-live="polite"
+                    id="input-27-messages"
+                  >
+                  </div>
+                </div>
+              </div><h4>Monto a pagar</h4><label class="v-label"
+                >Definir monto a pagar</label
+              ><div
+                class="v-input v-input--horizontal v-input--center-affix v-input--density-default v-locale--is-ltr v-text-field v-text-field--prefixed"
+              >
+                <div class="v-input__control">
+                  <div
+                    class="v-field v-field--center-affix v-field--variant-outlined v-theme--light v-locale--is-ltr"
+                  >
+                    <div class="v-field__overlay"></div><div
+                      class="v-field__loader"
+                    >
+                      <div
+                        class="v-progress-linear v-theme--light v-locale--is-ltr"
+                        role="progressbar"
+                        aria-hidden="true"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        style="top: 0px; height: 0px; --v-progress-linear-height: 2px; left: 50%; transform: translateX(-50%);"
+                      >
+                        <div
+                          class="v-progress-linear__background"
+                          style="width: 100%;"
+                        >
+                        </div><div class="v-progress-linear__indeterminate">
+                          <div class="v-progress-linear__indeterminate long">
+                          </div><div
+                            class="v-progress-linear__indeterminate short"
+                          >
+                          </div>
+                        </div>
+                      </div>
+                    </div><div class="v-field__field" data-no-activator="">
+                      <label class="v-label v-field-label" for="input-30"
+                        >Salario</label
+                      ><span class="v-text-field__prefix"
+                        ><span class="v-text-field__prefix__text">$</span></span
+                      ><input
+                        size="1"
+                        type="text"
+                        id="input-30"
+                        aria-describedby="input-30-messages"
+                        class="v-field__input"
+                      />
+                    </div><div class="v-field__outline">
+                      <div class="v-field__outline__start"></div><div
+                        class="v-field__outline__notch"
+                      >
+                        <label
+                          class="v-label v-field-label v-field-label--floating"
+                          aria-hidden="true"
+                          for="input-30">Salario</label
+                        >
+                      </div><div class="v-field__outline__end"></div>
+                    </div>
+                  </div>
+                </div><div class="v-input__details">
+                  <div
+                    class="v-messages"
+                    role="alert"
+                    aria-live="polite"
+                    id="input-30-messages"
+                  >
+                  </div>
+                </div>
+              </div><h4>Fecha y hora de clases:</h4><label class="v-label">
+                Nota: Seleccione todas las fechas en las cuales se llevara a
+                cabo el módulo.
+              </label><div class="dp__main dp__theme_light">
+                <div>
+                  <div class="dp__input_wrap">
+                    <input
+                      class="dp__pointer dp__input_readonly dp__input dp__input_icon_pad dp__input_reg"
+                      inputmode="none"
+                      placeholder="Fechas de clases"
+                      autocomplete="off"
+                      aria-label="Datepicker input"
+                    /><div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 32 32"
+                        fill="currentColor"
+                        aria-hidden="true"
+                        class="dp__icon dp__input_icon dp__input_icons"
+                        ><path
+                          d="M29.333 8c0-2.208-1.792-4-4-4h-18.667c-2.208 0-4 1.792-4 4v18.667c0 2.208 1.792 4 4 4h18.667c2.208 0 4-1.792 4-4v-18.667zM26.667 8v18.667c0 0.736-0.597 1.333-1.333 1.333 0 0-18.667 0-18.667 0-0.736 0-1.333-0.597-1.333-1.333 0 0 0-18.667 0-18.667 0-0.736 0.597-1.333 1.333-1.333 0 0 18.667 0 18.667 0 0.736 0 1.333 0.597 1.333 1.333z"
+                        ></path><path
+                          d="M20 2.667v5.333c0 0.736 0.597 1.333 1.333 1.333s1.333-0.597 1.333-1.333v-5.333c0-0.736-0.597-1.333-1.333-1.333s-1.333 0.597-1.333 1.333z"
+                        ></path><path
+                          d="M9.333 2.667v5.333c0 0.736 0.597 1.333 1.333 1.333s1.333-0.597 1.333-1.333v-5.333c0-0.736-0.597-1.333-1.333-1.333s-1.333 0.597-1.333 1.333z"
+                        ></path><path
+                          d="M4 14.667h24c0.736 0 1.333-0.597 1.333-1.333s-0.597-1.333-1.333-1.333h-24c-0.736 0-1.333 0.597-1.333 1.333s0.597 1.333 1.333 1.333z"
+                        ></path></svg
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div><br /><label class="v-label">
+                Nota: Seleccione la hora de inicio y la hora de finalización del
+                módulo.
+              </label><div class="dateTime">
+                <div>
+                  <label class="v-label">Hora de inicio</label><div
+                    class="dp__main dp__theme_light"
+                  >
+                    <div>
+                      <div class="dp__input_wrap">
+                        <input
+                          class="dp__pointer dp__input_readonly dp__input dp__input_icon_pad dp__input_reg"
+                          inputmode="none"
+                          placeholder="Hora Inicio"
+                          autocomplete="off"
+                          aria-label="Datepicker input"
+                        /><div>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 32 32"
+                            fill="currentColor"
+                            aria-hidden="true"
+                            class="dp__icon dp__input_icon dp__input_icons"
+                            ><path
+                              d="M29.333 8c0-2.208-1.792-4-4-4h-18.667c-2.208 0-4 1.792-4 4v18.667c0 2.208 1.792 4 4 4h18.667c2.208 0 4-1.792 4-4v-18.667zM26.667 8v18.667c0 0.736-0.597 1.333-1.333 1.333 0 0-18.667 0-18.667 0-0.736 0-1.333-0.597-1.333-1.333 0 0 0-18.667 0-18.667 0-0.736 0.597-1.333 1.333-1.333 0 0 18.667 0 18.667 0 0.736 0 1.333 0.597 1.333 1.333z"
+                            ></path><path
+                              d="M20 2.667v5.333c0 0.736 0.597 1.333 1.333 1.333s1.333-0.597 1.333-1.333v-5.333c0-0.736-0.597-1.333-1.333-1.333s-1.333 0.597-1.333 1.333z"
+                            ></path><path
+                              d="M9.333 2.667v5.333c0 0.736 0.597 1.333 1.333 1.333s1.333-0.597 1.333-1.333v-5.333c0-0.736-0.597-1.333-1.333-1.333s-1.333 0.597-1.333 1.333z"
+                            ></path><path
+                              d="M4 14.667h24c0.736 0 1.333-0.597 1.333-1.333s-0.597-1.333-1.333-1.333h-24c-0.736 0-1.333 0.597-1.333 1.333s0.597 1.333 1.333 1.333z"
+                            ></path></svg
+                          >
+                        </div><svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 32 32"
+                          fill="currentColor"
+                          aria-hidden="true"
+                          class="dp__icon dp__clear_icon dp__input_icons"
+                          ><path
+                            d="M23.057 7.057l-16 16c-0.52 0.52-0.52 1.365 0 1.885s1.365 0.52 1.885 0l16-16c0.52-0.52 0.52-1.365 0-1.885s-1.365-0.52-1.885 0z"
+                          ></path><path
+                            d="M7.057 8.943l16 16c0.52 0.52 1.365 0.52 1.885 0s0.52-1.365 0-1.885l-16-16c-0.52-0.52-1.365-0.52-1.885 0s-0.52 1.365 0 1.885z"
+                          ></path></svg
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div><div>
+                  <label class="v-label">Hora de finalización</label><div
+                    class="dp__main dp__theme_light"
+                  >
+                    <div>
+                      <div class="dp__input_wrap">
+                        <input
+                          class="dp__pointer dp__input_readonly dp__input dp__input_icon_pad dp__input_reg"
+                          inputmode="none"
+                          placeholder="Hora Fin"
+                          autocomplete="off"
+                          aria-label="Datepicker input"
+                        /><div>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 32 32"
+                            fill="currentColor"
+                            aria-hidden="true"
+                            class="dp__icon dp__input_icon dp__input_icons"
+                            ><path
+                              d="M29.333 8c0-2.208-1.792-4-4-4h-18.667c-2.208 0-4 1.792-4 4v18.667c0 2.208 1.792 4 4 4h18.667c2.208 0 4-1.792 4-4v-18.667zM26.667 8v18.667c0 0.736-0.597 1.333-1.333 1.333 0 0-18.667 0-18.667 0-0.736 0-1.333-0.597-1.333-1.333 0 0 0-18.667 0-18.667 0-0.736 0.597-1.333 1.333-1.333 0 0 18.667 0 18.667 0 0.736 0 1.333 0.597 1.333 1.333z"
+                            ></path><path
+                              d="M20 2.667v5.333c0 0.736 0.597 1.333 1.333 1.333s1.333-0.597 1.333-1.333v-5.333c0-0.736-0.597-1.333-1.333-1.333s-1.333 0.597-1.333 1.333z"
+                            ></path><path
+                              d="M9.333 2.667v5.333c0 0.736 0.597 1.333 1.333 1.333s1.333-0.597 1.333-1.333v-5.333c0-0.736-0.597-1.333-1.333-1.333s-1.333 0.597-1.333 1.333z"
+                            ></path><path
+                              d="M4 14.667h24c0.736 0 1.333-0.597 1.333-1.333s-0.597-1.333-1.333-1.333h-24c-0.736 0-1.333 0.597-1.333 1.333s0.597 1.333 1.333 1.333z"
+                            ></path></svg
+                          >
+                        </div><svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 32 32"
+                          fill="currentColor"
+                          aria-hidden="true"
+                          class="dp__icon dp__clear_icon dp__input_icons"
+                          ><path
+                            d="M23.057 7.057l-16 16c-0.52 0.52-0.52 1.365 0 1.885s1.365 0.52 1.885 0l16-16c0.52-0.52 0.52-1.365 0-1.885s-1.365-0.52-1.885 0z"
+                          ></path><path
+                            d="M7.057 8.943l16 16c0.52 0.52 1.365 0.52 1.885 0s0.52-1.365 0-1.885l-16-16c-0.52-0.52-1.365-0.52-1.885 0s-0.52 1.365 0 1.885z"
+                          ></path></svg
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div><br /><h4>Contenido:</h4><label class="v-label">
+                Nota: Ingrese el contenido tentativo para el desarrollo del
+                módulo.
+              </label><div
+                class="v-input v-input--horizontal v-input--density-default v-locale--is-ltr v-textarea v-text-field"
+              >
+                <div class="v-input__control">
+                  <div
+                    class="v-field v-field--variant-outlined v-theme--light v-locale--is-ltr"
+                  >
+                    <div class="v-field__overlay"></div><div
+                      class="v-field__loader"
+                    >
+                      <div
+                        class="v-progress-linear v-theme--light v-locale--is-ltr"
+                        role="progressbar"
+                        aria-hidden="true"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        style="top: 0px; height: 0px; --v-progress-linear-height: 2px; left: 50%; transform: translateX(-50%);"
+                      >
+                        <div
+                          class="v-progress-linear__background"
+                          style="width: 100%;"
+                        >
+                        </div><div class="v-progress-linear__indeterminate">
+                          <div class="v-progress-linear__indeterminate long">
+                          </div><div
+                            class="v-progress-linear__indeterminate short"
+                          >
+                          </div>
+                        </div>
+                      </div>
+                    </div><div class="v-field__field" data-no-activator="">
+                      <label class="v-label v-field-label" for="input-32"
+                        >Contenido del Módulo</label
+                      ><textarea
+                        class="v-field__input"
+                        rows="5"
+                        id="input-32"
+                        aria-describedby="input-32-messages"></textarea>
+                    </div><div class="v-field__outline">
+                      <div class="v-field__outline__start"></div><div
+                        class="v-field__outline__notch"
+                      >
+                        <label
+                          class="v-label v-field-label v-field-label--floating"
+                          aria-hidden="true"
+                          for="input-32">Contenido del Módulo</label
+                        >
+                      </div><div class="v-field__outline__end"></div>
+                    </div>
+                  </div>
+                </div><div class="v-input__details">
+                  <div
+                    class="v-messages"
+                    role="alert"
+                    aria-live="polite"
+                    id="input-32-messages"
+                  >
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div><div class="v-row">
+          <div class="v-container v-locale--is-ltr">
+            <h4>Archivo:</h4><label class="v-label mb-2">
+              Nota: Seleccione el documento del proyecto.
+            </label><div
+              class="v-input v-input--horizontal v-input--center-affix v-input--density-default v-locale--is-ltr v-file-input v-file-input--chips"
+            >
+              <div class="v-input__prepend">
+                <i
+                  class="mdi-paperclip mdi v-icon notranslate v-theme--light v-icon--size-default v-icon--clickable"
+                  role="button"
+                  aria-hidden="false"
+                  aria-label="Subir proyecto prepended action"></i>
+              </div><div class="v-input__control">
+                <div
+                  class="v-field v-field--appended v-field--center-affix v-field--variant-outlined v-theme--light v-locale--is-ltr"
+                  prepend-icon="$file"
+                >
+                  <div class="v-field__overlay"></div><div
+                    class="v-field__loader"
+                  >
+                    <div
+                      class="v-progress-linear v-theme--light v-locale--is-ltr"
+                      role="progressbar"
+                      aria-hidden="true"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style="top: 0px; height: 0px; --v-progress-linear-height: 2px; left: 50%; transform: translateX(-50%);"
+                    >
+                      <div
+                        class="v-progress-linear__background"
+                        style="width: 100%;"
+                      >
+                      </div><div class="v-progress-linear__indeterminate">
+                        <div class="v-progress-linear__indeterminate long">
+                        </div><div
+                          class="v-progress-linear__indeterminate short"
+                        >
+                        </div>
+                      </div>
+                    </div>
+                  </div><div class="v-field__field" data-no-activator="">
+                    <label class="v-label v-field-label" for="input-34"
+                      >Subir proyecto</label
+                    ><input
+                      type="file"
+                      id="input-34"
+                      aria-describedby="input-34-messages"
+                      accept="application/pdf"
+                    /><div class="v-field__input"></div>
+                  </div><div class="v-field__clearable" style="display: none;">
+                    <i
+                      class="mdi-close-circle mdi v-icon notranslate v-theme--light v-icon--size-default v-icon--clickable"
+                      role="button"
+                      aria-hidden="false"
+                      aria-label="Clear Subir proyecto"></i>
+                  </div><div class="v-field__append-inner"></div><div
+                    class="v-field__outline"
+                  >
+                    <div class="v-field__outline__start"></div><div
+                      class="v-field__outline__notch"
+                    >
+                      <label
+                        class="v-label v-field-label v-field-label--floating"
+                        aria-hidden="true"
+                        for="input-34">Subir proyecto</label
+                      >
+                    </div><div class="v-field__outline__end"></div>
+                  </div>
+                </div>
+              </div><div class="v-input__details">
+                <div
+                  class="v-messages"
+                  role="alert"
+                  aria-live="polite"
+                  id="input-34-messages"
+                >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><br /><button
+        type="button"
+        class="v-btn v-theme--light v-btn--density-default v-btn--size-default v-btn--variant-outlined"
+        ><span class="v-btn__overlay"></span><span class="v-btn__underlay"
+        ></span><span class="v-btn__content" data-no-activator="">
+          Guardar Programa</span
+        ></button
+      >
+    </div>
+  </form>
+</Layout>
+
+
+<style>
+  h3 {
+    color: #000;
+  }
+
+  .v-label {
+    color: #252424bb;
+  }
+
+  .v-field__input {
+    width: 350px;
+    height: 25px;
+    border-radius: 15px;
+    padding-left: 12px;
+  }
+
+  svg {
+    width: 20px;
+  }
+</style>

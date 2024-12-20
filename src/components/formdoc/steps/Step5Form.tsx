@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../style/step5.css";
 
 // Componente para un formulario individual de producción intelectual
 interface IntellectualProductionFormProps {

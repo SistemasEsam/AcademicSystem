@@ -1,0 +1,51 @@
+/* Contenedor principal */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+  
+  /* Filas de formulario */
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+  
+  /* Columnas de formulario */
+  .form-col {
+    flex: 1;
+    min-width: 200px; /* Asegura que cada columna tenga un ancho mínimo */
+  }
+  
+  /* Estilos para select */
+  .form-select {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Estilos para input de fecha */
+  .input-date {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Estilos responsivos */
+  @media (max-width: 768px) {
+    .form-row {
+      flex-direction: column;
+    }
+  
+    .form-col {
+      min-width: 100%; /* En pantallas pequeñas, las columnas ocupan el ancho completo */
+    }
+  }
+  

@@ -4,9 +4,9 @@ import Form2 from "./form2";
 import EducationForm from "../../components/formdoc/EducationForm";
 import CourseFormList from "../../components/formdoc/CourseForm";
 import IntellectualProductionFormList from "../../components/formdoc/IntellectualForm";
-import PostDegreeForm from "../../components/formdoc/PostDegreeForm";
+import {PostDegreeForm} from "../../components/formdoc/PostDegreeForm";
 import WorkExperienceFormList from "./WorkExperienceFormList";
-import DegreeForm from "../../components/formdoc/DegreeForm";
+import {DegreeForm} from "../../components/formdoc/DegreeForm";
 import WorkDocentExper from "./WorkDocentExper";
 import SoftSkillsAndLanguages from "./HabilidadIdioma";
 
