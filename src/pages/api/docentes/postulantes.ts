@@ -70,6 +70,7 @@ SELECT
     -- Estudios superiores
     JSON_ARRAYAGG(
         JSON_OBJECT(
+        
             'tipo', IFNULL(te.tipo, ''),
             'carrera', IFNULL(es.carrera, ''),
             'nombre', IFNULL(es.nombre, ''),

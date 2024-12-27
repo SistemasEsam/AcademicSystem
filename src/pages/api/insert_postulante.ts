@@ -44,7 +44,7 @@ export async function POST({ request }: APIContext) {
       );
     }
   // Encriptar la contraseña
-  const hashedPassword = await bcrypt.hash(password.trim(), 10); // 10 es el número de rondas de salt
+  const hashedPassword = await bcrypt.hash(password.trim(), 10); 
      // Guardar la imagen en el servidor
      let imagePath = null;
      if (imagen) {

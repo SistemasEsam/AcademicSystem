@@ -1,0 +1,64 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Dashboard from "../../components/login/dashboard"; // Ajusta la ruta según tu estructura de proyecto
+import { authenticateToken } from "../api/auth"; // Ajusta la ruta según tu estructura de proyecto
+import jwt_decode from "jwt-decode";
+import type { APIContext } from "astro";
+
+interface DecodedToken {
+  email: string;
+  nombre: string;
+}
+
+let docenteNombre = ""; // Variable para pasar el nombre al frontend
+
+export async function GET({ request }: APIContext) {
+  const { success, response } = authenticateToken(request);
+
+  if (!success) {
+    return new Response(null, {
+      status: 302,
+      headers: {
+        Location: "/login",
+      },
+    });
+  }
+
+  const token = request.headers.get("Authorization")?.split(" ")[1];
+  if (!token) {
+    return new Response(null, {
+      status: 302,
+      headers: {
+        Location: "/login",
+      },
+    });
+  }
+
+  try {
+    const decodedToken = jwt_decode<DecodedToken>(token);
+    docenteNombre = decodedToken.nombre; // Asignar el nombre decodificado
+    return new Response(null, { status: 200 });
+  } catch (error) {
+    console.error("Error al decodificar el token:", error);
+    return new Response(
+      JSON.stringify({ error: "Token no válido" }), // Pasar el cuerpo como primer argumento
+      {
+        status: 400,
+        headers: { "Content-Type": "application/json" }, // Asegúrate de incluir este encabezado
+      }
+    );
+  }
+}
+
+---
+
+<Layout
+  title="Dashboard - Sistema Academico ESAM"
+  canonical="https://academico-docentes.esam.edu.bo/"
+  description="Panel de control para el sistema académico de ESAM."
+>
+  <div>
+    <h1>Bienvenido, {docenteNombre}!</h1>
+    <Dashboard client:load />
+  </div>
+</Layout>
