@@ -35,9 +35,20 @@ interface UpdateFormProps {
   idDocente: number;
 }
 
+interface ExperienciaDocente {
+  idExperiencia: string;
+  materia: string;
+  calidad: string;
+  universidad: string;
+  concluidoEl: string;
+}
+
 const EditDocente: React.FC<UpdateFormProps> = ({ idDocente }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [docenteData, setDocenteData] = useState<Docente | null>(null);
+  const [experienciasDocentes, setExperienciasDocentes] = useState<
+    ExperienciaDocente[] | null
+  >(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedType, setSelectedType] = useState<
     "pregrado" | "postgrado" | ""
@@ -72,6 +83,11 @@ const EditDocente: React.FC<UpdateFormProps> = ({ idDocente }) => {
         setDocenteData(data);
         if (data.estudiossuperiores && data.estudiossuperiores.length > 0) {
           setEstudioSuperiorData(data.estudiossuperiores[0]);
+        }
+
+        // Aquí agregamos la carga de experiencias docentes
+        if (data.experienciasdocentes && data.experienciasdocentes.length > 0) {
+          setExperienciasDocentes(data.experienciasdocentes);
         }
       } catch (error) {
         console.error(error);
@@ -149,26 +165,27 @@ const EditDocente: React.FC<UpdateFormProps> = ({ idDocente }) => {
   };
 
   return (
-    
     <div className="profile-container">
-       
       {loading ? (
         <p className="loading-text">Cargando...</p>
       ) : (
         <form className="profile-form" onSubmit={handleSubmit}>
-          
           <div className="profile-photo">
-                    <ImageUpload
-                      containerClass="profile-image-container"
-                      labelClass="profile-image-label"
-                      avatarClass="profile-avatar"
-                      buttonClass="custom-upload-button"
-                      iconClass="custom-upload-icon"
-                      onImageSelect={(file) =>
-                        console.log(file ? `Imagen seleccionada: ${file.name}` : "No se seleccionó ninguna imagen.")
-                      }
-                    />
-                  </div>
+            <ImageUpload
+              containerClass="profile-image-container"
+              labelClass="profile-image-label"
+              avatarClass="profile-avatar"
+              buttonClass="custom-upload-button"
+              iconClass="custom-upload-icon"
+              onImageSelect={(file) =>
+                console.log(
+                  file
+                    ? `Imagen seleccionada: ${file.name}`
+                    : "No se seleccionó ninguna imagen."
+                )
+              }
+            />
+          </div>
           <h2 className="form-title">Actualizar Docente</h2>
           {docenteData && (
             <>
@@ -336,11 +353,31 @@ const EditDocente: React.FC<UpdateFormProps> = ({ idDocente }) => {
               </div>
             </>
           )}
+          <h2 className="form-title">Experiencias</h2>
+          {experienciasDocentes?.length ? (
+  <div className="experiencias-container">
+    {experienciasDocentes.map((experiencia) => (
+      <div key={experiencia.idExperiencia} className="experiencia-card">
+        <h3>{experiencia.materia}</h3>
+        <p><strong>Calidad:</strong> {experiencia.calidad}</p>
+        <p><strong>Universidad:</strong> {experiencia.universidad}</p>
+        <p><strong>Concluido el:</strong> {experiencia.concluidoEl}</p>
+      </div>
+    ))}
+  </div>
+) : (
+  <p>No se han registrado experiencias docentes.</p>
+)}
+
           <button className="submit-button" type="submit" disabled={loading}>
             {loading ? "Actualizando..." : "Actualizar"}
           </button>
 
-          <button type="button" className="add-section-button" onClick={handleAddSectionClick}>
+          <button
+            type="button"
+            className="add-section-button"
+            onClick={handleAddSectionClick}
+          >
             Agregar Sección
           </button>
 
