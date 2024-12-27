@@ -1,0 +1,40 @@
+---
+import Layout from "../../../layouts/LayoutForm.astro";
+import ProgramInfo from "../../../components/programas/ProgramInfo.astro";
+import { infoProgramas } from "../../../api/infoModulosPrueba";
+import { ProgramaPDFDownload } from "../../../components/programas/ProgramaPDF";
+
+// Configuración de las rutas estáticas
+export async function getStaticPaths() {
+  return infoProgramas.flatMap((programa) =>
+    programa.modulos.map((modulo) => ({
+      params: {
+        id_programa: programa.id_programa.toString(),
+        id_modulo: modulo.id.toString(),
+      },
+    }))
+  );
+}
+
+// Obtener los parámetros de la URL
+const { id_programa, id_modulo } = Astro.params;
+
+// Buscar el programa y el módulo específico
+const programa = infoProgramas.find((p) => p.id_programa.toString() === id_programa);
+const modulo = programa?.modulos.find((m) => m.id.toString() === id_modulo);
+
+---
+<Layout title="Carta de Invitación">
+  <div class="download-pdf">
+    <ProgramaPDFDownload client:only="react" programa={programa} modulo={modulo} />
+  </div>
+  {modulo ? (
+    <ProgramInfo
+      programa={programa}
+      modulo={modulo}
+    />
+  ) : (
+    <p>No se encontró la información del módulo.</p>
+  )}
+  
+</Layout>

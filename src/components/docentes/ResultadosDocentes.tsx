@@ -1,16 +1,19 @@
 import React from "react";
+import "../../styles/docenteSearch.css";
 
 interface ResultProps {
-  nombre: string;
-  email: string;
-  documento: string;
+  idDocente:number;
+  nombres: string;
+  correo: string;
+  numeroDocumento: string;
   telefono: string;
 }
 
 export const ResultadosDocentes: React.FC<ResultProps> = ({
-  nombre,
-  email,
-  documento,
+  idDocente,
+  nombres,
+  correo,
+  numeroDocumento,
   telefono,
 }) => {
   return (
@@ -39,22 +42,33 @@ export const ResultadosDocentes: React.FC<ResultProps> = ({
           </div>
         </div>
       </div>
-      {/* Aquí mostramos los datos del docente */}
-      <div className="v-card-title sub-title">{nombre}</div>
-      <div className="v-card-subtitle">
-        {email} <br /> {documento} <br /> {telefono}
+      <div className="result-item">
+        {/* Aquí mostramos los datos del docente */}
+        <div className="v-card-content">
+          <div className="v-card-title sub-title">{nombres}</div>
+          <div className="v-card-subtitle">
+            <p>
+              <strong>Correo:</strong> {correo}
+            </p><br />
+            <p>
+              <strong>CI:</strong> {numeroDocumento}
+            </p><br />
+            <p>
+              <strong>Teléfono:</strong> {telefono}
+            </p>
+          </div>
+        </div>
+        <div className="v-card-actions">
+          <button
+            type="button"
+            className="v-btn v-btn--slim v-theme--light v-btn--density-default v-btn--size-default v-btn--variant-text button-card"
+          >
+            <span className="v-btn__overlay"></span>
+            <span className="v-btn__underlay"></span>
+            <a href={`/postulantes/info/${idDocente}`}>ABRIR</a>
+          </button>
+        </div>
       </div>
-      <div className="v-card-actions">
-        <button
-          type="button"
-          className="v-btn v-btn--slim v-theme--light v-btn--density-default v-btn--size-default v-btn--variant-text button-card"
-        >
-          <span className="v-btn__overlay"></span>
-          <span className="v-btn__underlay"></span>
-          <a href={`/postulantes/info/${nombre}`}>Abrir</a>
-        </button>
-      </div>
-      <span className="v-card__underlay"></span>
     </div>
   );
 };
