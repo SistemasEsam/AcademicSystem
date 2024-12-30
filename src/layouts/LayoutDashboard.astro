@@ -1,0 +1,72 @@
+---
+import Header from "../layouts/layoutsDash/HeaderDash.astro";
+import Footer from "../layouts/layoutsDash/FooterDash.astro";
+import SlidebarDash from "./layoutsDash/SlidebarDash.astro";
+
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <Header />
+
+    <div class="layout">
+      <SlidebarDash  />
+
+      <main class="contenidoPrincipal">
+        <slot />
+      </main>
+    </div>
+
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: "Futura", sans-serif;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .layout {
+    display: flex;
+    flex: 1;
+  }
+
+  .contenidoPrincipal {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #f5f5f5;
+    transition: margin-left 0.3s ease;
+  }
+
+  .contenidoPrincipal {
+    margin-left: 250px; /* Ajusta según el ancho del slidebar */
+  }
+
+  .contenidoPrincipal.slidebar-closed {
+    margin-left: 0;
+  }
+
+  @media (max-width: 768px) {
+    .contenidoPrincipal {
+      margin-left: 200px;
+    }
+
+    .contenidoPrincipal.slidebar-closed {
+      margin-left: 0;
+    }
+  }
+</style>

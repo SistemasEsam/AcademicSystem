@@ -69,7 +69,7 @@ export const Login = () => {
         localStorage.setItem("token", data.token);
 
         // Redirigir al dashboard
-        window.location.href = "/dashboard";
+        window.location.href = "/dashboardDoc";
       } else {
         setError(data.error || "Usuario o contraseña incorrectos.");
       }

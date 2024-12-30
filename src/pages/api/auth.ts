@@ -35,6 +35,7 @@ export async function POST({ request }: APIContext) {
     // Generar el JWT con más información
     const token = jwt.sign(
       { 
+        idDocente:docente.idDocente,
         email: docente.usuario,
         nombre: docente.nombres,
         apellidoPaterno:docente.apellidoPaterno, // Almacena el nombre del docente
@@ -62,13 +63,21 @@ export function authenticateToken(request: Request) {
   const token = authHeader && authHeader.split(' ')[1];
 
   if (!token) {
-    return { success: false, response: new Response(JSON.stringify({ error: 'Acceso denegado. No se proporcionó un token.' }), { status: 401 }) };
+    return {
+      success: false,
+      response: new Response(JSON.stringify({ error: 'Acceso denegado. No se proporcionó un token.' }), { status: 401 }),
+    };
   }
 
   try {
+    // Decodifica el token usando jwt.verify
     const user = jwt.verify(token, JWT_SECRET);
-    return { success: true, user }; // Retorna el usuario si el token es válido
+    return { success: true, user }; // Retorna el usuario decodificado si el token es válido
   } catch (error) {
-    return { success: false, response: new Response(JSON.stringify({ error: 'Token no válido.' }), { status: 403 }) };
+    return {
+      success: false,
+      response: new Response(JSON.stringify({ error: 'Token no válido.' }), { status: 403 }),
+    };
   }
 }
+
