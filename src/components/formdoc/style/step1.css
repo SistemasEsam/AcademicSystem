@@ -1,51 +1,116 @@
-/* Contenedor principal */
-.form-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 1rem;
+.profile-container {
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 80vh; /* Limita la altura del contenedor */
+  overflow-y: auto; /* Habilita el desplazamiento vertical */
+}
+/* Estilo de barra de desplazamiento para navegadores basados en WebKit (Chrome, Edge, Safari) */
+.profile-container::-webkit-scrollbar {
+  width: 8px; /* Ancho de la barra de desplazamiento */
+}
+
+.profile-container::-webkit-scrollbar-track {
+  background: #e0e0e0; /* Color del fondo de la barra */
+}
+
+.profile-container::-webkit-scrollbar-thumb {
+  background-color: #007bff; /* Color del deslizador */
+  border-radius: 10px; /* Bordes redondeados */
+  border: 2px solid #e0e0e0; /* Espacio entre el deslizador y el fondo */
+}
+
+.loading-text {
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+}
+
+.profile-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.form-header-title{
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #000000;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.form-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.2);
+}
+
+.submit-button {
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.02);
+}
+
+.submit-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 15px;
   }
-  
-  /* Filas de formulario */
-  .form-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: space-between;
+
+  .form-title {
+    font-size: 20px;
+    color: #0056b3;
   }
-  
-  /* Columnas de formulario */
-  .form-col {
-    flex: 1;
-    min-width: 200px; /* Asegura que cada columna tenga un ancho mínimo */
+
+  .form-input {
+    font-size: 14px;
   }
-  
-  /* Estilos para select */
-  .form-select {
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+
+  .submit-button {
+    font-size: 14px;
   }
-  
-  /* Estilos para input de fecha */
-  .input-date {
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  .profile-form {
+    grid-template-columns: 1fr;
   }
-  
-  /* Estilos responsivos */
-  @media (max-width: 768px) {
-    .form-row {
-      flex-direction: column;
-    }
-  
-    .form-col {
-      min-width: 100%; /* En pantallas pequeñas, las columnas ocupan el ancho completo */
-    }
-  }
-  
+}
+

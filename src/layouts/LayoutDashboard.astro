@@ -1,7 +1,7 @@
 ---
-import Header from "../layouts/layoutsDash/HeaderDash.astro";
-import Footer from "../layouts/layoutsDash/FooterDash.astro";
-import SlidebarDash from "./layoutsDash/SlidebarDash.astro";
+import HeaderDash from "../layouts/layoutsDash/HeaderDash";
+import Footerdash from "../layouts/layoutsDash/FooterDash";
+import Slidebar from "../layouts/layoutsDash/Slidebar";
 
 ---
 
@@ -11,17 +11,17 @@ import SlidebarDash from "./layoutsDash/SlidebarDash.astro";
     <title>Dashboard</title>
   </head>
   <body>
-    <Header />
+    <HeaderDash client:load  />
 
     <div class="layout">
-      <SlidebarDash  />
+      <Slidebar client:load  />
 
       <main class="contenidoPrincipal">
         <slot />
       </main>
     </div>
 
-    <Footer />
+    <Footerdash client:load />
   </body>
 </html>
 

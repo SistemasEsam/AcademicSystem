@@ -7,7 +7,7 @@ export async function connectToDatabase() {
       user: "root",
       password: "",
 
-      database: "bd_esam",
+      database: "esam_db",
 
     });
 

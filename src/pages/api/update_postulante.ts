@@ -16,9 +16,16 @@ export async function POST({ request }: APIContext) {
       nombres,
       numeroReferencia,
       correo,
-      estudiossuperiores,
+      telefono,
+      numeroDocumento,
+      fechaNacimiento,
+      ciudadRadicacion,
+      genero,
+      direccion,
+      estado,
     } = data;
 
+    // Verificar campos obligatorios
     if (!idDocente || !nombres || !apellidoPaterno || !correo) {
       return new Response(
         JSON.stringify({ error: "Faltan campos obligatorios" }),
@@ -26,60 +33,57 @@ export async function POST({ request }: APIContext) {
       );
     }
 
+    // Conexión a la base de datos
     const db = await connectToDatabase();
 
-    // Actualizar datos del docente
+    // Consulta para actualizar datos del docente
     const docenteQuery = `
       UPDATE docentes 
-      SET apellidoMaterno = ?, apellidoPaterno = ?, nombres = ?, numeroReferencia = ?, correo = ?
+      SET 
+        apellidoMaterno = ?, 
+        apellidoPaterno = ?, 
+        nombres = ?, 
+        numeroReferencia = ?, 
+        correo = ?, 
+        telefono = ?, 
+        numeroDocumento = ?, 
+        fechaNacimiento = ?, 
+        ciudadRadicacion = ?, 
+        genero = ?, 
+        direccion = ?, 
+        estado = ?
       WHERE idDocente = ?;
     `;
+
+    // Valores a actualizar
     const docenteValues = [
       sanitizeValue(apellidoMaterno?.trim()),
       sanitizeValue(apellidoPaterno.trim()),
       sanitizeValue(nombres.trim()),
       sanitizeValue(numeroReferencia?.trim()),
       sanitizeValue(correo.trim().toLowerCase()),
+      sanitizeValue(telefono?.trim()),
+      sanitizeValue(numeroDocumento?.trim()),
+      sanitizeValue(
+        fechaNacimiento ? new Date(fechaNacimiento).toISOString().split("T")[0] : null
+      ),
+      sanitizeValue(ciudadRadicacion?.trim()),
+      sanitizeValue(genero?.trim()),
+      sanitizeValue(direccion?.trim()),
+      sanitizeValue(estado?.trim()),
       sanitizeValue(idDocente),
     ];
 
     console.log("Actualizando docente con:", docenteValues);
+
+    // Ejecución del query
     const [docenteResult]: any = await db.execute(docenteQuery, docenteValues);
     console.log("Resultado de actualización del docente:", docenteResult);
 
-    // Actualizar datos de estudios superiores si existen
-    if (estudiossuperiores && estudiossuperiores.length > 0) {
-      for (const estudio of estudiossuperiores) {
-        const estudioQuery = `
-          UPDATE estudiossuperiores
-          SET universidad = ?, carrera = ?, fecha = ?, nombre = ?, idPais = ?, idGrado = ?, idModalidad = ?
-          WHERE idEstudioSuperior = ?;
-        `;
-        const estudioValues = [
-          sanitizeValue(estudio.universidad?.trim()),
-          sanitizeValue(estudio.carrera?.trim()),
-          sanitizeValue(estudio.fecha?.trim()),
-          sanitizeValue(estudio.nombre?.trim()),
-          sanitizeValue(Number(estudio.idPais)),
-          sanitizeValue(Number(estudio.idGrado)),
-          sanitizeValue(Number(estudio.idModalidad)),
-          sanitizeValue(estudio.idEstudio),
-        ];
-
-        console.log("Actualizando estudio superior con:", estudioValues);
-        const [estudioResult]: any = await db.execute(
-          estudioQuery,
-          estudioValues
-        );
-        console.log(
-          "Resultado de actualización del estudio superior:",
-          estudioResult
-        );
-      }
-    }
-
+    // Cerrar conexión a la base de datos
     db.end();
 
+    // Respuesta de éxito
     return new Response(
       JSON.stringify({ message: "Datos actualizados correctamente" }),
       { status: 200 }

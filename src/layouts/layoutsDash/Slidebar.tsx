@@ -55,7 +55,7 @@ const Slidebar: React.FC = () => {
                   }
                   onClick={() => handleNavigation("main")}
                 >
-                  <a href="#">
+                  <a href="/dashboard">
                     <span>Perfil</span>
                   </a>
                 </li>

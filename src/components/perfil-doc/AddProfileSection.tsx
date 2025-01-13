@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal } from "../util/Modale";
+import  {Modal}  from "../util/modale";
 import "../perfil-doc/syles/AddProfileSection.css";
 import EducationForm from "../formdoc/EducationForm";
 import { PostDegreeForm } from "../formdoc/PostDegreeForm";
