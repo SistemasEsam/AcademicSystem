@@ -54,12 +54,15 @@ export const HeaderDash: React.FC = () => {
     <> 
     <header>
     <a id="logoEsam" href="/dashboard"> </a>
-    <h1 id="titulo" >Docente Plataform</h1>
+    <h1 id="titulo-head" >Docente Plataform</h1>
+    
     <a id="logoEsamMobile" href="/dashboard">
       <h1 id="tituloMobile">Docente Plataform</h1>
     </a>
 
-    <button onClick={handleLogout}>Cerrar Sesión</button>
+    <button className="logout-button" onClick={handleLogout}>
+        Cerrar Sesión
+      </button>
   </header>
   <div className="barraAmarilla"></div>
      </>

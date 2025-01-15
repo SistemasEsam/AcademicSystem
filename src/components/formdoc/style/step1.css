@@ -1,5 +1,5 @@
 .profile-container {
-  max-width: 90%;
+  max-width: 100%;
   margin: 0 auto;
   padding: 20px;
   background-color: #f9f9f9;
@@ -114,3 +114,37 @@
   }
 }
 
+.edit-button1{
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.edit-button1:hover {
+  background-color: #0056b3;
+  transform: scale(1.02);
+}
+
+.cancel-button1{
+  margin-left: 10px;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #dc3545;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.cancel-button1:hover {
+  background-color: #fa6773;
+  transform: scale(1.02);
+}

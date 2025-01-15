@@ -177,6 +177,7 @@ SELECT
        DISTINCT CONCAT(
             '{',
             '"idIdiomaDocente":"', id.idIdiomaDocente, '",',
+             '"idIdioma":"', id.idIdioma, '",',
             '"idioma":"', i.idioma, '",',
             '"escritura":"', id.escritura, '",',
             '"oral":"', id.oral, '",',

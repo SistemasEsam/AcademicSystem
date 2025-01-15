@@ -28,15 +28,36 @@
 }
 
 header {
+  display: flex;
+  align-items: center;
   position: relative;
-  display: grid;
+  justify-content: space-between;
+ 
   grid-template-columns: 10% 1fr;
   height: 80px;
   width: 100%;
-  background-color: #006bc8;
+  background-color: #1a202c;
   /* background-image: linear-gradient(to right, rgba(52, 53, 124, 0.8),30%,rgba(21, 104, 153, 0.0)); */
   align-items: center;
   justify-items: center;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espacio entre el logo y el título */
+}
+
+.logout-button {
+  background-color: #ff4d4f; /* Rojo para destacar */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 50px;
 }
 @keyframes degrade {
   0% {
@@ -68,7 +89,8 @@ header {
   }
 }
 
-#titulo {
+#titulo-head {
+  color: azure;
   margin-right: 150px;
   font-size: 32px;
 }

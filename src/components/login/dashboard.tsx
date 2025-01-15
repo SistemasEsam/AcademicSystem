@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import EstudiosSuperioresList from "../formdoc/PostDegreeForm";
 import "../formdoc/style/step1.css";
+import ExperienciaDocenteManager from "../formdoc/CourseForm";
+import HabilidadesBlandasManager from "../formdoc/SkillForm";
+import IdiomasManager from "../formdoc/IdiomasManager";
 
 interface Docente {
   idDocente: number;
@@ -24,7 +27,7 @@ export const Dashboard: React.FC = () => {
   const [idDocente, setIdDocente] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [docenteData, setDocenteData] = useState<Docente | null>(null);
-
+  const [isEditing, setIsEditing] = useState<boolean>(false);
   // Función para convertir la fecha al formato 'yyyy-mm-dd'
   const formatDate = (date: string) => {
     const [day, month, year] = date.split("/"); // Asumiendo que el formato es dd/mm/yyyy
@@ -100,27 +103,20 @@ export const Dashboard: React.FC = () => {
 
   return (
     <div>
-      <div className="profile-container">
-        {loading ? (
-          <p className="loading-text">Cargando...</p>
-        ) : (
-          <>
-            {/* Formulario principal para actualizar docente */}
-              <div className="form-header-title">
-              <h2 className="form-title">Informacion docente</h2>
-              </div>
-            <form className="profile-form" onSubmit={handleSubmit}>
-              {docenteData && (
-                <>
-                  {/* Campos ocultos */}
-                  <input
-                    type="hidden"
-                    name="idDocente"
-                    value={docenteData.idDocente}
-                  />
-  
-                  {/* Campos del formulario dinámicos */}
-                  {[
+    <div className="profile-container">
+      {loading ? (
+        <p className="loading-text">Cargando...</p>
+      ) : (
+        <>
+          {/* Información principal del docente */}
+          <div className="form-header-title">
+            <h2 className="form-title">Información del docente</h2>
+          </div>
+          {docenteData && (
+            <div className="profile-info">
+              {isEditing ? (
+                <form className="profile-form" onSubmit={handleSubmit}>
+                  {[ // Campos editables
                     { label: "Nombres", name: "nombres" },
                     { label: "Apellido Paterno", name: "apellidoPaterno" },
                     { label: "Apellido Materno", name: "apellidoMaterno" },
@@ -144,8 +140,7 @@ export const Dashboard: React.FC = () => {
                       />
                     </div>
                   ))}
-  
-                  {/* Campo específico de fecha */}
+
                   <div className="form-group">
                     <label className="form-label">Fecha de Nacimiento:</label>
                     <input
@@ -158,25 +153,74 @@ export const Dashboard: React.FC = () => {
                       onChange={handleInputChange}
                     />
                   </div>
-                </>
-              )}
-  
-              {/* Botón de enviar formulario */}
-              <div className="button-guardar">
-              <button
-                type="submit"
-                className="submit-button"
-                disabled={loading}
-                >
-                {loading ? "Guardando..." : "Guardar"}
-              </button>
+                  <div className="button-guardar">
+                    <button type="submit" className="submit-button" disabled={loading}>
+                      {loading ? "Guardando..." : "Guardar"}
+                    </button>
+                    <button
+                      type="button"
+                      className="cancel-button1"
+                      onClick={() => setIsEditing(false)}
+                    >
+                      Cancelar
+                    </button>
+                  </div>
+                </form>
+              ) : (
+                <div>
+                  {[ // Campos no editables
+                    { label: "Nombres", name: "nombres" },
+                    { label: "Apellido Paterno", name: "apellidoPaterno" },
+                    { label: "Apellido Materno", name: "apellidoMaterno" },
+                    { label: "Número de Referencia", name: "numeroReferencia" },
+                    { label: "Correo", name: "correo" },
+                    { label: "Teléfono", name: "telefono" },
+                    { label: "Número de Documento", name: "numeroDocumento" },
+                    { label: "Ciudad de Radicación", name: "ciudadRadicacion" },
+                    { label: "Género", name: "genero" },
+                    { label: "Dirección", name: "direccion" },
+                    { label: "Estado", name: "estado" },
+                  ].map((field) => (
+                    <p key={field.name}>
+                      <strong>{field.label}: </strong>
+                      {(docenteData as any)[field.name] || ""}
+                    </p>
+                  ))}
+                  <p>
+                    <strong>Fecha de Nacimiento: </strong>
+                    {docenteData.fechaNacimiento
+                      ? formatDate(docenteData.fechaNacimiento)
+                      : ""}
+                  </p>
+                  <button
+                    className="edit-button1"
+                    onClick={() => setIsEditing(true)}
+                  >
+                    Editar
+                  </button>
                 </div>
-            </form>
+              )}
+            </div>
+          )}
   
             {/* Separación del componente EstudiosSuperioresList */}
             <div className="estudios-container">
               <EstudiosSuperioresList />
             </div>
+            <div className="estudios-container2">
+              <ExperienciaDocenteManager />
+            </div>
+            
+            <div className="estudios-container3">
+              <HabilidadesBlandasManager />
+            </div>
+            
+            <div className="estudios-container3">
+              <IdiomasManager />
+            </div>
+            
+
+            
           </>
         )}
       </div>

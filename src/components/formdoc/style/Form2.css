@@ -77,31 +77,30 @@
   transform: scale(1.02);
 }
 
-.create-button {
+.create-button1 {
   margin-top: 20px;
   display: block;
-  width: 100%;
+  width: 200px;
   padding: 12px;
   font-size: 16px;
   font-weight: 600;
   color: #fff;
-  background-color: #007bff;
+  background-color: #28a745;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
 }
 
-.create-button:hover {
+.create-button1:hover {
   background-color: #0056b3;
   transform: scale(1.02);
 }
 
 /* General styles */
 .postdegreeform-container {
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
+
+
   background: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -118,7 +117,7 @@
   font-size: 0.9rem;
 }
 
-.create-button, .edit-button, .save-button, .cancel-button {
+  .save-button, .cancel-button{
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
@@ -135,10 +134,35 @@
   text-align: center;
 }
 
-.edit-button {
+
+.toggle-button1{
+  background: #4caf50;
+  color: white;
+  margin-top: 15px;
+  display: block;
+  width: 150px;
+  text-align: center;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.toggle-button1:hover{
+  background: #218838;
+  transform: scale(1.02);
+}
+
+.edit-button2 {
   background: #2196f3;
   color: white;
   margin-top: 10px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer
 }
 
 .save-button {
@@ -252,3 +276,4 @@
     transform: scale(1);
   }
 }
+

@@ -1,0 +1,188 @@
+/* IdiomasManager.css */
+
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 2rem;
+  color: #333;
+}
+
+.button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.add-button {
+  margin: 20px auto;
+  display: block;
+}
+
+.edit-button {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.checkbox-group {
+  margin-bottom: 15px;
+}
+
+.checkbox-group label {
+  font-weight: bold;
+  display: block;
+}
+
+.checkbox-group div {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.checkbox-group input[type="radio"] {
+  margin-right: 10px;
+}
+
+.checkbox-group label {
+  margin-left: 5px;
+}
+
+.modal button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.modal button:nth-child(1) {
+  background-color: #28a745;
+  border: none;
+}
+
+.modal button:nth-child(2) {
+  background-color: #dc3545;
+}
+
+.modal button:hover {
+  background-color: #218838;
+}
+
+/* Idiomas List */
+.idiomas-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.idioma-card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px;
+  width: calc(33% - 20px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.idioma-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.idioma-card p {
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.idioma-card strong {
+  font-weight: bold;
+}
+
+.idioma-card button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.idioma-card button:hover {
+  background-color: #0e6dd1;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .idioma-card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .idioma-card {
+    padding: 15px;
+  }
+}

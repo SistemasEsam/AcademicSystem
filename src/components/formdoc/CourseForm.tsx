@@ -1,26 +1,34 @@
 import React, { useState, useEffect } from "react";
+import "./style/CourseForm.css";
 
-interface ExperienciaDocente {
-  idExperienciaDocente?: number; // Campo necesario para el PUT
+interface Experiencia {
+  idExperiencia: number;
   materia: string;
   calidad: string;
   universidad: string;
-  concluidoEl: string; // Fecha en formato string
+  concluidoEl: string;
+}
+
+interface ExperienciaDocente {
+  idDocente: number;
+  experienciasDocente: Experiencia[];
 }
 
 const ExperienciaDocenteManager: React.FC = () => {
-  const [idDocente, setIdDocente] = useState<string | null>(null);
-  const [experienciasDocente, setExperienciasDocente] = useState<ExperienciaDocente[]>([]);
+  const [idDocente, setIdDocente] = useState<number | null>(null);
+  const [experienciasDocente, setExperienciasDocente] = useState<Experiencia[]>([]); // Inicializamos como un array vacío
   const [loading, setLoading] = useState(false);
-  const [newExperiencia, setNewExperiencia] = useState<ExperienciaDocente>({
+  const [newExperiencia, setNewExperiencia] = useState<Experiencia>({
+    idExperiencia: 0,
     materia: "",
     calidad: "",
     universidad: "",
     concluidoEl: "",
   });
-  const [editingExperiencia, setEditingExperiencia] = useState<ExperienciaDocente | null>(null); // Para manejar la edición
+  const [editingExperiencia, setEditingExperiencia] = useState<Experiencia | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModal, setIsEditModal] = useState(false);
 
-  // Fetch registros existentes (GET)
   useEffect(() => {
     const fetchDocenteData = async () => {
       const docenteId = localStorage.getItem("idDocente");
@@ -29,13 +37,11 @@ const ExperienciaDocenteManager: React.FC = () => {
         return;
       }
 
-      setIdDocente(docenteId);
+      setIdDocente(Number(docenteId));
       setLoading(true);
 
       try {
-        const response = await fetch(
-          `http://localhost:4321/api/docentes/${docenteId}`
-        );
+        const response = await fetch(`http://localhost:4321/api/docentes/${docenteId}`);
         if (!response.ok) throw new Error("Error al obtener datos del docente");
 
         const data = await response.json();
@@ -57,9 +63,8 @@ const ExperienciaDocenteManager: React.FC = () => {
     fetchDocenteData();
   }, []);
 
-  // Agregar nueva experiencia (POST)
   const handleSaveInfo = async () => {
-    if (!idDocente) {
+    if (idDocente === null) {
       alert("ID del docente no encontrado");
       return;
     }
@@ -72,7 +77,7 @@ const ExperienciaDocenteManager: React.FC = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          idDocente: Number(idDocente),
+          idDocente: idDocente,
           experienciasDocente: [newExperiencia],
         }),
       });
@@ -82,11 +87,13 @@ const ExperienciaDocenteManager: React.FC = () => {
         setExperienciasDocente(updatedData.experienciasDocente);
         alert("Nueva experiencia docente agregada con éxito");
         setNewExperiencia({
+          idExperiencia: 0,
           materia: "",
           calidad: "",
           universidad: "",
           concluidoEl: "",
         });
+        setIsModalOpen(false); // Cerrar la modal al guardar
       } else {
         const errorData = await response.json();
         console.error("Error del servidor:", errorData);
@@ -100,14 +107,14 @@ const ExperienciaDocenteManager: React.FC = () => {
     }
   };
 
-  // Modificar experiencia existente (PUT)
   const handleUpdateInfo = async () => {
-    if (!idDocente || !editingExperiencia?.idExperienciaDocente) {
+    if (idDocente === null || editingExperiencia === null) {
       alert("No se puede actualizar la experiencia docente");
       return;
     }
 
     setLoading(true);
+
     try {
       const response = await fetch("/api/expdoc/expdocput", {
         method: "PUT",
@@ -115,15 +122,15 @@ const ExperienciaDocenteManager: React.FC = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          idDocente,
+          idDocente: idDocente,
           experienciasDocente: [
             {
-              idExperienciaDocente: editingExperiencia.idExperienciaDocente,
+              idExperienciaDocente: editingExperiencia.idExperiencia,
               materia: editingExperiencia.materia,
               calidad: editingExperiencia.calidad,
               universidad: editingExperiencia.universidad,
               concluidoEl: editingExperiencia.concluidoEl,
-            }
+            },
           ],
         }),
       });
@@ -133,6 +140,7 @@ const ExperienciaDocenteManager: React.FC = () => {
         setExperienciasDocente(updatedData.experienciasDocente);
         alert("Experiencia docente actualizada con éxito");
         setEditingExperiencia(null);
+        setIsModalOpen(false); // Cerrar la modal al actualizar
       } else {
         const errorData = await response.json();
         console.error("Error del servidor:", errorData);
@@ -146,22 +154,45 @@ const ExperienciaDocenteManager: React.FC = () => {
     }
   };
 
+  const handleOpenModal = (exp?: Experiencia) => {
+    if (exp) {
+      setEditingExperiencia(exp);
+      setIsEditModal(true);
+    } else {
+      setIsEditModal(false);
+      setNewExperiencia({
+        idExperiencia: 0,
+        materia: "",
+        calidad: "",
+        universidad: "",
+        concluidoEl: "",
+      });
+    }
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setEditingExperiencia(null);
+  };
+
   return (
-    <div>
-      <h1>Gestión de Experiencia Docente</h1>
-
-      {loading && <p>Cargando...</p>}
-
-      <h2>Experiencias actuales</h2>
+    <div className="experiencia-docente-container">
+      <h1 className="experiencia-docente-title">Gestión de Experiencia Docente</h1>
+  
+      {loading && <p className="experiencia-docente-loading">Cargando...</p>}
+  
+      <h2 className="experiencia-docente-subtitle">Experiencias actuales</h2>
       {experienciasDocente.length > 0 ? (
-        <ul>
+        <ul className="experiencia-docente-list">
           {experienciasDocente.map((exp) => (
-            <li key={exp.idExperienciaDocente}>
+            <li key={exp.idExperiencia} className="experiencia-docente-item">
               <strong>Materia:</strong> {exp.materia}, <strong>Calidad:</strong> {exp.calidad},{" "}
               <strong>Universidad:</strong> {exp.universidad}, <strong>Concluido el:</strong>{" "}
               {new Date(exp.concluidoEl).toLocaleDateString()}{" "}
               <button
-                onClick={() => setEditingExperiencia(exp)}
+                className="experiencia-docente-button editar-button"
+                onClick={() => handleOpenModal(exp)}
               >
                 Editar
               </button>
@@ -169,90 +200,106 @@ const ExperienciaDocenteManager: React.FC = () => {
           ))}
         </ul>
       ) : (
-        <p>No hay experiencias docentes registradas.</p>
+        <p className="experiencia-docente-empty">No hay experiencias docentes registradas.</p>
       )}
-
-      <h2>{editingExperiencia ? "Editar experiencia" : "Agregar nueva experiencia"}</h2>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          editingExperiencia ? handleUpdateInfo() : handleSaveInfo();
-        }}
+  
+      <button
+        className="experiencia-docente-button agregar-button"
+        onClick={() => handleOpenModal()}
       >
-        <div>
-          <label>Materia:</label>
-          <input
-            type="text"
-            value={editingExperiencia ? editingExperiencia.materia : newExperiencia.materia}
-            onChange={(e) => {
-              const value = e.target.value;
-              editingExperiencia
-                ? setEditingExperiencia((prev) => prev && { ...prev, materia: value })
-                : setNewExperiencia((prev) => ({ ...prev, materia: value }));
-            }}
-            required
-          />
+        Agregar nueva experiencia
+      </button>
+  
+      {isModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2 className="modal-title">
+              {isEditModal ? "Editar experiencia docente" : "Agregar nueva experiencia docente"}
+            </h2>
+            <form
+              className="experiencia-docente-form"
+              onSubmit={(e) => {
+                e.preventDefault();
+                isEditModal ? handleUpdateInfo() : handleSaveInfo();
+              }}
+            >
+              <div className="form-group">
+                <label className="form-label">Materia:</label>
+                <input
+                  className="form-input"
+                  type="text"
+                  value={isEditModal ? editingExperiencia?.materia : newExperiencia.materia}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    isEditModal
+                      ? setEditingExperiencia((prev) => prev && { ...prev, materia: value })
+                      : setNewExperiencia((prev) => ({ ...prev, materia: value }));
+                  }}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Calidad:</label>
+                <input
+                  className="form-input"
+                  type="text"
+                  value={isEditModal ? editingExperiencia?.calidad : newExperiencia.calidad}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    isEditModal
+                      ? setEditingExperiencia((prev) => prev && { ...prev, calidad: value })
+                      : setNewExperiencia((prev) => ({ ...prev, calidad: value }));
+                  }}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Universidad:</label>
+                <input
+                  className="form-input"
+                  type="text"
+                  value={isEditModal ? editingExperiencia?.universidad : newExperiencia.universidad}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    isEditModal
+                      ? setEditingExperiencia((prev) => prev && { ...prev, universidad: value })
+                      : setNewExperiencia((prev) => ({ ...prev, universidad: value }));
+                  }}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Fecha de conclusión:</label>
+                <input
+                  className="form-input"
+                  type="date"
+                  value={isEditModal ? editingExperiencia?.concluidoEl : newExperiencia.concluidoEl}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    isEditModal
+                      ? setEditingExperiencia((prev) => prev && { ...prev, concluidoEl: value })
+                      : setNewExperiencia((prev) => ({ ...prev, concluidoEl: value }));
+                  }}
+                  required
+                />
+              </div>
+              <button className="experiencia-docente-button guardar-button" type="submit">
+                {isEditModal ? "Actualizar" : "Guardar"}
+              </button>
+              <button
+                className="experiencia-docente-button cancelar-button"
+                type="button"
+                onClick={handleCloseModal}
+              >
+                Cancelar
+              </button>
+            </form>
+          </div>
         </div>
-        <div>
-          <label>Calidad:</label>
-          <input
-            type="text"
-            value={editingExperiencia ? editingExperiencia.calidad : newExperiencia.calidad}
-            onChange={(e) => {
-              const value = e.target.value;
-              editingExperiencia
-                ? setEditingExperiencia((prev) => prev && { ...prev, calidad: value })
-                : setNewExperiencia((prev) => ({ ...prev, calidad: value }));
-            }}
-            required
-          />
-        </div>
-        <div>
-          <label>Universidad:</label>
-          <input
-            type="text"
-            value={editingExperiencia ? editingExperiencia.universidad : newExperiencia.universidad}
-            onChange={(e) => {
-              const value = e.target.value;
-              editingExperiencia
-                ? setEditingExperiencia((prev) => prev && { ...prev, universidad: value })
-                : setNewExperiencia((prev) => ({ ...prev, universidad: value }));
-            }}
-            required
-          />
-        </div>
-        <div>
-          <label>Fecha de conclusión:</label>
-          <input
-            type="date"
-            value={editingExperiencia ? editingExperiencia.concluidoEl : newExperiencia.concluidoEl}
-            onChange={(e) => {
-              const value = e.target.value;
-              editingExperiencia
-                ? setEditingExperiencia((prev) => prev && { ...prev, concluidoEl: value })
-                : setNewExperiencia((prev) => ({ ...prev, concluidoEl: value }));
-            }}
-            required
-          />
-        </div>
-        <button type="submit" disabled={loading}>
-          {loading
-            ? "Guardando..."
-            : editingExperiencia
-            ? "Actualizar experiencia"
-            : "Guardar experiencia"}
-        </button>
-        {editingExperiencia && (
-          <button
-            type="button"
-            onClick={() => setEditingExperiencia(null)}
-          >
-            Cancelar
-          </button>
-        )}
-      </form>
+      )}
     </div>
   );
+  
 };
 
 export default ExperienciaDocenteManager;

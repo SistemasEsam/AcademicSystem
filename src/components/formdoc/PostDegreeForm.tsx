@@ -200,10 +200,10 @@ const FormularioDocente: React.FC = () => {
   return (
     <div className="postdegreeform-container">
       <h3 className="form-title">Información del Docente</h3>
-      <button className="toggle-button" onClick={toggleShowAll}>
+      <button className="toggle-button1" onClick={toggleShowAll}>
         {showAll ? "Mostrar menos" : "Mostrar más"}
       </button>
-      <button className="create-button" onClick={handleCreate}>
+      <button className="create-button1" onClick={handleCreate}>
         Crear Nuevo Estudio
       </button>
       <p hidden>ID Docente: {idDocente}</p>
@@ -242,7 +242,7 @@ const FormularioDocente: React.FC = () => {
               </p>
             </div>
             <button
-              className="edit-button"
+              className="edit-button2"
               onClick={() => setSelectedEstudio(estudio)}
             >
               Editar
