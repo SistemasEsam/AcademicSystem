@@ -8,7 +8,7 @@ export async function POST({ request }: APIContext) {
   try {
     const formData = await request.formData();
     // Extraer los datos del formulario
-    const usuario = formData.get("usuario")?.toString(); // Nuevo campo
+    const usuario = formData.get("usuario")?.toString(); 
     const password = formData.get("password")?.toString();
     const nombres = formData.get("nombres")?.toString();
     const apellidoPaterno = formData.get("apellidoPaterno")?.toString();
@@ -78,9 +78,21 @@ export async function POST({ request }: APIContext) {
          );
        }
      }
+     
     // Conectar a la base de datos e insertar los datos
     const db = await connectToDatabase();
+    const checkUserQuery = `SELECT COUNT(*) AS count FROM docentes WHERE usuario = ?`;
+    const [rows]: any = await db.execute(checkUserQuery, [usuario.trim()]);
+    console.log(rows); // Debug para verificar la estructura de las filas
+    const count = rows[0]?.count || 0;
 
+    if (count > 0) {
+      db.end();
+      return new Response(
+        JSON.stringify({ error: "El usuario que ingreso ya está registrado, elija otra usuario" }),
+        { status: 400 }
+      );
+    }
     const query = `
       INSERT INTO docentes (
         usuario, password, nombres, apellidoPaterno, apellidoMaterno, correo,
@@ -103,7 +115,6 @@ export async function POST({ request }: APIContext) {
       Number(idSector),
       imagePath || null, // Guardar la ruta de la imagen en la base de datos
       "postulante",
- 
     ];
 
     await db.execute(query, values);

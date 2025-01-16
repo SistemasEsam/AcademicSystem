@@ -1,0 +1,105 @@
+---
+import LayoutForm from "../../../layouts/LayoutForm.astro";
+import "../../../styles/archivosDocentes.css"; 
+
+interface ArchivoDocente {
+  idArchivo: number;
+  fechaSubida: string;
+  rutaArchivo: string;
+  tipoArchivo: string | null;
+  nombreArchivo: string;
+}
+
+interface DocenteData {
+  nombres: string;
+  archivosDocente: ArchivoDocente[];
+}
+
+// Categorías predefinidas
+const categoriasPredefinidas = ["carnet","certificados","diplomados","doctorados","maestrías","tituloProvisionN"];
+
+// Obtener el parámetro idDocente desde Astro.params
+const { idDocente } = Astro.params;
+
+// URL de la API dinámica
+const apiUrl = `http://localhost:4321/api/docentes/${idDocente}`;
+
+let docenteData: DocenteData | null = null;
+
+try {
+  // Realizar la petición a la API
+  const response = await fetch(apiUrl);
+
+  // Verificar si la respuesta es válida
+  if (!response.ok) {
+    throw new Error(
+      `Error al obtener los datos del docente: ${response.statusText}`
+    );
+  }
+
+  // Parsear los datos como JSON
+  docenteData = await response.json();
+
+} catch (error) {
+  console.error("Hubo un problema al obtener los datos del docente:", error);
+}
+
+// Redirigir si el idDocente no es válido
+if (!idDocente || !docenteData) {
+  return Astro.redirect("/404");
+}
+
+// Agrupar archivos por categoría
+const archivosPorCategoria = docenteData.archivosDocente.reduce<Record<string, ArchivoDocente[]>>((acc, archivo) => {
+  const categoria = archivo.tipoArchivo || "Sin categoría";
+  if (!acc[categoria]) {
+    acc[categoria] = [];
+  }
+  acc[categoria].push(archivo);
+  return acc;
+}, {});
+
+
+// Asegurar que todas las categorías predefinidas estén presentes
+categoriasPredefinidas.forEach((categoria) => {
+  if (!archivosPorCategoria[categoria]) {
+    archivosPorCategoria[categoria] = [];
+  }
+});
+---
+
+<LayoutForm title={`Archivos de ${docenteData.nombres}`}>
+  <div class="back-button-container">
+    <a href="/docentes" class="backbutton">
+      <img src="/images/iconos/back.png" alt="Regresar" class="back-icon" />
+    </a>
+  </div>
+
+  <div class="docente-info">
+    <h1>Archivos Subidos por: {docenteData.nombres}</h1>
+  </div>
+
+  <div class="archivos-container">
+    {Object.entries(archivosPorCategoria).map(([categoria, archivos]) => (
+      <section class="categoria">
+        <h2>{categoria}</h2>
+        {archivos.length > 0 ? (
+          <ul class="archivo-lista">
+            {archivos.map((archivo) => (
+              <li>
+                <a href={archivo.rutaArchivo} target="_blank" class="archivo-link">
+                  {archivo.nombreArchivo}
+                </a>
+                <p class="archivo-fecha">
+                  Subido el: {new Date(archivo.fechaSubida).toLocaleString()}
+                </p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="mensaje-vacio">Todavía no hay archivos subidos</p>
+        )}
+      </section>
+    ))}
+  </div>
+</LayoutForm>

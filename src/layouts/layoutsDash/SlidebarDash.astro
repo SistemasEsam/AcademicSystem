@@ -6,7 +6,20 @@ const handleNavigation = (section: string) => {
 };
 
 ---
+<script>
+  window.onload = () => {
+    const docenteNombre = localStorage.getItem("docenteNombre");
+    const docenteApellidoPaterno = localStorage.getItem("docenteApellidoPaterno");
 
+    const docenteNombreElement = document.getElementById("docenteNombre");
+
+    // Aseguramos que el nombre no sea null y que el DOM esté listo
+    if (docenteNombreElement && docenteNombre && docenteApellidoPaterno) {
+      docenteNombreElement.textContent = `${docenteNombre} ${docenteApellidoPaterno}`;
+      docenteNombreElement.style.display = 'inline'; 
+    }
+  };
+</script>
 <div>
   <input type="checkbox" class="menu__checkbox" id="sideview-crawl" />
   <div class="side-view">
@@ -25,7 +38,7 @@ const handleNavigation = (section: string) => {
       </div>
       <div class="user-profile">
         <h3 class="admin-name">
-          <span id="docenteNombre">Cargando...</span>
+          <span id="docenteNombre" class="hidden">Cargando...</span>
         </h3>
       </div>
       <ul class="side-nav">
@@ -33,7 +46,7 @@ const handleNavigation = (section: string) => {
           class={visibleSection === 'main' ? 'side-nav__active' : ''} 
           onclick={`handleNavigation('main')`}
         >
-          <a href="#">
+          <a href="dashboardDoc/perfil/perfil">
             <span>Perfil</span>
           </a>
         </li>
@@ -170,17 +183,9 @@ const handleNavigation = (section: string) => {
 .menu__checkbox:checked ~ .side-view .side-nav li:not(:last-child) {
   margin-bottom: 3.5rem;
 }
+.hidden {
+    display: none;
+  }
 
 </style>
-<script>
-  // Accede al localStorage en el cliente
-  const docenteNombre = localStorage.getItem("docenteNombre");
-  const docenteApellidoPaterno = localStorage.getItem("docenteApellidoPaterno");
 
-  // Comprobamos que el elemento con el id 'docenteNombre' exista
-  const docenteNombreElement = document.getElementById("docenteNombre");
-
-  if (docenteNombreElement && docenteNombre && docenteApellidoPaterno) {
-    docenteNombreElement.textContent = `${docenteNombre} ${docenteApellidoPaterno}`;
-  }
-</script>

@@ -38,7 +38,8 @@ export async function POST({ request }: APIContext) {
         idDocente:docente.idDocente,
         email: docente.usuario,
         nombre: docente.nombres,
-        apellidoPaterno:docente.apellidoPaterno, // Almacena el nombre del docente
+        apellidoPaterno:docente.apellidoPaterno,
+        idRol:docente.idRol, 
       },  
       JWT_SECRET,                  
       { expiresIn: '1h' }         

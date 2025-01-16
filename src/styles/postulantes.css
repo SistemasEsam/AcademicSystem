@@ -259,7 +259,7 @@
 .schedule-meeting-container .zoom-input,
 .schedule-meeting-container .react-datepicker-wrapper {
   width: 100%; /* Hacerlos del mismo tamaño */
-  max-width: 500px; /* Limitar el ancho máximo */
+  max-width: 800px; /* Limitar el ancho máximo */
   padding: 10px;
   padding-bottom: 15px;
   margin-top: 20px;
@@ -322,6 +322,26 @@
     margin-top: 15px; /* Espacio entre el mes y los días */
 }
 
+/* Estilos para el botón "Ver Archivos" */
+.view-files {
+  text-align: center; 
+  margin-top: 20px; 
+}
+
+.view-files .button {
+  background-color: #007bff; 
+  color: white; 
+  padding: 10px 20px; 
+  font-size: 16px; 
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease; 
+}
+
+.view-files .button:hover {
+  background-color: #0056b3; 
+  cursor: pointer; 
+}
 
 
   

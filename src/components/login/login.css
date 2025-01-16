@@ -1,0 +1,87 @@
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 900px;
+  height: 750px;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-bg {
+  padding-top: 80px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  z-index: 0;
+}
+
+.login-form {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra los elementos horizontalmente */
+  gap: 1.5rem; /* Separación general entre los elementos */
+  width: 50%;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.login-input {
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%; /* Tamaño fijo */
+  max-width: 410px; /* Máximo ancho */
+}
+
+.login-button {
+  padding: 1rem;
+  font-size: 1.2rem;
+  color: white;
+  background-color: #0b5f9a; /* Color más fuerte */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%; /* Mismo tamaño que los inputs */
+  max-width: 435px; /* Máximo ancho igual que los inputs */
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.login-button:hover {
+  background-color: #1b74b3;
+  transform: scale(1.02);
+}
+
+.login-error {
+  color: red;
+  font-size: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.register-text {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.register-link {
+  color: #0b5f9a;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.register-link:hover {
+  color: #1b74b3;
+}

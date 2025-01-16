@@ -39,6 +39,7 @@ if (!idPostulante) {
 ---
 
 <LayoutForm title={`Sistema Académico ESAM | ${docenteData.nombres}`}>
+  {docenteData.estado === "postulante" ? (
   <div class="back-button-container">
     <a href="/postulantes" class="backbutton">
       <img src="/images/iconos/back.png" alt="Regresar" class="back-icon" />
@@ -94,6 +95,7 @@ if (!idPostulante) {
             />
           </div>
       )}
+        
     </div>
 
     <!-- Columna derecha: Aprobar y Rechazar -->
@@ -101,9 +103,32 @@ if (!idPostulante) {
       <AprobarRechazarDocente
         client:only="react"
         postulanteId={docenteData.idDocente}
+        telefono={docenteData.telefono}
+        documentoUrl={"https://drive.google.com/uc?export=download&id=1as3qQpyJV1iZv-n95kdBswfqfTFwQmZn"}
       />
     </div>
+   
   </div>
+   ) : (
+   <div class="back-button-container">
+    <a href="/docentes" class="backbutton">
+      <img src="/images/iconos/back.png" alt="Regresar" class="back-icon" />
+    </a>
+  </div>
+   <div class="buttons-container">
+    
+    <div class="left-buttons">
+      <div class="download-pdf">
+        <PostulantePDF client:only="react" postulante={docenteData} />
+      </div>
+      <div class="view-files">
+          <a href={`/docentes/info/${docenteData.idDocente}`}class="button">
+            Ver Archivos
+          </a>
+        </div>
+    </div>
+  </div>
+   )}
   <section class="container">
     <!-- Información del postulante -->
     <PostulanteInfo postulante={docenteData} />

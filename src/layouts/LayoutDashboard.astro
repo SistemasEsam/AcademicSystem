@@ -1,7 +1,7 @@
 ---
-import Header from "../layouts/layoutsDash/HeaderDash.astro";
-import Footer from "../layouts/layoutsDash/FooterDash.astro";
-import SlidebarDash from "./layoutsDash/SlidebarDash.astro";
+import HeaderDash from "../layouts/layoutsDash/HeaderDash";
+import Footerdash from "../layouts/layoutsDash/FooterDash";
+import Slidebar from "../layouts/layoutsDash/Slidebar";
 
 ---
 
@@ -11,17 +11,17 @@ import SlidebarDash from "./layoutsDash/SlidebarDash.astro";
     <title>Dashboard</title>
   </head>
   <body>
-    <Header />
+    <HeaderDash client:load  />
 
     <div class="layout">
-      <SlidebarDash  />
+      <Slidebar client:load  />
 
       <main class="contenidoPrincipal">
         <slot />
       </main>
     </div>
 
-    <Footer />
+    <Footerdash client:load />
   </body>
 </html>
 
@@ -33,10 +33,11 @@ import SlidebarDash from "./layoutsDash/SlidebarDash.astro";
 
   body {
     font-family: "Futura", sans-serif;
-    background-color: white;
+    background-color: rgb(255, 0, 0);
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 400px;
+    width: 100%;
     overflow: hidden;
   }
 
@@ -53,7 +54,7 @@ import SlidebarDash from "./layoutsDash/SlidebarDash.astro";
   }
 
   .contenidoPrincipal {
-    margin-left: 250px; /* Ajusta según el ancho del slidebar */
+    margin-left: 0px; /* Ajusta según el ancho del slidebar */
   }
 
   .contenidoPrincipal.slidebar-closed {

@@ -14,8 +14,9 @@ export const ResultadosDocentes: React.FC<ResultProps> = ({
   nombres,
   correo,
   numeroDocumento,
-  telefono,
+  telefono, 
 }) => {
+  
   return (
     <div className="v-card v-theme--light v-card--density-default v-card--variant-elevated mb-4">
       <div className="v-card__loader">

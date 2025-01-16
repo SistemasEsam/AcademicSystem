@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import HeroTitle from "../../components/ui/HeroTitle.astro";
+import { BuscarDocente } from "../../components/docentes/docentesAprobados/BuscarDocentes";
 ---
 
 <Layout
@@ -9,4 +10,5 @@ import HeroTitle from "../../components/ui/HeroTitle.astro";
   description="Sistema académico de ESAM para contratación y postulación de docentes."
 >
   <HeroTitle titulo="Docentes" />
+  <BuscarDocente  client:load/>
 </Layout>

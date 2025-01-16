@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
-import { Modal } from '../util/modale';// Asegúrate de importar el modal reutilizable
+import { Modal } from '../util/modale'; 
 import "../../styles/postulantes.css";
 
-export const AprobarRechazarDocente = ({ postulanteId }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false); // Para manejar la apertura del modal
-  const [action, setAction] = useState(""); // Para saber si se va a aprobar o rechazar
+export const AprobarRechazarDocente = ({ postulanteId, documentoUrl, telefono }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [action, setAction] = useState("");
 
   const handleAction = (actionType) => {
     setAction(actionType);
-    setIsModalOpen(true); // Abrir el modal
+    setIsModalOpen(true); 
   };
 
   const handleConfirm = async () => {
     try {
+      // Actualizar el estado del docente (aprobado o rechazado)
       const response = await fetch("/api/docentes/updateEstadoDocente", {
         method: "PUT",
         headers: {
@@ -25,8 +26,28 @@ export const AprobarRechazarDocente = ({ postulanteId }) => {
       });
 
       const responseData = await response.json();
+
       if (response.ok) {
         alert(`El docente ha sido ${action === "rechazado" ? "rechazado" : "aprobado"} exitosamente.`);
+
+        // Si la acción es "aprobado", enviar mensaje de WhatsApp y correo
+        if (action === "aprobado") {
+          // 1. Enviar mensaje de WhatsApp
+          const mensajeWhatsApp = `Es para ESAM una satisfacción su integración al plantel docente, usted ha sido ${action === "aprobado" ? "aprobado" : "rechazado"}. Para completar su proceso de incorporación, remita los documentos requeridos del siguiente enlace : ${documentoUrl}`;
+          const linkWhatsApp = `https://wa.me/${telefono}?text=${encodeURIComponent(mensajeWhatsApp)}`;
+          window.open(linkWhatsApp, "_blank");
+
+          // 2. Enviar correo con enlace de descarga del documento
+          await fetch("http://localhost:3001/send-email-docente", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              action, 
+              documentoUrl,
+              postulanteId, 
+            }),
+          });
+        }
       } else {
         alert(`Hubo un problema al actualizar el estado del docente: ${responseData.error}`);
       }
@@ -34,12 +55,12 @@ export const AprobarRechazarDocente = ({ postulanteId }) => {
       console.error("Error al actualizar el estado del docente:", error);
       alert("No se pudo procesar la solicitud. Intenta nuevamente.");
     } finally {
-      setIsModalOpen(false); // Cerrar el modal después de la acción
+      setIsModalOpen(false); 
     }
   };
 
   const handleCancel = () => {
-    setIsModalOpen(false); // Cerrar el modal sin hacer nada
+    setIsModalOpen(false); 
   };
 
   return (
@@ -64,7 +85,6 @@ export const AprobarRechazarDocente = ({ postulanteId }) => {
         <span className="button-text">Rechazar</span>
       </button>
 
-      {/* Modal */}
       <Modal isOpen={isModalOpen} onClose={handleCancel} title="Confirmación de acción">
         <p>¿Estás seguro de {action === "aprobado" ? "aprobar" : "rechazar"} este docente?</p>
         <div className="modal-buttons">

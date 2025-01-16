@@ -29,7 +29,41 @@ interface Cursos {
   pais: string;
   anio: string;
 }
-
+interface ExperienciasD{
+  calidad:string;
+  materia:string;
+  concluidoEl:number;
+  universidad:string;
+}
+interface Idiomas{
+  oral:string;
+  idioma:string;
+  escucha:string;
+  lectura:string;
+  escritura:String;
+}
+interface ExperienciasL{
+nombreEmpresa:string;
+cargo:string;
+ciudad:string;
+fechaInicio:string;
+fechaFinal:string;
+pais:string;
+descripcion:string;
+nombreCompleto:string;
+cargoR:string;
+numeroContacto:string;
+}
+interface HabilidadesB{
+  habilidad:string;
+}
+interface PublicacionesI{
+nombre:string;
+enlaceEditorial:string;
+pais:string;
+fecha:string;
+tipoPublicacion:string;
+}
 interface Postulante {
   nombres: string;
   correo: string;
@@ -40,6 +74,11 @@ interface Postulante {
   cursos: Cursos[];
   fotografia:string;
   estudiossuperiores:EstudiosS[];
+  experienciasdocentes:ExperienciasD[];
+  idiomas:Idiomas[];
+  experienciaslaborales:ExperienciasL[];
+  habilidades_blandas:HabilidadesB[];
+  publicacionesintelectuales:PublicacionesI[];
 }
 
 const { postulante } = Astro.props as { postulante: Postulante };
@@ -99,8 +138,9 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
           </ul>
         )}
 
-        <h2>Cursos</h2>
+        
         {postulante.cursos && postulante.cursos.length > 0 && (
+          <h2>Cursos</h2>
           <ul>
             {postulante.cursos.map((cursos) => (
               <li>
@@ -113,5 +153,124 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
             ))}
           </ul>
         )}
+        
+         {
+           postulante.experienciasdocentes && postulante.experienciasdocentes.length > 0 && (
+           <h2>Experiencias Docentes</h2>
+             <ul>
+               {postulante.experienciasdocentes.map((experienciasd) => (
+                 <li>
+                   <p>
+                     <strong>Calidad:</strong> {experienciasd.calidad}
+                   </p>
+                   <p>
+                     <strong>Materia:</strong> {experienciasd.materia}
+                   </p>
+                   <p>
+                     <strong>Concluido:</strong> {experienciasd.concluidoEl}
+                   </p>
+                   <p>
+                     <strong>Universidad:</strong> {experienciasd.universidad}
+                   </p>
+                 </li>
+               ))}
+             </ul>
+           )
+         }
+          
+           {
+             postulante.idiomas && postulante.idiomas.length > 0 && (
+             <h2>Idiomas</h2>
+               <ul>
+                 {postulante.idiomas.map((idiomas) => (
+                   <li>
+                     <p>
+                       <strong>Idioma:</strong> {idiomas.idioma}
+                     </p>
+                     <p>
+                       <strong>Oral:</strong> {idiomas.oral}
+                     </p>
+                     <p>
+                       <strong>Escucha:</strong> {idiomas.escucha}
+                     </p>
+                     <p>
+                       <strong>Lectura:</strong> {idiomas.lectura}
+                     </p>
+                     <p>
+                       <strong>Escritura:</strong> {idiomas.escritura}
+                     </p>
+                   </li>
+                 ))}
+               </ul>
+             )
+           }
+            {
+              postulante.experienciaslaborales && postulante.experienciaslaborales.length > 0 && (
+              <h2>Experiencia Laboral</h2>
+                <ul>
+                  {postulante.experienciaslaborales.map((experienciasL) => (
+                    <li>
+                      <p>
+                        <strong>Empresa:</strong> {experienciasL.nombreEmpresa}
+                      </p>
+                      <p>
+                        <strong>Cargo:</strong> {experienciasL.cargo}
+                      </p>
+                      <p>
+                        <strong>Ciudad:</strong> {experienciasL.ciudad}
+                      </p>
+                      <p>
+                        <strong>Fecha de Inicio:</strong> {experienciasL.fechaInicio}
+                      </p>
+                      <p>
+                        <strong>Fecha Final:</strong> {experienciasL.fechaFinal}
+                      </p>
+                      <p>
+                        <strong>Pais:</strong> {experienciasL.pais}
+                      </p>
+                      <p>
+                        <strong>Descripcion:</strong> {experienciasL.descripcion}
+                      </p>
+                      <p>
+                        <strong>Referencias: </strong>
+                      </p>
+                      <p>
+                        <strong>Nombre de referencia:</strong> {experienciasL.nombreCompleto}
+                      </p>
+                      <p>
+                        <strong>Cargo:</strong> {experienciasL.cargoR}
+                      </p>
+                      <p>
+                        <strong>Numero:</strong> {experienciasL.numeroContacto}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              )
+            }
+                 {postulante.habilidades_blandas && postulante.habilidades_blandas.length > 0 && (
+                  <h2>Habilidades Blandas</h2>
+                  <ul>
+                    {postulante.habilidades_blandas.map((habilidadesB) => (
+                      <li>
+                        <p><strong>Habilidad:</strong> {habilidadesB.habilidad}</p>      
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                 {postulante.publicacionesintelectuales && postulante.publicacionesintelectuales.length > 0 && (
+                  <h2>Publicaciones Intelectuales</h2>
+                  <ul>
+                    {postulante.publicacionesintelectuales.map((publicacionesI) => (
+                      <li>
+                        <p><strong>Nombre:</strong> {publicacionesI.nombre}</p>
+                        <p><strong>Enlace de editorial:</strong> {publicacionesI.enlaceEditorial}</p>
+                        <p><strong>País:</strong> {publicacionesI.pais}</p>
+                        <p><strong>Fecha:</strong> {publicacionesI.fecha}</p>
+                        <p><strong>Tipo de publicacion:</strong> {publicacionesI.tipoPublicacion}</p>
+                      </li>
+                    ))}
+                  </ul>
+                )}
       </div>
     </div>

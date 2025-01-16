@@ -1,8 +1,7 @@
 
 import React from "react";
-import { PDFDownloadLink, Document, Page, View, Text, Image, StyleSheet } from "@react-pdf/renderer";
+import { PDFDownloadLink, Document, Page, View, Text, Image, StyleSheet, Font} from "@react-pdf/renderer";
 import "../../styles/postulantes.css";
-
 
 const styles = StyleSheet.create({
   page: {
@@ -42,6 +41,7 @@ const styles = StyleSheet.create({
   leftColumnText: {
     marginVertical: 5,
     fontSize: 11,
+   
   },
   rightColumn: {
     width: "65%",
@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
   rightColumnText: {
     marginVertical: 8,
     fontSize: 12,
+    //fontFamily: 'Helvetica-Bold',
   },
   listItem: {
     marginBottom: 10,
@@ -132,6 +133,87 @@ const PDFContent = ({ postulante }) => (
               <Text style={styles.rightColumnText}>Año: {cursos.anio}</Text>
             </View>
           ))}
+            {/* Experiencias Docentes */}
+            
+          {postulante.experienciasdocentes && postulante.experienciasdocentes.length > 0 && (
+            <View>
+              <Text style={styles.rightColumnHeading}>Experiencias Docentes</Text>
+              {postulante.experienciasdocentes.map((experienciasd, index) => (
+                <View style={styles.listItem} key={index} wrap={false}>
+                  <Text style={styles.rightColumnText}>Calidad: {experienciasd.calidad}</Text>
+                  <Text style={styles.rightColumnText}>Materia: {experienciasd.materia}</Text>
+                  <Text style={styles.rightColumnText}>Concluido: {experienciasd.concluidoEl}</Text>
+                  <Text style={styles.rightColumnText}>Universidad: {experienciasd.universidad}</Text>
+                </View>
+              ))}
+            </View>
+          )}
+             {/* Idiomas */}
+            
+          {postulante.idiomas && postulante.idiomas.length > 0 && (
+            <View>
+               <Text style={styles.rightColumnHeading}>Idiomas</Text>
+              {postulante.idiomas.map((idiomas, index) => (
+                <View style={styles.listItem} key={index} wrap={false}>
+                  <Text style={styles.rightColumnText}>Idioma: {idiomas.idioma}</Text>
+                  <Text style={styles.rightColumnText}>Oral: {idiomas.oral}</Text>
+                  <Text style={styles.rightColumnText}>Escucha: {idiomas.escucha}</Text>
+                  <Text style={styles.rightColumnText}>Lectura:{idiomas.lectura}</Text>
+                  <Text style={styles.rightColumnText}>Escritura: {idiomas.escritura}</Text>
+                </View>
+              ))}
+            </View>
+          )}
+            {/* Experiencia Laboral */}
+           
+          {postulante.experienciaslaborales && postulante.experienciaslaborales.length > 0 && (
+            <View>
+               <Text style={styles.rightColumnHeading}>Experiencia Laboral</Text>
+              {postulante.experienciaslaborales.map((experienciasL, index) => (
+                <View style={styles.listItem} key={index} wrap={false}>
+                  <Text style={styles.rightColumnText}>Empresa: {experienciasL.nombreEmpresa}</Text>
+                  <Text style={styles.rightColumnText}>Cargo: {experienciasL.cargo}</Text>
+                  <Text style={styles.rightColumnText}>Ciudad: {experienciasL.ciudad}</Text>
+                  <Text style={styles.rightColumnText}>Fecha de Inicio: {experienciasL.fechaInicio}</Text>
+                  <Text style={styles.rightColumnText}>Fecha Final: {experienciasL.fechaFinal}</Text>
+                  <Text style={styles.rightColumnText}>Pais: {experienciasL.pais}</Text>
+                  <Text style={styles.rightColumnText}>Descripcion: {experienciasL.descripcion}</Text>
+                  <Text style={styles.rightColumnText}>Referencias:</Text>
+                  <Text style={styles.rightColumnText}>Nombre de referencia: {experienciasL.nombreCompleto}</Text>
+                  <Text style={styles.rightColumnText}>Cargo: {experienciasL.cargoR}</Text>
+                  <Text style={styles.rightColumnText}>NÚmero: {experienciasL.numeroContacto}</Text>
+                </View>
+              ))}
+            </View>
+          )}
+              {/* Habilidades */}
+             
+          {postulante.habilidades_blandas && postulante.habilidades_blandas.length > 0 && (
+            <View>
+               <Text style={styles.rightColumnHeading}>Habilidades Blandas</Text>
+              {postulante.habilidades_blandas.map((habilidadesB, index) => (
+                <View style={styles.listItem} key={index} wrap={false}>
+                  <Text style={styles.rightColumnText}>Habilidad:{habilidadesB.habilidad}</Text>
+                </View>
+              ))}
+            </View>
+          )}
+                {/* Publicaciones Intelectuales */}
+               
+          {postulante.publicacionesintelectuales && postulante.publicacionesintelectuales.length > 0 && (          
+            <View>
+               <Text style={styles.rightColumnHeading}> Publicaciones Intelectuales </Text>
+              {postulante.publicacionesintelectuales.map((publicacionesI, index) => (
+                <View style={styles.listItem} key={index} wrap={false}>
+                  <Text style={styles.rightColumnText}>Nombre: {publicacionesI.nombre}</Text>
+                  <Text style={styles.rightColumnText}>Enlace de editorial: {publicacionesI.enlaceEditorial}</Text>
+                  <Text style={styles.rightColumnText}>Pais: {publicacionesI.pais}</Text>
+                  <Text style={styles.rightColumnText}>Fecha: {publicacionesI.fecha}</Text>
+                  <Text style={styles.rightColumnText}>Tipo: {publicacionesI.tipoPublicacion}</Text>
+                </View>
+              ))}
+            </View>
+          )}
 
         </View>
       </View>

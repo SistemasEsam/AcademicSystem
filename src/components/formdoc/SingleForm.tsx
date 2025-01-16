@@ -122,24 +122,7 @@ export const SingleForm = () => {
                 <h1 className="title-homepage title-homepage--lg">
                   Formulario Registro Docentes
                 </h1>
-                <div className="consultation__description">
-                  <p className="text-homepage text-homepage--lg">
-                    <b>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Similique quibusdam a odit reprehenderit, quam deleniti,
-                      suscipit accusamus consequuntur, nulla minima aliquid non
-                      optio maxime facilis! Animi consequuntur ipsam voluptates
-                      suscipit.
-                    </b>
-                  </p>
-                  <p className="text-homepage text-homepage--sm">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Dolores nobis ratione enim deleniti molestiae inventore
-                    quasi rerum? Quidem, obcaecati a provident illo magnam quod
-                    consequuntur, at recusandae itaque nulla eveniet.
-                  </p>
-                  <br />
-                </div>
+            
               </div>
               <div className="col-md-6 col-sm-12">
                 <form encType="multipart/form-data" onSubmit={handleSubmit}>

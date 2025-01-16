@@ -1,55 +1,25 @@
-import React, { useState } from "react";
-
-const styles = {
-  imageContainer: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "900px", // Ajustando el ancho
-    height: "800px",
-    overflow: "hidden",
-    position: "relative",
-  },
-  formContainer: {
-    position: "absolute",
-    top: "40%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    display: "flex",
-    flexDirection: "column",
-    gap: "1.5rem", // Espaciado uniforme entre inputs y botón
-    width: "50%", // Ancho más amplio para el formulario
-  },
-  input: {
-    padding: "0.8rem",
-    fontSize: "1rem",
-    borderRadius: "8px",
-    border: "1px solid #ccc",
-    width: "85%", // Asegura que los inputs ocupen todo el ancho del contenedor
-  },
-  button: {
-    padding: "0.8rem",
-    fontSize: "1rem",
-    color: "white",
-    backgroundColor: "#007bff",
-    border: "none",
-    borderRadius: "8px",
-    cursor: "pointer",
-  },
-  buttonHover: {
-    backgroundColor: "#0056b3",
-  },
-  errorMessage: {
-    color: "red",
-    fontSize: "1rem",
-    marginTop: "1rem",
-  },
-};
+import React, { useState, useEffect  } from "react";
+import jwt_decode from "jwt-decode"; 
+import "./login.css";
 
 export const Login = () => {
   const [usuario, setUsuario] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    // Verificar si el token ya existe en el localStorage
+    const token = localStorage.getItem("token");
+    const idRol = localStorage.getItem("idRol");
+    if (token) {
+      if(idRol==4){
+        // Redirigir al dashboard si el token existe
+        window.location.href = "/dashboardDoc";
+      } else if(idRol==2 || idRol==3) {
+          window.location.href = "/";
+      }
+    }
+  }, []); // Solo se ejecuta al montar el componente
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -67,9 +37,15 @@ export const Login = () => {
       if (response.ok) {
         // Guardar el token en localStorage
         localStorage.setItem("token", data.token);
-
-        // Redirigir al dashboard
-        window.location.href = "/dashboardDoc";
+        const token = localStorage.getItem("token");
+        const decodedToken = jwt_decode(token);
+        const idRol=decodedToken.idRol;
+        if(idRol==4){
+          // Redirigir al dashboard si el token existe
+          window.location.href = "/dashboardDoc";
+        } else if(idRol==2 || idRol==3) {
+            window.location.href = "/";
+        }    
       } else {
         setError(data.error || "Usuario o contraseña incorrectos.");
       }
@@ -78,41 +54,40 @@ export const Login = () => {
       setError("Hubo un error al procesar la solicitud.");
     }
   };
-
+  const handleRegister = () => {
+   
+    window.location.href = "/docentes/formulario-registro";
+  };
   return (
-    <div style={styles.imageContainer}>
-      <img src="/images/esam-cover.jpeg" alt="ESAM Cover" />
-      <div style={styles.formContainer}>
+    <div className="login-container">
+      <img className="login-bg" src="/images/esam-cover.jpeg" alt="ESAM Cover" />
+      <div className="login-form">
         <form onSubmit={handleLogin}>
           <input
             type="text"
             placeholder="Usuario"
             value={usuario}
             onChange={(e) => setUsuario(e.target.value)}
-            style={styles.input}
+            className="login-input"
           />
           <input
             type="password"
             placeholder="Contraseña"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            style={styles.input}
+            className="login-input"
           />
-          <button
-            type="submit"
-            style={styles.button}
-            onMouseOver={(e) =>
-              (e.target.style.backgroundColor = styles.buttonHover.backgroundColor)
-            }
-            onMouseOut={(e) =>
-              (e.target.style.backgroundColor = styles.button.backgroundColor)
-            }
-            onClick={handleLogin}
-          >
+          <button type="submit" className="login-button">
             Iniciar Sesión
           </button>
         </form>
-        {error && <p style={styles.errorMessage}>{error}</p>} {/* Mostrar mensaje de error */}
+        {error && <p className="login-error">{error}</p>}
+        <p className="register-text">
+          ¿No tienes una cuenta?{" "}
+          <span className="register-link" onClick={handleRegister}>
+            REGÍSTRATE
+          </span>
+        </p>
       </div>
     </div>
   );
