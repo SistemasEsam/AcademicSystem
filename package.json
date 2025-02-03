@@ -3,12 +3,12 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-  "dev": "astro dev",
-  "start": "astro dev",
-  "build": "astro check && astro build",
-  "preview": "astro preview",
-  "vercel-build": "npm install && astro build"
-},
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "vercel-build": "npm install && npm run build"
+  },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/cloudflare": "^11.2.0",
@@ -44,7 +44,6 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/jsonwebtoken": "^9.0.7",
-    "@types/node": "^22.9.0",
-    
+    "@types/node": "^22.9.0"
   }
 }
