@@ -44,6 +44,14 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/jsonwebtoken": "^9.0.7",
-    "@types/node": "^22.9.0"
-  }
+    "@types/node": "^22.9.0",
+     "astro": "^4.0.0"
+  },
+"scripts": {
+  "dev": "astro dev",
+  "start": "astro dev",
+  "build": "astro check && astro build",
+  "preview": "astro preview",
+  "vercel-build": "npm install && astro build"
+}
 }
