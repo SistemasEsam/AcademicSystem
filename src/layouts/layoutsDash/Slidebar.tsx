@@ -35,9 +35,14 @@ const Slidebar: React.FC = () => {
     </a></li>
         <li className="menu-item">Configuración</li>
         <li className="menu-item">
-    <a href="dashboardDoc/archivosDocentes/archivos">
+    <a href="/dashboardDoc/archivosDocentes/archivos">
       <span>Subir Archivos</span>
-    </a>
+    </a>  
+  </li>
+  <li className="menu-item">
+    <a href="/dashboardDoc/convocatorias/convocatoria">
+      <span>Convocatorias</span>
+    </a>  
   </li>
         
       </ul>

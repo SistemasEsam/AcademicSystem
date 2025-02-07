@@ -43,6 +43,16 @@ export async function POST({ request }: APIContext) {
         { status: 400 }
       );
     }
+     // Validar la contraseña
+     const passwordRegex = /^(?=.*[0-9])(?=.{8,})/; // Mínimo 8 caracteres, al menos un número
+     if (!passwordRegex.test(password)) {
+       return new Response(
+         JSON.stringify({
+           error: "La contraseña debe tener al menos 8 caracteres y contener al menos un número.",
+         }),
+         { status: 400 }
+       );
+     }
   // Encriptar la contraseña
   const hashedPassword = await bcrypt.hash(password.trim(), 10); 
      // Guardar la imagen en el servidor

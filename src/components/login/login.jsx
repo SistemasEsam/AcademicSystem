@@ -1,5 +1,5 @@
-import React, { useState, useEffect  } from "react";
-import jwt_decode from "jwt-decode"; 
+import React, { useState, useEffect } from "react";
+import jwt_decode from "jwt-decode";
 import "./login.css";
 
 export const Login = () => {
@@ -12,11 +12,11 @@ export const Login = () => {
     const token = localStorage.getItem("token");
     const idRol = localStorage.getItem("idRol");
     if (token) {
-      if(idRol==4){
+      if (idRol == 4) {
         // Redirigir al dashboard si el token existe
         window.location.href = "/dashboardDoc";
-      } else if(idRol==2 || idRol==3) {
-          window.location.href = "/";
+      } else if (idRol == 2 || idRol == 3) {
+        window.location.href = "/";
       }
     }
   }, []); // Solo se ejecuta al montar el componente
@@ -39,13 +39,13 @@ export const Login = () => {
         localStorage.setItem("token", data.token);
         const token = localStorage.getItem("token");
         const decodedToken = jwt_decode(token);
-        const idRol=decodedToken.idRol;
-        if(idRol==4){
+        const idRol = decodedToken.idRol;
+        if (idRol == 4) {
           // Redirigir al dashboard si el token existe
           window.location.href = "/dashboardDoc";
-        } else if(idRol==2 || idRol==3) {
-            window.location.href = "/";
-        }    
+        } else if (idRol == 2 || idRol == 3) {
+          window.location.href = "/";
+        }
       } else {
         setError(data.error || "Usuario o contraseña incorrectos.");
       }
@@ -55,40 +55,40 @@ export const Login = () => {
     }
   };
   const handleRegister = () => {
-   
-    window.location.href = "/docentes/formulario-registro";
+    window.location.href = "/login/registro/indexRegistro";
   };
   return (
     <div className="login-container">
-      <img className="login-bg" src="/images/esam-cover.jpeg" alt="ESAM Cover" />
-      <div className="login-form">
-        <form onSubmit={handleLogin}>
-          <input
-            type="text"
-            placeholder="Usuario"
-            value={usuario}
-            onChange={(e) => setUsuario(e.target.value)}
-            className="login-input"
-          />
-          <input
-            type="password"
-            placeholder="Contraseña"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="login-input"
-          />
-          <button type="submit" className="login-button">
-            Iniciar Sesión
-          </button>
-        </form>
-        {error && <p className="login-error">{error}</p>}
-        <p className="register-text">
-          ¿No tienes una cuenta?{" "}
-          <span className="register-link" onClick={handleRegister}>
-            REGÍSTRATE
-          </span>
-        </p>
-      </div>
-    </div>
+      <div className="login-image"></div>
+          <div className="login-box">
+            <h1 className="login-title">Iniciar Sesión</h1>
+            <form onSubmit={handleLogin} className="login-form">
+              <input
+                type="text"
+                placeholder="Usuario"
+                value={usuario}
+                onChange={(e) => setUsuario(e.target.value)}
+                className="login-input"
+              />
+              <input
+                type="password"
+                placeholder="Contraseña"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="login-input"
+              />
+              <button type="submit" className="login-button">
+                Iniciar Sesión
+              </button>
+            </form>
+            {error && <p className="login-error">{error}</p>}
+            <p className="register-text">
+              ¿No tienes una cuenta?{" "}
+              <span className="register-link" onClick={handleRegister}>
+                REGÍSTRATE
+              </span>
+            </p>
+          </div>
+        </div>
   );
 };

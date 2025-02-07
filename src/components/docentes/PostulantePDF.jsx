@@ -87,7 +87,7 @@ const PDFContent = ({ postulante }) => (
 
         <View style={styles.rightColumn}>
           <Text style={styles.rightColumnHeading}>Estudios Pregrado</Text>
-          {postulante.estudiossuperiores && postulante.estudiossuperiores
+          {postulante.estudiosuperiores && postulante.estudiosuperiores
     .filter((estudios) => estudios.tipo === "pregrado") // Filtrar solo los de tipo "pregrado"
     .map((estudios, index) => (
             <View key={index} style={styles.listItem} wrap={false}>
@@ -106,7 +106,7 @@ const PDFContent = ({ postulante }) => (
           ))}
 
           <Text style={styles.rightColumnHeading}>Estudios Postgrado</Text>
-          {postulante.estudiossuperiores && postulante.estudiossuperiores
+          {postulante.estudiosuperiores && postulante.estudiosuperiores
     .filter((estudios) => estudios.tipo === "postgrado") // Filtrar solo los de tipo "pregrado"
     .map((estudios, index) => (
             <View key={index} style={styles.listItem} wrap={false}>

@@ -1,0 +1,155 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PostulacionButton from "../../components/convocatorias/filters/PostulacionButton";
+
+const { convocatoria } = Astro.params;
+const apiUrl = `http://localhost:4321/api/convocatorias/${convocatoria}`;
+
+let convocatoriaData = null;
+
+try {
+  const response = await fetch(apiUrl);
+  if (!response.ok) {
+    throw new Error(`Error al obtener los datos: ${response.statusText}`);
+  }
+  convocatoriaData = await response.json();
+} catch (error) {
+  console.error("Error al obtener los datos de la convocatoria:", error);
+}
+
+if (!convocatoria || !convocatoriaData) {
+  return Astro.redirect("/404");
+}
+
+// Definir los requisitos según el tipo de convocatoria
+const requisitosDocente = [
+  "Experiencia como docente mínimo 2 años",
+  "Título de maestría avalado por la CEUB",
+  "Diplomado en educación superior",
+  "Título en provisión nacional",
+  "CV"
+];
+
+const requisitosTutor = [
+  "Publicaciones de artículos en revistas científicas",
+  "Título de doctorado",
+  "Título de maestría avalado por la CEUB",
+  "Diplomado en metodología de investigación o investigación científica",
+  "Título en provisión nacional",
+  "CV"
+];
+
+const requisitos =
+  convocatoriaData.requisitos === "docente" ? requisitosDocente : requisitosTutor;
+  
+  const formatDate = (dateString: string): string => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("es-BO", {
+    weekday: 'long', // Opcional: día de la semana
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+};
+
+const fechaInicio = formatDate(convocatoriaData.fechaInicio);
+const fechaFinal = formatDate(convocatoriaData.fechaFinal);
+ 
+---
+<Layout title={`Convocatoria: ${convocatoriaData.titulo}`} description={convocatoriaData.descripcion}>
+  <div class="container">
+    <!-- Imagen a la izquierda -->
+    <div class="image-container">
+      <img src="/images/esam-cover.jpeg" alt="Convocatoria" />
+    </div>
+
+    <!-- Información a la derecha -->
+    <div class="content-container">
+      <h1>{convocatoriaData.titulo}</h1>
+      <p><strong>Perfil:</strong> {convocatoriaData.perfil}</p>
+
+      <p><strong>Requisitos:</strong></p>
+      <ul>
+        {requisitos.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+
+      <p><strong>Fecha Inicio:</strong> {fechaInicio}</p>
+      <p><strong>Fecha Final:</strong> {fechaFinal}</p> 
+      <p>
+        Para postular primero debe Iniciar sesion en nuestro sistema. 
+        Si no tienes una cuenta, <a href="/login/registro/indexRegistro">REGISTRATE AQUI</a>.
+      </p>     
+      <PostulacionButton client:load convocatoriaId={convocatoriaData.idConvocatoria} />
+
+    </div>
+  </div>
+
+  <!-- Estilos -->
+  <style>
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 30px;
+      align-items: center;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-container img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .content-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .content-container h1 {
+      color: #0b5f9a;
+     font-size: 25px;
+    }
+
+    ul {
+      padding-left: 30px;
+    }
+
+    ul li {
+      margin-bottom: 5px;
+    }
+
+    .postulate-button {
+      display: inline-block;
+      background: #0b5f9a;
+      color: white;
+      padding: 12px 20px;
+      text-align: center;
+      border-radius: 8px;
+      font-size: 16px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .postulate-button:hover {
+      background: #095184;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .image-container img {
+        max-height: 250px;
+        object-fit: cover;
+      }
+    }
+  </style>
+</Layout>

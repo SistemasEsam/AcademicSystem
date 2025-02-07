@@ -48,8 +48,8 @@ export const DocenteSearch = () => {
           (docente.correo && docente.correo.toLowerCase().includes(searchLower)) ||
           (docente.numeroDocumento && docente.numeroDocumento.toString().includes(searchTerm)) ||
           // Buscar por postgrado
-          (docente.estudiossuperiores &&
-            docente.estudiossuperiores.some(
+          (docente.estudiosuperiores &&
+            docente.estudiosuperiores.some(
               (estudio) =>
                 estudio.tipo === "postgrado" &&
                 estudio.nombre &&
@@ -69,15 +69,12 @@ export const DocenteSearch = () => {
   
     setFilteredDocentes(filtered);
   };
-  
-  
-  
 
   // Manejar cambios en el filtro de grado académico
   const handleGradeChange = (selectedGrado) => {
     const filtered = selectedGrado
       ? allDocentes.filter((docente) =>
-          docente.estudiossuperiores.some(
+          docente.estudiosuperiores.some(
             (estudio) => estudio.gradoTipo === selectedGrado
           )
         )

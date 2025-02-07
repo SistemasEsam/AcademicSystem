@@ -73,7 +73,7 @@ interface Postulante {
   postgrado: Postgrado[];
   cursos: Cursos[];
   fotografia:string;
-  estudiossuperiores:EstudiosS[];
+  estudiosuperiores:EstudiosS[];
   experienciasdocentes:ExperienciasD[];
   idiomas:Idiomas[];
   experienciaslaborales:ExperienciasL[];
@@ -84,6 +84,7 @@ interface Postulante {
 const { postulante } = Astro.props as { postulante: Postulante };
 import '../../styles/postulantesCV.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+
 ---
 <div class="container">
   <div class="left-column">
@@ -105,38 +106,38 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
       <div class="right-column">
         <h2>Estudios Pregrado</h2>
-        {postulante.estudiossuperiores && (
-          <ul>
-            {postulante.estudiossuperiores
-              .filter((estudios) => estudios.tipo === "pregrado") // Filtrar solo los de tipo "pregrado"
-              .map((estudios) => (
-                <li>
-                  <p><strong>Carrera:</strong> {estudios.carrera}</p>
-                  <p><strong>Universidad:</strong> {estudios.universidad}</p>
-                  <p><strong>País:</strong> {estudios.pais}</p>
-                  <p><strong>Año:</strong> {estudios.fecha}</p>
-                  <p><strong>Modalidad:</strong> {estudios.modalidad}</p>
-                </li>
-              ))}
-          </ul>
-        )}
-        
-        <h2>Estudios Postgrado</h2>
-        {postulante.estudiossuperiores && (
-          <ul>
-            {postulante.estudiossuperiores
-              .filter((estudios) => estudios.tipo === "postgrado") // Filtrar solo los de tipo "postgrado"
-              .map((estudios) => (
-                <li>
-                  <p><strong>Nombre:</strong> {estudios.nombre}</p>
-                  <p><strong>Universidad:</strong> {estudios.universidad}</p>
-                  <p><strong>País:</strong> {estudios.pais}</p>
-                  <p><strong>Año:</strong> {estudios.fecha}</p>
-                  <p><strong>Modalidad:</strong> {estudios.modalidad}</p>
-                </li>
-              ))}
-          </ul>
-        )}
+  {postulante.estudiosuperiores && postulante.estudiosuperiores.length > 0 && (
+    <ul>
+      {postulante.estudiosuperiores
+        .filter((estudios) => estudios.tipo?.toLowerCase() === "pregrado")
+        .map((estudios) => (
+          <li >
+            <p><strong>Carrera:</strong> {estudios.carrera}</p>
+            <p><strong>Universidad:</strong> {estudios.universidad}</p>
+            <p><strong>País:</strong> {estudios.pais}</p>
+            <p><strong>Año:</strong> {estudios.fecha}</p>
+            <p><strong>Modalidad:</strong> {estudios.modalidad}</p>
+          </li>
+        ))}
+    </ul>
+  )}
+
+  <h2>Estudios Postgrado</h2>
+  {postulante.estudiosuperiores && postulante.estudiosuperiores.length > 0 && (
+    <ul>
+      {postulante.estudiosuperiores
+        .filter((estudios) => estudios.tipo?.toLowerCase() === "postgrado")
+        .map((estudios) => (
+          <li >
+            <p><strong>Nombre:</strong> {estudios.nombre}</p>
+            <p><strong>Universidad:</strong> {estudios.universidad}</p>
+            <p><strong>País:</strong> {estudios.pais}</p>
+            <p><strong>Año:</strong> {estudios.fecha}</p>
+            <p><strong>Modalidad:</strong> {estudios.modalidad}</p>
+          </li>
+        ))}
+    </ul>
+  )}
 
         
         {postulante.cursos && postulante.cursos.length > 0 && (

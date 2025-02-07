@@ -12,10 +12,10 @@ export const AreaForm: React.FC<Props> = ({
   selectedSector,
 }) => {
   return (
-    <div>
-      <div className="form-group form-select-sm col-md-6 col-sm-12">
+    <div className="area-interes">
+     
         <select
-          className="country-item form-control"
+          className="area-select"
           required
           name="idAreaInteres"
           id="idAreaInteres"
@@ -31,10 +31,10 @@ export const AreaForm: React.FC<Props> = ({
         </select>
         <span className="error-text"></span>
         <i className="error-icon"></i>
-      </div>
-      <div className="form-group form-select-sm col-md-6 col-sm-12">
+      
+      
         <select
-          className="country-item form-control"
+           className="area-select"
           required
           name="idSector"
           id="idSector"
@@ -51,6 +51,6 @@ export const AreaForm: React.FC<Props> = ({
         <span className="error-text"></span>
         <i className="error-icon"></i>
       </div>
-    </div>
+   
   );
 };

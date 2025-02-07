@@ -3,11 +3,11 @@ import mysql from "mysql2/promise";
 export async function connectToDatabase() {
   try {
     const connection = await mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "",
+      host: "149.28.46.53",
+      user: "acadcbba_samir",
+      password: "Tony_4321",
 
-      database: "bd_esam",
+      database: "acadcbba_esamdb",
 
     });
 

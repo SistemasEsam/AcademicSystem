@@ -9,8 +9,8 @@ export async function GET({ request }: APIContext) {
     const searchTerm = url.searchParams.get("search");
     const estado = url.searchParams.get("estado");
 
+    // Si se realiza búsqueda avanzada, se usa una consulta simple
     if (searchTerm) {
-      // Lógica de búsqueda avanzada
       const query = `
         SELECT * 
         FROM docentes 
@@ -25,21 +25,24 @@ export async function GET({ request }: APIContext) {
           )
       `;
       const likeSearch = `%${searchTerm.toLowerCase()}%`;
-      const results = await db.query(query, [likeSearch, likeSearch, likeSearch, likeSearch, likeSearch]);
+      const [rows] = await db.query(query, [likeSearch, likeSearch, likeSearch, likeSearch, likeSearch]) as [any[], any];
       db.end();
 
-      return new Response(JSON.stringify(results), {
+      // Asumimos que aquí no se utilizan campos construidos con GROUP_CONCAT,
+      // por lo que simplemente se retorna el arreglo de resultados.
+      return new Response(JSON.stringify(rows), {
         status: 200,
         headers: { "Content-Type": "application/json" },
       });
     }
 
-    // Lógica existente para el filtro por estado
+    // Condición por estado
     let estadoCondition = "estado IN ('postulante', 'aprobado', 'rechazado')";
     if (estado && ["postulante", "aprobado", "rechazado"].includes(estado)) {
       estadoCondition = `estado = '${estado}'`;
     }
 
+    // Consulta principal (se reemplazan las funciones JSON por GROUP_CONCAT para cada campo)
     const query = `
 SELECT 
     d.idDocente,
@@ -59,167 +62,331 @@ SELECT
     d.agendado,
 
     -- Sector
-    JSON_OBJECT('nombre', s.nombre) AS sector,
+    COALESCE(CONCAT('{ "nombre": "', IFNULL(s.nombre, ''), '"}'), '{}') AS sector,
 
     -- País del docente
-    JSON_OBJECT('nombre', p.nombre) AS pais_docente,
+    COALESCE(CONCAT('{ "nombre": "', IFNULL(p.nombre, ''), '"}'), '{}') AS pais_docente,
 
     -- Tipo de documento
-    JSON_OBJECT('tipo', doc.tipo) AS tipo_documento,
+    COALESCE(CONCAT('{ "tipo": "', IFNULL(doc.tipo, ''), '"}'), '{}') AS tipo_documento,
 
     -- Estudios superiores
-    JSON_ARRAYAGG(
-        JSON_OBJECT(
-        
-            'tipo', IFNULL(te.tipo, ''),
-            'carrera', IFNULL(es.carrera, ''),
-            'nombre', IFNULL(es.nombre, ''),
-            'universidad', IFNULL(es.universidad, ''),
-            'pais', IFNULL(ep.nombre, ''),
-            'fecha', IFNULL(es.fecha, ''),
-            'modalidad', IFNULL(m.tipo, ''),
-            'gradoTipo', IFNULL(g.tipo, '')
-        )
-    ) AS estudiossuperiores,
+    COALESCE(
+        CASE
+            WHEN COUNT(es.idEstudioSuperior) > 0 THEN
+                CONCAT(
+                    '[', 
+                    GROUP_CONCAT(
+                        DISTINCT CONCAT(
+                            '{',
+                              '"idEstudio":"', IFNULL(es.idEstudioSuperior, ''), '", ',
+                              '"idPais":"', IFNULL(es.idPais, ''), '", ',
+                              '"idGrado":"', IFNULL(es.idGrado, ''), '", ',
+                              '"idModalidad":"', IFNULL(es.idModalidad, ''), '", ',
+                              '"tipo":"', IFNULL(te.tipo, ''), '", ',
+                              '"carrera":"', IFNULL(es.carrera, ''), '", ',
+                              '"nombre":"', IFNULL(es.nombre, ''), '", ',
+                              '"universidad":"', IFNULL(es.universidad, ''), '", ',
+                              '"pais":"', IFNULL(ep.nombre, ''), '", ',
+                              '"fecha":"', IFNULL(es.fecha, ''), '", ',
+                              '"modalidad":"', IFNULL(m.tipo, ''), '", ',
+                              '"gradoTipo":"', IFNULL(g.tipo, ''), '", ',
+                              '"idTipo":"', IFNULL(te.idTipoEstudio, ''), '"',
+                            '}'
+                        ) SEPARATOR ','
+                    ), 
+                    ']'
+                )
+            ELSE '[]'
+        END,
+        '[]'
+    ) AS estudiosuperiores,
 
     -- Experiencias docentes
-    JSON_ARRAYAGG(
-        JSON_OBJECT(
-            'idExperiencia', ed.idExperienciaDocente,
-            'materia', ed.materia,
-            'calidad', ed.calidad,
-            'universidad', ed.universidad,
-            'concluidoEl', ed.concluidoEl
-        )
+    COALESCE(
+        CASE
+            WHEN COUNT(ed.idExperienciaDocente) > 0 THEN
+                CONCAT(
+                    '[', 
+                    GROUP_CONCAT(
+                        DISTINCT CONCAT(
+                            '{',
+                              '"idExperiencia":"', IFNULL(ed.idExperienciaDocente, ''), '", ',
+                              '"materia":"', IFNULL(ed.materia, ''), '", ',
+                              '"calidad":"', IFNULL(ed.calidad, ''), '", ',
+                              '"universidad":"', IFNULL(ed.universidad, ''), '", ',
+                              '"concluidoEl":"', IFNULL(ed.concluidoEl, ''), '"',
+                            '}'
+                        ) SEPARATOR ','
+                    ), 
+                    ']'
+                )
+            ELSE '[]'
+        END,
+        '[]'
     ) AS experienciasdocentes,
 
     -- Idiomas
-    JSON_ARRAYAGG(
-        JSON_OBJECT(
-            'idIdiomaDocente', id.idIdiomaDocente,
-            'idioma', i.idioma,
-            'escritura', id.escritura,
-            'oral', id.oral,
-            'lectura', id.lectura,
-            'escucha', id.escucha
-        )
+    COALESCE(
+        CASE
+            WHEN COUNT(id.idIdiomaDocente) > 0 THEN
+                CONCAT(
+                    '[', 
+                    GROUP_CONCAT(
+                        DISTINCT CONCAT(
+                            '{',
+                              '"idIdiomaDocente":"', IFNULL(id.idIdiomaDocente, ''), '", ',
+                              '"idIdioma":"', IFNULL(id.idIdioma, ''), '", ',
+                              '"idioma":"', IFNULL(i.idioma, ''), '", ',
+                              '"escritura":"', IFNULL(id.escritura, ''), '", ',
+                              '"oral":"', IFNULL(id.oral, ''), '", ',
+                              '"lectura":"', IFNULL(id.lectura, ''), '", ',
+                              '"escucha":"', IFNULL(id.escucha, ''), '"',
+                            '}'
+                        ) SEPARATOR ','
+                    ), 
+                    ']'
+                )
+            ELSE '[]'
+        END,
+        '[]'
     ) AS idiomas,
 
     -- Habilidades blandas
-    JSON_ARRAYAGG(
-        JSON_OBJECT(
-            'idHabilidadBlanda', hb.idHabilidadBlanda,
-            'habilidad', hb.habilidad
-        )
+    COALESCE(
+        CASE
+            WHEN COUNT(hb.idHabilidadBlanda) > 0 THEN
+                CONCAT(
+                    '[', 
+                    GROUP_CONCAT(
+                        DISTINCT CONCAT(
+                            '{',
+                              '"idHabilidadBlanda":"', IFNULL(hb.idHabilidadBlanda, ''), '", ',
+                              '"habilidad":"', IFNULL(hb.habilidad, ''), '"',
+                            '}'
+                        ) SEPARATOR ','
+                    ), 
+                    ']'
+                )
+            ELSE '[]'
+        END,
+        '[]'
     ) AS habilidades_blandas,
 
     -- Experiencias laborales
-    JSON_ARRAYAGG(
-        JSON_OBJECT(
-            'idExperienciaLaboral', el.idExperienciaLaboral,
-            'nombreEmpresa', el.nombreEmpresa,
-            'cargo', el.cargo,
-            'ciudad', el.ciudad,
-            'fechaInicio', el.fechaInicio,
-            'fechaFinal', el.fechaFinal,
-            'pais', epais.nombre,
-            'descripcion', el.descripcion,
-            'referencia', JSON_OBJECT(
-                'idReferencia', r.idReferencia,
-                'nombreCompleto', r.nombreCompleto,
-                'cargo', r.cargo,
-                'numeroContacto', r.numeroContacto
-            )
-        )
+    COALESCE(
+        CASE
+            WHEN COUNT(el.idExperienciaLaboral) > 0 THEN
+                CONCAT(
+                    '[', 
+                    GROUP_CONCAT(
+                        DISTINCT CONCAT(
+                            '{',
+                              '"idExperienciaLaboral":"', IFNULL(el.idExperienciaLaboral, ''), '", ',
+                              '"nombreEmpresa":"', IFNULL(el.nombreEmpresa, ''), '", ',
+                              '"cargo":"', IFNULL(el.cargo, ''), '", ',
+                              '"ciudad":"', IFNULL(el.ciudad, ''), '", ',
+                              '"fechaInicio":"', IFNULL(el.fechaInicio, ''), '", ',
+                              '"fechaFinal":"', IFNULL(el.fechaFinal, ''), '", ',
+                              '"pais":"', IFNULL(epais.nombre, ''), '", ',
+                              '"descripcion":"', IFNULL(el.descripcion, ''), '", ',
+                              '"referencia": {',
+                                '"idReferencia":"', IFNULL(r.idReferencia, ''), '", ',
+                                '"nombreCompleto":"', IFNULL(r.nombreCompleto, ''), '", ',
+                                '"cargoR":"', IFNULL(r.cargo, ''), '", ',
+                                '"numeroContacto":"', IFNULL(r.numeroContacto, ''), '"',
+                              '}',
+                            '}'
+                        ) SEPARATOR ','
+                    ), 
+                    ']'
+                )
+            ELSE '[]'
+        END,
+        '[]'
     ) AS experienciaslaborales,
 
     -- Publicaciones intelectuales
-    JSON_ARRAYAGG(
-        JSON_OBJECT(
-            'idProduccionIntelectual', pi.idProduccionIntelectual,
-            'nombre', pi.nombre,
-            'enlaceEditorial', pi.enlaceEditorial,
-            'pais', pp.nombre,
-            'fecha', pi.fecha,
-            'tipoPublicacion', tp.tipo
-        )
+    COALESCE(
+        CASE
+            WHEN COUNT(pi.idProduccionIntelectual) > 0 THEN
+                CONCAT(
+                    '[', 
+                    GROUP_CONCAT(
+                        DISTINCT CONCAT(
+                            '{',
+                              '"idProduccionIntelectual":"', IFNULL(pi.idProduccionIntelectual, ''), '", ',
+                              '"nombre":"', IFNULL(pi.nombre, ''), '", ',
+                              '"enlaceEditorial":"', IFNULL(pi.enlaceEditorial, ''), '", ',
+                              '"pais":"', IFNULL(pp.nombre, ''), '", ',
+                              '"fecha":"', IFNULL(pi.fecha, ''), '", ',
+                              '"tipoPublicacion":"', IFNULL(tp.tipo, ''), '"',
+                            '}'
+                        ) SEPARATOR ','
+                    ), 
+                    ']'
+                )
+            ELSE '[]'
+        END,
+        '[]'
     ) AS publicacionesintelectuales,
 
-    -- Nueva relación con 'agendas'
-    JSON_ARRAYAGG(
-        JSON_OBJECT(
-            'fecha', DATE_FORMAT(ag.fecha, '%Y-%m-%d %H:%i:%s'),
-            'link', ag.linkZoom
-        )
-    ) AS detalles,
+    -- Agendas
+    COALESCE(
+        CASE
+            WHEN COUNT(ag.idAgenda) > 0 THEN
+                CONCAT(
+                    '[', 
+                    GROUP_CONCAT(
+                        DISTINCT CONCAT(
+                            '{',
+                              '"fecha":"', IFNULL(DATE_FORMAT(ag.fecha, '%Y-%m-%d %H:%i:%s'), ''), '", ',
+                              '"link":"', IFNULL(ag.linkZoom, ''), '"',
+                            '}'
+                        ) SEPARATOR ','
+                    ), 
+                    ']'
+                )
+            ELSE '[]'
+        END,
+        '[]'
+    ) AS agendas,
 
-    -- Nueva relación con 'áreas'
-    JSON_ARRAYAGG(
-        JSON_OBJECT(
-            'idArea', ar.idArea
-        )
+    -- Áreas
+    COALESCE(
+        CASE
+            WHEN COUNT(ar.idArea) > 0 THEN
+                CONCAT(
+                    '[', 
+                    GROUP_CONCAT(
+                        DISTINCT CONCAT(
+                            '{',
+                              '"idArea":"', IFNULL(ar.idArea, ''), '"',
+                            '}'
+                        ) SEPARATOR ','
+                    ), 
+                    ']'
+                )
+            ELSE '[]'
+        END,
+        '[]'
     ) AS areas,
-    
+
     -- Cursos
-    JSON_ARRAYAGG(
-        JSON_OBJECT(
-            'nombre', c.nombre,
-            'universidad', c.lugar,
-            'pais', p.nombre,
-            'anio', c.fechaInicio
-        )
+    COALESCE(
+        CASE
+            WHEN COUNT(c.idCurso) > 0 THEN
+                CONCAT(
+                    '[', 
+                    GROUP_CONCAT(
+                        DISTINCT CONCAT(
+                            '{',
+                              '"nombre":"', IFNULL(c.nombre, ''), '", ',
+                              '"universidad":"', IFNULL(c.lugar, ''), '", ',
+                              '"pais":"', IFNULL(p2.nombre, ''), '", ',
+                              '"anio":"', IFNULL(c.fechaInicio, ''), '"',
+                            '}'
+                        ) SEPARATOR ','
+                    ), 
+                    ']'
+                )
+            ELSE '[]'
+        END,
+        '[]'
     ) AS cursos
 
 FROM 
     docentes d
-    -- Relación con sectores
     LEFT JOIN sectores s ON d.idSector = s.idSector
-    -- Relación con países (para el docente)
     LEFT JOIN paises p ON d.idPais = p.idPais
-    -- Relación con documentos
     LEFT JOIN documentos doc ON d.idDocumento = doc.idDocumentos
-    -- Relación con estudios superiores
-    LEFT JOIN docentes_estudios de ON (d.idDocente = de.idDocente)
-    LEFT JOIN estudiossuperiores es ON (de.idEstudioSuperior = es.idEstudioSuperior)
-    LEFT JOIN tiposestudios te ON (te.idTipo = es.idTipo)
-    LEFT JOIN modalidades m ON m.idModalidad = es.idModalidad
-    LEFT JOIN grados g ON g.idGrado = es.idGrado
-    LEFT JOIN paises ep ON ep.idPais = es.idPais  
-    -- Relación con experiencias docentes
+    LEFT JOIN docentes_estudios de ON d.idDocente = de.idDocente
+    LEFT JOIN estudiossuperiores es ON de.idEstudioSuperior = es.idEstudioSuperior
+    LEFT JOIN tiposestudios te ON es.idTipoEstudio = te.idTipoEstudio
+    LEFT JOIN modalidades m ON es.idModalidad = m.idModalidad
+    LEFT JOIN grados g ON es.idGrado = g.idGrado
+    LEFT JOIN paises ep ON es.idPais = ep.idPais  
     LEFT JOIN docente_experienciadocente ded ON d.idDocente = ded.idDocente
     LEFT JOIN experienciadocente ed ON ded.idExperienciaDocente = ed.idExperienciaDocente
-    -- Relación con idiomas
     LEFT JOIN idiomas_docente id ON d.idDocente = id.idDocente
     LEFT JOIN idiomas i ON id.idIdioma = i.idIdioma
-    -- Relación con habilidades blandas
     LEFT JOIN habilidadesblandas hb ON d.idDocente = hb.idDocentes
-    -- Relación con experiencias laborales
     LEFT JOIN docente_experiencias dexp ON d.idDocente = dexp.idDocente
     LEFT JOIN experiencialaboral el ON dexp.idExperienciaLaboral = el.idExperienciaLaboral
     LEFT JOIN paises epais ON el.idPais = epais.idPais
     LEFT JOIN referencias r ON el.idReferencia = r.idReferencia
-    -- Relación con publicaciones intelectuales
     LEFT JOIN docentes_publicacionesintelectuales dpi ON d.idDocente = dpi.idDocente
     LEFT JOIN produccionesintelectuales pi ON dpi.idProduccionIntelectual = pi.idProduccionIntelectual
     LEFT JOIN paises pp ON pi.idPais = pp.idPais
     LEFT JOIN tipospublicaciones tp ON pi.idTipoPublicacion = tp.idTipoPublicacion
-    -- Relación con agendas
-    LEFT JOIN agendas ag ON ag.idDocente = d.idDocente
-    -- Relación con áreas
+    LEFT JOIN agendas ag ON d.idDocente = ag.idDocente
     LEFT JOIN areas ar ON d.idAreaInteres = ar.idArea
-    -- Relación con cursos
-    LEFT JOIN docente_curso dc ON (d.idDocente = dc.idDocente)
-    LEFT JOIN cursos c ON (c.idCurso = dc.idCurso)
-    WHERE ${estadoCondition} 
-    GROUP BY 
-    d.idDocente;
-  `;
+    LEFT JOIN docente_curso dc ON d.idDocente = dc.idDocente
+    LEFT JOIN cursos c ON dc.idCurso = c.idCurso
+    LEFT JOIN paises p2 ON c.idPais = p2.idPais
+WHERE ${estadoCondition} 
+GROUP BY d.idDocente;
+    `;
 
-    const [results] = await db.query(query);
-
+    const [results] = await db.query(query) as [any[], any];
     db.end();
 
-    return new Response(JSON.stringify(results), { status: 200 });
+    // Procesamos cada fila para convertir los campos de GROUP_CONCAT a objetos/arrays
+    const parsedResults = results.map((row) => {
+      try {
+        row.estudiosuperiores = JSON.parse(row.estudiosuperiores);
+      } catch (e) {
+        row.estudiosuperiores = [];
+      }
+      try {
+        row.experienciasdocentes = JSON.parse(row.experienciasdocentes);
+      } catch (e) {
+        row.experienciasdocentes = [];
+      }
+      try {
+        row.idiomas = JSON.parse(row.idiomas);
+      } catch (e) {
+        row.idiomas = [];
+      }
+      try {
+        row.habilidades_blandas = JSON.parse(row.habilidades_blandas);
+      } catch (e) {
+        row.habilidades_blandas = [];
+      }
+      try {
+        row.experienciaslaborales = JSON.parse(row.experienciaslaborales);
+      } catch (e) {
+        row.experienciaslaborales = [];
+      }
+      try {
+        row.publicacionesintelectuales = JSON.parse(row.publicacionesintelectuales);
+      } catch (e) {
+        row.publicacionesintelectuales = [];
+      }
+      try {
+        row.agendas = JSON.parse(row.agendas);
+      } catch (e) {
+        row.agendas = [];
+      }
+      try {
+        row.areas = JSON.parse(row.areas);
+      } catch (e) {
+        row.areas = [];
+      }
+      try {
+        row.cursos = JSON.parse(row.cursos);
+      } catch (e) {
+        row.cursos = [];
+      }
+      try {
+        row.archivosDocente = JSON.parse(row.archivosDocente);
+      } catch (e) {
+        row.archivosDocente = [];
+      }
+      return row;
+    });
+
+    return new Response(JSON.stringify(parsedResults), { status: 200 });
   } catch (error) {
     console.error("Error al obtener los docentes postulantes:", error);
     return new Response(

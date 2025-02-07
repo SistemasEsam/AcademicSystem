@@ -23,7 +23,7 @@ interface EstudioSuperior {
 
 interface DocenteData {
   idDocente: number;
-  estudiossuperiores: EstudioSuperior[];
+  estudiosuperiores: EstudioSuperior[];
 }
 
 const FormularioDocente: React.FC = () => {
@@ -71,7 +71,7 @@ const FormularioDocente: React.FC = () => {
     return <p>Error: No se pudieron cargar los datos del docente.</p>;
   }
 
-  const { idDocente, estudiossuperiores } = docenteData;
+  const { idDocente, estudiosuperiores } = docenteData;
 
   // Manejar cambios en los campos
   const handleChange = (
@@ -125,7 +125,7 @@ const FormularioDocente: React.FC = () => {
           prevData
             ? {
                 ...prevData,
-                estudiossuperiores: prevData.estudiossuperiores.map((e) =>
+                estudiossuperiores: prevData.estudiosuperiores.map((e) =>
                   e === selectedEstudio
                     ? { ...selectedEstudio, idEstudio: result.idEstudio }
                     : e
@@ -208,8 +208,8 @@ const FormularioDocente: React.FC = () => {
       </button>
       <p hidden>ID Docente: {idDocente}</p>
 
-      {estudiossuperiores
-        .slice(0, showAll ? estudiossuperiores.length : 2) // Muestra solo 2 o todas según el estado
+      {estudiosuperiores
+        .slice(0, showAll ? estudiosuperiores.length : 2) // Muestra solo 2 o todas según el estado
         .map((estudio, index) => (
           <div key={index} className="study-card">
             <h4 className={`study-title ${estudio.idEstudio ? "hidden" : ""}`}>

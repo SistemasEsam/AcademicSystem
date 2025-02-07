@@ -68,5 +68,4 @@ function TypesSelect({
     </label>
   );
 }
-
 export default TypesSelect;

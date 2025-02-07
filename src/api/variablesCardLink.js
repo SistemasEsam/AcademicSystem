@@ -25,8 +25,8 @@ export const variablesCardLink = [
     href: "/programas/",
   },
   {
-    titulo: "certificaciones",
+    titulo: "convocatorias",
     imagen: "/images/svg/boton6.svg",
-    href: "/certificaciones/",
+    href: "/convocatorias/",
   },
 ];
