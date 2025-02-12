@@ -1,5 +1,6 @@
 ---
-
+import type { only } from "node:test"
+import NotificacionesCampana from "./convocatorias/notificaciones/NotificacionesCampana"
 ---
 
 <header>
@@ -8,6 +9,9 @@
   <a id="logoEsamMobile" href="/">
     <h1 id="tituloMobile">SISTEMA ACADÉMICO</h1>
   </a>
+  <div style="margin-right auto; padding-right: 30px;">
+    <NotificacionesCampana client:only="react" /> 
+  </div>
 </header>
 <div class="barraAmarilla"></div>
 
@@ -42,16 +46,15 @@
   }
 
   header {
-    position: relative;
-    display: grid;
-    grid-template-columns: 10% 1fr;
-    height: 80px;
-    width: 100%;
-    background-image: linear-gradient(to right, #095b95, #01101a);
-    /* background-image: linear-gradient(to right, rgba(52, 53, 124, 0.8),30%,rgba(21, 104, 153, 0.0)); */
-    align-items: center;
-    justify-items: center;
-  }
+  position: relative;
+  display: grid;
+  grid-template-columns: 10% 1fr auto; 
+  height: 80px;
+  width: 100%;
+  background-image: linear-gradient(to right, #095b95, #01101a);
+  align-items: center;
+  justify-items: center;
+}
   @keyframes degrade {
     0% {
       background-position: 0% 50%;
@@ -89,8 +92,8 @@
 
   @media (max-width: 768px) {
     header {
-      grid-template-columns: 30% 1fr;
-    }
+    grid-template-columns: 80% 1fr auto; /* Añade auto para el contenedor de la campana */
+  }
 
     #logoEsam,
     #titulo {

@@ -26,22 +26,31 @@ export async function POST({ request }: APIContext) {
     db = await connectToDatabase();
 
     // Insertar en la tabla de postulantes_convocatoria
-    const query = `
+    const queryPostulacion = `
       INSERT INTO postulantes_convocatoria (idDocente, idConvocatoria)
       VALUES (?, ?)
     `;
-    const values = [user.idDocente, idConvocatoria];
+    const valuesPostulacion = [user.idDocente, idConvocatoria];
 
-    await db.execute(query, values);
+    await db.execute(queryPostulacion, valuesPostulacion);
+
+    // Insertar en la tabla de notificaciones
+    const queryNotificacion = `
+      INSERT INTO notificaciones (idDocente, idConvocatoria, idTipoNotificaciones, fechaNotificacion, estado)
+      VALUES (?, ?, ?, NOW(), 'cerrado')
+    `;
+    const valuesNotificacion = [user.idDocente, idConvocatoria, 1];
+
+    await db.execute(queryNotificacion, valuesNotificacion);
 
     return new Response(
-      JSON.stringify({ message: "Postulación registrada correctamente" }),
+      JSON.stringify({ message: "Postulación y notificación registradas correctamente" }),
       { status: 200 }
     );
   } catch (error) {
-    console.error("Error al registrar la postulación:", error);
+    console.error("Error al registrar la postulación o notificación:", error);
     return new Response(
-      JSON.stringify({ error: "Error al registrar la postulación" }),
+      JSON.stringify({ error: "Error al registrar la postulación o notificación" }),
       { status: 500 }
     );
   } finally {
