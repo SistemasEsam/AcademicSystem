@@ -32,7 +32,7 @@ export async function POST({ request }: APIContext) {
     for (const estudio of estudiossuperiores) {
       // Validar idTipoEstudio
       const [tipoEstudioResult]: any = await db.execute(
-        `SELECT COUNT(*) AS count FROM tiposestudios WHERE idTipo = ?`,
+        `SELECT COUNT(*) AS count FROM tiposestudios WHERE idTipoEstudio = ?`,
         [estudio.idTipo]
       );
       if (tipoEstudioResult[0].count === 0) {
@@ -41,7 +41,7 @@ export async function POST({ request }: APIContext) {
 
       // Insertar estudio superior
       const estudioQuery = `
-        INSERT INTO estudiossuperiores (universidad, carrera, fecha, nombre, idPais, idGrado, idModalidad, idTipo)
+        INSERT INTO estudiossuperiores (universidad, carrera, fecha, nombre, idPais, idGrado, idModalidad, idTipoEstudio)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
       `;
       const estudioValues = [
@@ -52,7 +52,7 @@ export async function POST({ request }: APIContext) {
         sanitizeValue(Number(estudio.idPais)),
         sanitizeValue(Number(estudio.idGrado)),
         sanitizeValue(Number(estudio.idModalidad)),
-        sanitizeValue(Number(estudio.idTipo)),
+        sanitizeValue(Number(estudio.idTipoEstudio)),
       ];
 
       console.log("Ejecutando inserción con valores:", estudioValues);
