@@ -9,10 +9,14 @@ export default defineConfig({
     mode: "standalone"
   }),
   server: {
-    host: true, // Habilita exposición en red
+    host: true,
     port: 4321
   },
   vite: {
-    // Hereda la configuración de vite.config.js
+    server: {
+      hmr: {
+        clientPort: 4321 // Clave para Railway
+      }
+    }
   }
 });

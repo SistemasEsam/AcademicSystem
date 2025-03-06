@@ -3,15 +3,15 @@ import { defineConfig } from "vite";
 export default defineConfig({
   preview: {
     allowedHosts: [
-      "sistemacad-production.up.railway.app", // Dominio de Railway
-      "localhost" // Para pruebas locales
+      "sistemacad-production.up.railway.app",
+      "localhost",
+      "0.0.0.0" // Añade esto explícitamente
     ],
-    host: "0.0.0.0", // Obligatorio para Docker
+    host: "0.0.0.0",
     port: 4321,
-    strictPort: true // Evita cambios de puerto automáticos
+    strictPort: true
   },
-  server: {
-    host: "0.0.0.0", // Asegura que el servidor escuche externamente
-    port: 4321
+  build: {
+    chunkSizeWarningLimit: 2000 // Ignora advertencias de chunks grandes
   }
 });
