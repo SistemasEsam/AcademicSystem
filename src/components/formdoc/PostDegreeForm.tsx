@@ -26,7 +26,7 @@ interface DocenteData {
   estudiosuperiores: EstudioSuperior[];
 }
 
-const FormularioDocente: React.FC = () => {
+const PostDegreeForm: React.FC = () => {
   const [docenteData, setDocenteData] = useState<DocenteData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [message, setMessage] = useState<string>("");
@@ -396,4 +396,4 @@ const FormularioDocente: React.FC = () => {
   );
 };
 
-export default FormularioDocente;
+export default PostDegreeForm;
