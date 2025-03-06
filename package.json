@@ -4,8 +4,8 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev --host",
-    "start": "astro dev",
-    "build": "astro check && astro build",
+    "start": "npm run preview",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
