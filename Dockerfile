@@ -1,30 +1,25 @@
 # ----------------------
-# Etapa de Construcción
+# Etapa de Construcción (Node 20)
 # ----------------------
-    FROM node:18-alpine AS builder
+    FROM node:20-alpine AS builder
     WORKDIR /app
     
-    # Copia solo las dependencias para caché eficiente
     COPY package*.json ./
-    RUN npm install --omit=dev  # Ignora dependencias de desarrollo
+    RUN npm install --omit=dev
     
-    # Copia el código y construye
     COPY . .
-    RUN npm run build  # Genera la versión optimizada para producción
+    RUN npm run build
     
     # ----------------------
     # Etapa de Producción
     # ----------------------
-    FROM node:18-alpine
+    FROM node:20-alpine
     WORKDIR /app
     
-    # Copia solo lo necesario desde la etapa de construcción
     COPY --from=builder /app/dist ./dist
     COPY --from=builder /app/package*.json ./
     
-    # Instala solo dependencias de producción
     RUN npm install --omit=dev
     
-    # Variables y puertos
     EXPOSE 4321
-    CMD ["npm", "run", "preview"]  # Ejecuta el servidor de producción
+    CMD ["npm", "run", "preview"]  
