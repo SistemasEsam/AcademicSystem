@@ -253,7 +253,7 @@ const PostDegreeForm: React.FC = () => {
       {message && <p className="message-text">{message}</p>}
 
       {selectedEstudio && (
-        <div className="modal">
+        <div className="modal-post">
           <div className="modal-content">
             <div className="modal-title">
               <h4>Editar Estudio</h4>
