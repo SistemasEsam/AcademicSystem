@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "4321:4321"
+    environment:
+      DB_HOST: 149.28.34.53
+      DB_USER: acadcbba_vins
+      DB_PASSWORD: Vins8039368
+      DB_NAME: acadcbba_esamdb
+    networks:
+      - external-net
+
+networks:
+  external-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24 # Fuerza una subred específica

@@ -1,7 +1,9 @@
-export function Logout(){
 
+import './Logout.css'; // Ajusta la ruta
 
-const handleLogout = () => {
+export function Logout() {
+  const handleLogout = () => {
+    // Limpiar localStorage
     localStorage.removeItem("token");
     localStorage.removeItem("idDocente");
     localStorage.removeItem("docenteNombre");
@@ -9,12 +11,14 @@ const handleLogout = () => {
     localStorage.removeItem("idRol");
     window.location.href = "/login";
   };
- 
 
   return (
-    <div>
-    
-      <button onClick={handleLogout}>Cerrar Sesión</button>
+    <div className="logout-container">
+      <button 
+        onClick={handleLogout} 
+        className="logout-button"
+        aria-label="Cerrar sesión"
+      ></button>
     </div>
   );
 }

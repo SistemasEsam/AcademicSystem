@@ -1,0 +1,32 @@
+.logout-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    color:  rgb(255, 0, 0);
+    background-color: red;
+    border-radius: 50%;
+  }
+  
+  .logout-button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    color: rgb(255, 240, 240);
+    border-radius: 50%;
+    background: url('../../../public/images/svg/logout-icon.svg') no-repeat center;
+    background-size: 60%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: transparent;
+  }
+  
+  .logout-button:hover {
+    background-color: rgb(255, 0, 0);
+    transform: rotate(-90deg);
+    background-image: url('../../../public/images/svg/logout-icon.svg'); /* Versión hover */
+  }
+  
+  .logout-button:active {
+    transform: scale(0.9) rotate(-90deg);
+  }

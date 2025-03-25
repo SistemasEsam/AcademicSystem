@@ -73,8 +73,7 @@ async function handlePut(request: Request) {
   `;
   const updateValues = [...updateFieldsValues, idEstudioSuperior];
 
-  // Ejecutar la consulta de actualización
-  const [updateResult]: any = await db.execute(updateQuery, updateValues);
+
 
   db.end();
 

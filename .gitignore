@@ -25,3 +25,5 @@ pnpm-debug.log*
 package.json
 package-lock.json
 
+# .gitignore
+.env

@@ -30,7 +30,7 @@ export async function PUT({ request }: APIContext) {
     }
 
     for (const idioma of idiomas) {
-      const { idIdiomaDocente, idIdioma, escritura, oral, lectura, escucha } = idioma;
+      const { idIdioma, escritura, oral, lectura, escucha } = idioma;
 
       // Verificar si el idioma ya está asociado con el docente
       const [idiomaExistente]: any = await db.execute(

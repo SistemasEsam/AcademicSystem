@@ -1,6 +1,7 @@
 ---
-import type { only } from "node:test"
+
 import NotificacionesCampana from "./convocatorias/notificaciones/NotificacionesCampana"
+import { Logout } from "../components/login/Logout";
 ---
 
 <header>
@@ -9,13 +10,29 @@ import NotificacionesCampana from "./convocatorias/notificaciones/Notificaciones
   <a id="logoEsamMobile" href="/">
     <h1 id="tituloMobile">SISTEMA ACADÉMICO</h1>
   </a>
-  <div style="margin-right auto; padding-right: 30px;">
-    <NotificacionesCampana client:only="react" /> 
+  <div class="header-controls">
+    <div class="notifications-wrapper">
+      <NotificacionesCampana client:only="react" />
+    </div>
+    <div class="logout-wrapper">
+      <Logout client:load/>
+    </div>
   </div>
 </header>
 <div class="barraAmarilla"></div>
 
 <style>
+
+   /* Añadir estos estilos */
+   .header-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-right: 30px;
+  }
+.logout-wrapper{
+margin-right: 50px;
+}
   #logoEsamMobile,
   #titloMobile {
     display: none;
@@ -48,7 +65,9 @@ import NotificacionesCampana from "./convocatorias/notificaciones/Notificaciones
   header {
   position: relative;
   display: grid;
-  grid-template-columns: 10% 1fr auto; 
+  grid-template-columns: auto 1fr auto; /* Nueva estructura de 3 columnas */
+  gap: 20px;
+  padding: 0 20px;
   height: 80px;
   width: 100%;
   background-image: linear-gradient(to right, #095b95, #01101a);
