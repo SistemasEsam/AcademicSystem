@@ -1,9 +1,12 @@
-.perfil{
-  color:#0e0b0b ;
+.perfil {
+  color: #0e0b0b;
 }
 
-
+/* Profile container */
 .profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 100%;
   margin: 0 auto;
   padding: 20px;
@@ -13,27 +16,21 @@
   margin-bottom: 170px;
 }
 
-
+/* Loading text */
 .loading-text {
   text-align: center;
   font-size: 18px;
   color: #555;
 }
 
+/* Profile form */
 .profile-form {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 40px;
 }
 
-.form-header-title {
-  font-size: 15px;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 10px;
-  color: #000;
-}
-
+/* Form group */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -41,12 +38,7 @@
   margin-bottom: 15px;
 }
 
-.form-label {
-  font-size: 14px;
-  font-weight: 500;
-  color: #555;
-}
-
+/* Form input styles */
 .form-input {
   width: 100%;
   padding: 10px;
@@ -62,6 +54,7 @@
   box-shadow: 0 0 4px rgba(0, 123, 255, 0.2);
 }
 
+/* Botones */
 .submit-button,
 .cancel-button1 {
   padding: 12px 20px;
@@ -97,19 +90,7 @@
   transform: scale(1.02);
 }
 
-@media (max-width: 768px) {
-  .profile-container {
-    padding: 15px;
-  }
-  .form-input,
-  .submit-button {
-    font-size: 14px;
-  }
-  .profile-form {
-    grid-template-columns: 1fr;
-  }
-}
-
+/* Botón de editar */
 .edit-button1 {
   background-image: url("../../../../public/images/svg/edit.svg");
   background-repeat: no-repeat;
@@ -124,6 +105,7 @@
   margin-right: 100px;
 }
 
+/* Contenedores generales */
 .Prueba {
   background-color: #f4f2ee;
   position: relative;
@@ -150,84 +132,65 @@
   z-index: 10;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   border: 5px solid #fff;
-  overflow: hidden; /* Asegura que la imagen no sobresalga del círculo */
+  overflow: hidden;
 }
 
 .contenedor1 img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ajusta la imagen para que llene el contenedor sin deformarse */
-  border-radius: 50%; /* Asegura que la imagen también sea circular */
+  object-fit: cover;
+  border-radius: 50%;
 }
 
-
-
+/* Contenedores principales */
 .contenedor2 {
-background-color: #f4f2ee;
+  background-color: #f4f2ee;
   margin-top: -50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+}
 
+.contenedor2-1,
+.contenedor2-2 {
+  width: 90%;
+  max-width: 1100px;
+  
 }
 
 .contenedor2-1 {
   background-color: #63b3ed;
   padding: 20px;
   text-align: center;
-  width: 1100px;
   height: 200px;
   border-radius: 28px 28px 0 0;
 }
 
-
-
-.fotografi-cont{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  margin-top: 20px;
-  height: 10px;
-  width: 300px;
-}
-
-
-
 .contenedor2-2 {
-  height: 500px;
-  justify-content: space-between;
-  background-color: rgb(255, 255, 255);
+  background-color: #fff;
   padding: 20px;
   text-align: center;
-  width: 1100px;
   display: flex;
-  flex-direction: column; /* Cambia a columna para apilar verticalmente */
-  gap: 0px;
- 
+  flex-direction: column;
+  border-radius: 0px;
+  margin-bottom: 0px;
+
 }
+
+/* Información del perfil */
 .profile-info {
   margin-bottom: 20px;
   margin-left: 70px;
-  padding: 20px 20px 20px 0; /* Elimina el padding izquierdo */
+  padding: 20px 20px 20px 0;
   width: 300px;
-  height: auto; /* Cambiado a "auto" para que se ajuste al contenido */
 }
 
 .profile-info-name {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
-  margin-left: 0; /* Asegura que no haya margen izquierdo */
   text-align: left;
-}
-
-.profile-info-lastname {
-  font-size: 20px;
-  color: #555;
-  margin-bottom: 10px;
-  margin-left: 0; /* Asegura que no haya margen izquierdo */
 }
 
 .profile-info-email,
@@ -236,20 +199,17 @@ background-color: #f4f2ee;
   font-size: 14px;
   color: #777;
   margin-bottom: 8px;
-  margin-left: 0;
-  text-align: left; /* Elimina el margen negativo */
+  text-align: left;
 }
 
-
-
-/* Estilos para el modal del Dashboard */
+/* Modal */
 .modaldash {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -262,58 +222,13 @@ background-color: #f4f2ee;
   border-radius: 8px;
   width: 80%;
   max-width: 600px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  position: relative; /* Para posicionar el botón de cerrar */
-}
-
-.modal-container,
-.modal-overlay {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-.modaldash-content {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  width: 80%;
-  max-width: 600px;
-  max-height: 80vh; /* Limita la altura al 80% de la pantalla */
-  overflow-y: auto; /* Agrega el scroll automático si es necesario */
+  max-height: 80vh;
+  overflow-y: auto;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   position: relative;
 }
 
-.modal-content h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #333;
-}
-
-.modaldash-close-button {
-  background: red;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
-
-
-
-
+.modaldash-close-button,
 .close-button {
   background: red;
   color: white;
@@ -326,39 +241,7 @@ background-color: #f4f2ee;
   right: 10px;
 }
 
-.animated-button-estudios {
-  background: #4CAF50;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  gap: 10px;
-}
-
-.animated-button-estudios:hover {
-  background-color: #45a049;
-}
-
-
-.profile-info-edit-container {
-  display: flex; /* Alinea profile-info y edit-button horizontalmente */
-  align-items: center; /* Centra verticalmente los elementos */
-  justify-content: space-between; /* Espacio entre los elementos */
-  width: 100%; /* Ocupa todo el ancho disponible */
-}
-
-
-/* Contenedor de los botones */
-.buttons-container-perfil {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-/* Estilos base para los botones */
+/* Botones animados */
 .animated-button-estudios,
 .animated-button-experiencia,
 .animated-button-habilidades,
@@ -382,7 +265,6 @@ background-color: #f4f2ee;
   overflow: hidden;
 }
 
-/* Icono dentro del botón */
 .animated-button-estudios::after,
 .animated-button-experiencia::after,
 .animated-button-habilidades::after,
@@ -395,7 +277,6 @@ background-color: #f4f2ee;
   transition: all 0.3s ease-in-out;
 }
 
-/* Efecto Hover */
 .animated-button-estudios:hover,
 .animated-button-experiencia:hover,
 .animated-button-habilidades:hover,
@@ -414,7 +295,6 @@ background-color: #f4f2ee;
   opacity: 1;
 }
 
-/* Efecto Activo (cuando se presiona) */
 .animated-button-estudios:active,
 .animated-button-experiencia:active,
 .animated-button-habilidades:active,
@@ -422,4 +302,49 @@ background-color: #f4f2ee;
 .animated-button-producciones:active {
   transform: translateY(1px);
   background-color: #004494;
+}
+
+/* Contenedor de botones */
+.buttons-container-perfil {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Media queries para dispositivos móviles */
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 15px;
+  }
+  .form-input,
+  .submit-button {
+    font-size: 14px;
+  }
+  .profile-form {
+    grid-template-columns: 1fr;
+  }
+  .buttons-container-perfil {
+    flex-direction: column;
+    align-items: center;
+  }
+  .buttons-container-perfil button {
+    width: 100%;
+  }
+  .contenedor2-1,
+  .contenedor2-2 {
+    width: 95%;
+  }
+  .profile-info {
+    margin-left: 0;
+    width: 100%;
+    padding: 10px;
+  }
+  .contenedor1 {
+    position: relative;
+    top: auto;
+    right: 30%;
+    margin-bottom: 20px;
+  }
 }

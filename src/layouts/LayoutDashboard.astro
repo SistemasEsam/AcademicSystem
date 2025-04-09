@@ -20,8 +20,10 @@ import Slidebar from "../layouts/layoutsDash/Slidebar";
         <slot />
       </main>
     </div>
+<footer class="footerdash">
+  <Footerdash client:load />
 
-    <Footerdash client:load />
+</footer>
   </body>
 </html>
 
@@ -33,12 +35,11 @@ import Slidebar from "../layouts/layoutsDash/Slidebar";
 
   body {
     font-family: "Futura", sans-serif;
-
-    display: flex;
-    flex-direction: column;
-
-    width: 100%;
-    overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Asegura que el body ocupe toda la pantalla */
+  width: 100%;
+  overflow: hidden;
   }
 
   .layout {
@@ -60,6 +61,12 @@ import Slidebar from "../layouts/layoutsDash/Slidebar";
   .contenidoPrincipal.slidebar-closed {
     margin-left: 0;
   }
+  .footerdash {
+  background-color: #222;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
 
   @media (max-width: 768px) {
     .contenidoPrincipal {

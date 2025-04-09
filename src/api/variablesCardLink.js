@@ -1,7 +1,10 @@
+
+
+
 export const variablesCardLink = [
   {
     titulo: "Agregar Docente",
-    imagen: "/images/svg/academico/boton1.svg",
+    imagen: "/images/svg/academico/boton1.svg", // Ahora es un componente React
     href: "/docentes/formulario-registro",
   },
   {

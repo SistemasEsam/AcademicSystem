@@ -81,7 +81,7 @@
   .svg-icon {
     width: 60%; /* Ajusta según necesidad */
     height: 60%;
-    color: rgb(255, 255, 255); /* Controla el color del SVG */
+    color: rgb(255, 0, 0); /* Controla el color del SVG */
     z-index: 10000;
     position: relative;
   }
